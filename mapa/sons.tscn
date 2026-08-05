@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://4qas3uorq6qc"]
+
+[ext_resource type="Script" uid="uid://dt5d582qusvv2" path="res://mapa/sons.gd" id="1_xcmdw"]
+[ext_resource type="AudioStream" uid="uid://btdmw2ykentkv" path="res://Sons/Trilha-Piano.wav" id="2_gg67j"]
+[ext_resource type="AudioStream" uid="uid://cklaikrwgnhxn" path="res://Sons/Vento.wav" id="2_xcmdw"]
+[ext_resource type="AudioStream" uid="uid://brv7h7w1c52s" path="res://Sons/Fabrica.wav" id="3_gg67j"]
+
+[node name="Sons" type="Node2D" unique_id=1808240201]
+script = ExtResource("1_xcmdw")
+
+[node name="SomFundo" type="AudioStreamPlayer" parent="." unique_id=1574224908]
+stream = ExtResource("2_gg67j")
+volume_db = -2.492
+autoplay = true
+
+[node name="SomVento" type="AudioStreamPlayer" parent="." unique_id=1859655037]
+stream = ExtResource("2_xcmdw")
+volume_db = 2.491
+autoplay = true
+
+[node name="SomFabrica" type="AudioStreamPlayer" parent="." unique_id=1508971608]
+stream = ExtResource("3_gg67j")
+volume_db = -20.224
+autoplay = true
+
+[node name="Timer" type="Timer" parent="SomFabrica" unique_id=612791416]

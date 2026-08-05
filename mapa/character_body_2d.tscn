@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://60y4nipryqjn"]
+
+[ext_resource type="Script" uid="uid://bc5x4nsex43vt" path="res://mapa/PlayerAudio.gd" id="1_ddhpq"]
+[ext_resource type="Texture2D" uid="uid://ixqq6tf11dxf" path="res://spell/1000054715.png" id="2_ddhpq"]
+[ext_resource type="Texture2D" uid="uid://sjth7igsoylw" path="res://spell/1000054710 (1).png" id="3_xvbcy"]
+[ext_resource type="Texture2D" uid="uid://camb4248q6oh" path="res://spell/1000054711.png" id="4_1mnrx"]
+[ext_resource type="Texture2D" uid="uid://bdk8wig7pfjm6" path="res://spell/1000054712.png" id="5_q4t1y"]
+[ext_resource type="Texture2D" uid="uid://cy6tugu0luo16" path="res://spell/1000054713.png" id="6_qjige"]
+[ext_resource type="Texture2D" uid="uid://7ip8utqks4yo" path="res://spell/1000054714.png" id="7_b2ql2"]
+[ext_resource type="Texture2D" uid="uid://d2hfvjbta2x6d" path="res://spell/1000054716.png" id="8_pv7v7"]
+[ext_resource type="Texture2D" uid="uid://5etjk1yg2a2d" path="res://spell/1000054717.png" id="9_ttoxh"]
+[ext_resource type="Texture2D" uid="uid://dtl3hjxtovlc2" path="res://spell/1000054718.png" id="10_d3e4l"]
+[ext_resource type="Texture2D" uid="uid://b0j062fqky7yk" path="res://spell/1000054719.png" id="11_7ym3j"]
+[ext_resource type="Texture2D" uid="uid://dqqfkwhmgep2e" path="res://spell/1000054720.png" id="12_uj8s3"]
+[ext_resource type="Texture2D" uid="uid://bg3tpdcqsvku0" path="res://spell/1000054721.png" id="13_1pj5a"]
+[ext_resource type="Texture2D" uid="uid://c4sd03p55l6rb" path="res://spell/1000054722.png" id="14_u8nn7"]
+[ext_resource type="Texture2D" uid="uid://ccbt7hh57n04" path="res://spell/1000054723.png" id="15_obifa"]
+[ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/1000054724.png" id="16_ynenk"]
+[ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b43hs"]
+height = 29.75708
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ornx7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ddhpq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xvbcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1mnrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q4t1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qjige")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b2ql2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ddhpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pv7v7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ttoxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_d3e4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7ym3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uj8s3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1pj5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_u8nn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_obifa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ynenk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=852491934]
+collision_mask = 12
+script = ExtResource("1_ddhpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624228152]
+position = Vector2(-7, -46)
+scale = Vector2(3.2147949, 7.393199)
+shape = SubResource("CapsuleShape2D_b43hs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=662635497]
+position = Vector2(-10, -116.999985)
+zoom = Vector2(0.9, 0.9)
+limit_enabled = false
+drag_vertical_offset = -1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1210837540]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_ornx7")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.8107135
+
+[node name="PlayerAudio" type="Node2D" parent="." unique_id=1860197088]
+
+[node name="SomPasso" type="AudioStreamPlayer2D" parent="PlayerAudio" unique_id=526729435]
+stream = ExtResource("17_ddhpq")
+volume_db = 8.096
+
+[node name="TimerPasso" type="Timer" parent="PlayerAudio" unique_id=1080561648]
