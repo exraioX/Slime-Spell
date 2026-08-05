@@ -1,7 +1,7 @@
 extends Node
 
 @export var tempo_minimo: float = 8.0
-@export var tempo_maximo: float = 15.0
+@export var export_var_tempo_maximo: float = 15.0
 @export var usar_tempo_aleatorio: bool = false
 
 @onready var som_ambiente: AudioStreamPlayer = $SomFabrica
@@ -20,5 +20,5 @@ func _on_timer_som_timeout() -> void:
 		configurar_proximo_tempo()
 
 func configurar_proximo_tempo() -> void:
-	timer_som.wait_time = randf_range(tempo_minimo, tempo_maximo)
+	timer_som.wait_time = randf_range(tempo_minimo, export_var_tempo_maximo)
 	timer_som.start()

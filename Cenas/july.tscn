@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://comq41i58rb56"]
 
-[ext_resource type="Script" uid="uid://vwrffys6nvtq" path="res://mapa/july.gd" id="1_cmhkt"]
+[ext_resource type="Script" uid="uid://vwrffys6nvtq" path="res://Scripts/july.gd" id="1_cmhkt"]
 [ext_resource type="Texture2D" uid="uid://cvwegn88c3xg6" path="res://july/1000054727.png" id="2_4so3a"]
 [ext_resource type="Texture2D" uid="uid://cqttdrprcrfad" path="res://july/1000054725.png" id="3_npt40"]
 [ext_resource type="Texture2D" uid="uid://drdibidxj3jfs" path="res://july/1000054726.png" id="4_xffux"]

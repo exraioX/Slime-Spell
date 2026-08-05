@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://60y4nipryqjn"]
 
-[ext_resource type="Script" uid="uid://bc5x4nsex43vt" path="res://mapa/PlayerAudio.gd" id="1_ddhpq"]
+[ext_resource type="Script" uid="uid://d2wbmrjosv10y" path="res://Cenas/spell.gd" id="1_05711"]
 [ext_resource type="Texture2D" uid="uid://ixqq6tf11dxf" path="res://spell/1000054715.png" id="2_ddhpq"]
 [ext_resource type="Texture2D" uid="uid://sjth7igsoylw" path="res://spell/1000054710 (1).png" id="3_xvbcy"]
 [ext_resource type="Texture2D" uid="uid://camb4248q6oh" path="res://spell/1000054711.png" id="4_1mnrx"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bg3tpdcqsvku0" path="res://spell/1000054721.png" id="13_1pj5a"]
 [ext_resource type="Texture2D" uid="uid://c4sd03p55l6rb" path="res://spell/1000054722.png" id="14_u8nn7"]
 [ext_resource type="Texture2D" uid="uid://ccbt7hh57n04" path="res://spell/1000054723.png" id="15_obifa"]
+[ext_resource type="Script" uid="uid://dhx8pptluhcdo" path="res://Scripts/player_audio.gd" id="16_iab2y"]
 [ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/1000054724.png" id="16_ynenk"]
 [ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
 
@@ -82,9 +83,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=852491934]
+[node name="spell" type="CharacterBody2D" unique_id=852491934]
 collision_mask = 12
-script = ExtResource("1_ddhpq")
+script = ExtResource("1_05711")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624228152]
 position = Vector2(-7, -46)
@@ -102,9 +103,10 @@ scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_ornx7")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.8107135
+frame_progress = 0.6906637
 
 [node name="PlayerAudio" type="Node2D" parent="." unique_id=1860197088]
+script = ExtResource("16_iab2y")
 
 [node name="SomPasso" type="AudioStreamPlayer2D" parent="PlayerAudio" unique_id=526729435]
 stream = ExtResource("17_ddhpq")
