@@ -8,10 +8,17 @@ extends CharacterBody2D
 @export var gravidade_subida_multiplicador: float = 1.4
 @export var gravidade_queda_multiplicador: float = 3.2
 
+@export var vida_maxima: int = 5
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var som_passos: AudioStreamPlayer2D = $SomPassos
 
 var coyote_timer: float = 0.0
 var velocidade_no_ar: float = 0.0
+var vida_atual: int = vida_maxima
+
+func _ready() -> void:
+	vida_atual = vida_maxima
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -53,6 +60,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	update_animation(direction, is_running)
+	gerenciar_som_passos(direction, is_running)
 
 func update_animation(direction: float, is_running: bool) -> void:
 	if direction != 0:
@@ -70,3 +78,23 @@ func update_animation(direction: float, is_running: bool) -> void:
 	else:
 		sprite.speed_scale = 1.0
 		sprite.play("idle")
+
+func gerenciar_som_passos(direction: float, is_running: bool) -> void:
+	if direction != 0 and is_on_floor():
+		if is_running:
+			som_passos.pitch_scale = 1.4
+		else:
+			som_passos.pitch_scale = 1.0
+			
+		if not som_passos.playing:
+			som_passos.play()
+	else:
+		som_passos.stop()
+
+func receber_dano(quantidade: int) -> void:
+	vida_atual -= quantidade
+	if vida_atual <= 0:
+		morrer()
+
+func morrer() -> void:
+	get_tree().reload_current_scene()

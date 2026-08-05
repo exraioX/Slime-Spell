@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bhsesjtj83f1"]
+
+[ext_resource type="Script" uid="uid://bdjw3d64twjbp" path="res://Scripts/contador.gd" id="1_j7h3y"]
+[ext_resource type="Texture2D" uid="uid://culimwwgamlog" path="res://Coletaveis/2f9ac896952c395b1e5ce24c576f5364-removebg-preview.png" id="2_equ1r"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1849299649]
+script = ExtResource("1_j7h3y")
+
+[node name="Control" type="Control" parent="." unique_id=870292143]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 143.0
+offset_top = 44.0
+offset_right = 183.0
+offset_bottom = 84.0
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Control" unique_id=1949930771]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "aaaaaa"
+
+[node name="2f9Ac896952c395b1e5Ce24c576f5364RemovebgPreview" type="Sprite2D" parent="." unique_id=70888693]
+position = Vector2(79, 599)
+scale = Vector2(0.17860878, 0.20233156)
+texture = ExtResource("2_equ1r")
