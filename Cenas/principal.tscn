@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ds6st6iqehyli" path="res://mapa/f2 (1).jpg" id="5_nlwgu"]
 [ext_resource type="Texture2D" uid="uid://hpg5bsiwjys" path="res://inimigos/1000052057.png" id="6_mry0o"]
 [ext_resource type="PackedScene" uid="uid://4qas3uorq6qc" path="res://Cenas/sons.tscn" id="7_b3f7n"]
+[ext_resource type="PackedScene" uid="uid://ddpoowbx5jx7" path="res://Cenas/coletavel.tscn" id="8_8wwpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b43hs"]
 size = Vector2(12.413895, 20)
@@ -24,7 +25,19 @@ z_index = -1
 position = Vector2(947, 353)
 texture = ExtResource("3_1rlcm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=378598450]
+[node name="Parallax2D2" type="Parallax2D" parent="mapa" unique_id=1738278077]
+z_index = -2
+scroll_offset = Vector2(-1728, -10)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(50, 0)
+repeat_times = 5
+
+[node name="F2(1)" type="Sprite2D" parent="mapa/Parallax2D2" unique_id=599975658]
+position = Vector2(1485, 370)
+rotation = -4.712389
+texture = ExtResource("5_nlwgu")
+
+[node name="Chão" type="StaticBody2D" parent="mapa" unique_id=378598450]
 z_index = 1
 position = Vector2(943, 1442)
 rotation = 1.5707964
@@ -32,30 +45,18 @@ scale = Vector2(1.0381938, 2.9398453)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=559522119]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mapa/Chão" unique_id=559522119]
 position = Vector2(-216.59998, 0)
 scale = Vector2(51.994778, 94.50626)
 shape = SubResource("RectangleShape2D_b43hs")
 
-[node name="9SemTítulo" type="Sprite2D" parent="StaticBody2D" unique_id=152679085]
+[node name="9SemTítulo" type="Sprite2D" parent="mapa/Chão" unique_id=152679085]
 texture = ExtResource("4_rxohm")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=733337062]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="mapa/Chão" unique_id=733337062]
 position = Vector2(-1681.9429, 1681.3452)
 scale = Vector2(-9.396785, 820.4194)
 shape = SubResource("RectangleShape2D_b43hs")
-
-[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1738278077]
-z_index = -2
-scroll_offset = Vector2(-1728, -10)
-repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(50, 0)
-repeat_times = 5
-
-[node name="F2(1)" type="Sprite2D" parent="Parallax2D2" unique_id=599975658]
-position = Vector2(1485, 370)
-rotation = -4.712389
-texture = ExtResource("5_nlwgu")
 
 [node name="1000052057" type="Sprite2D" parent="." unique_id=2097882029]
 position = Vector2(2349, 755)
@@ -67,4 +68,10 @@ region_rect = Rect2(75.60681, 335.57874, 303.90405, 384.42126)
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
 position = Vector2(842, 770)
+collision_layer = 1
+collision_mask = 12
 speed = 500.0
+
+[node name="Coletavel" parent="." unique_id=1773075378 instance=ExtResource("8_8wwpk")]
+position = Vector2(2178, 719)
+collision_mask = 1

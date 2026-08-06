@@ -19,6 +19,10 @@ config/icon="res://mapa/icon.svg"
 
 buses/default_bus_layout=""
 
+[autoload]
+
+Global="*uid://bafx7neggnstd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -27,6 +31,10 @@ window/size/viewport_height=1080
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[global_group]
+
+Player=""
 
 [layer_names]
 

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dwvlro0fm6p2b"]
+
+[ext_resource type="Script" uid="uid://b2gcwrdekaek0" path="res://latinha.gd" id="1_x12p3"]
+[ext_resource type="Texture2D" uid="uid://hpg5bsiwjys" path="res://inimigos/1000052057.png" id="2_1jt8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm1o8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5b8u"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1391466227]
+script = ExtResource("1_x12p3")
+
+[node name="1000052057" type="Sprite2D" parent="." unique_id=177784791]
+texture = ExtResource("2_1jt8t")
+region_enabled = true
+region_rect = Rect2(114.04274, 464.54544, 171.81935, 202.45462)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1591001274]
+position = Vector2(3.0000002, 0)
+scale = Vector2(5.354314, 8.761061)
+shape = SubResource("RectangleShape2D_tm1o8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=973538609]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1209038343]
+scale = Vector2(7.8540783, -11.073437)
+shape = SubResource("RectangleShape2D_d5b8u")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

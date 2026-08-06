@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://60y4nipryqjn"]
 
-[ext_resource type="Script" uid="uid://d2wbmrjosv10y" path="res://Cenas/spell.gd" id="1_05711"]
+[ext_resource type="Script" uid="uid://d2wbmrjosv10y" path="res://Scripts/spell.gd" id="1_05711"]
 [ext_resource type="Texture2D" uid="uid://ixqq6tf11dxf" path="res://spell/1000054715.png" id="2_ddhpq"]
 [ext_resource type="Texture2D" uid="uid://sjth7igsoylw" path="res://spell/1000054710 (1).png" id="3_xvbcy"]
 [ext_resource type="Texture2D" uid="uid://camb4248q6oh" path="res://spell/1000054711.png" id="4_1mnrx"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dhx8pptluhcdo" path="res://Scripts/player_audio.gd" id="16_iab2y"]
 [ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/1000054724.png" id="16_ynenk"]
 [ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
+[ext_resource type="PackedScene" uid="uid://bhsesjtj83f1" path="res://Cenas/HUD.tscn" id="19_bwmf6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b43hs"]
 height = 29.75708
@@ -84,7 +85,8 @@ animations = [{
 }]
 
 [node name="spell" type="CharacterBody2D" unique_id=852491934]
-collision_mask = 12
+collision_layer = 11
+collision_mask = 15
 script = ExtResource("1_05711")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624228152]
@@ -113,3 +115,5 @@ stream = ExtResource("17_ddhpq")
 volume_db = 8.096
 
 [node name="TimerPasso" type="Timer" parent="PlayerAudio" unique_id=1080561648]
+
+[node name="CanvasLayer" parent="." unique_id=1849299649 instance=ExtResource("19_bwmf6")]
