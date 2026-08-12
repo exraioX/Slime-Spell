@@ -1,100 +1,271 @@
 extends CharacterBody2D
 
-@export var speed: float = 300.0
-@export var run_speed: float = 1000.0
-@export var jump_velocity: float = -650.0
-@export var coyote_duration: float = 0.12
 
-@export var gravidade_subida_multiplicador: float = 1.4
-@export var gravidade_queda_multiplicador: float = 3.2
+# =========================
+# MOVIMENTO
+# =========================
 
-@export var vida_maxima: int = 5
+@export var velocidade: float = 450.0
+@export var aceleracao: float = 2500.0
+@export var desaceleracao: float = 2800.0
+
+
+# =========================
+# PULO
+# =========================
+
+@export var forca_pulo: float = -850.0
+
+# Tempo que permite pular após sair da borda
+@export var coyote_time_max: float = 0.15
+
+# Guarda o comando de pulo antes de tocar no chão
+@export var jump_buffer_max: float = 0.12
+
+
+
+# =========================
+# GRAVIDADE
+# =========================
+
+@export var gravidade: float = 2000.0
+
+# subida mais suave
+@export var gravidade_subida: float = 0.9
+
+# queda mais rápida
+@export var gravidade_queda: float = 2.2
+
+
+
+# =========================
+# SPRITE
+# =========================
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var som_passos: AudioStreamPlayer2D = $SomPassos
+
+
+
+# =========================
+# VARIÁVEIS
+# =========================
 
 var coyote_timer: float = 0.0
-var velocidade_no_ar: float = 0.0
-var vida_atual: int = vida_maxima
+var jump_buffer_timer: float = 0.0
 
-func _ready() -> void:
-	vida_atual = vida_maxima
+var animacao_atual: String = ""
+
+
+
+
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor():
-		velocity.y = 0
-		coyote_timer = coyote_duration
-	else:
-		var gravidade_padrao = ProjectSettings.get_setting("physics/2d/default_gravity")
-		if velocity.y > 0:
-			velocity.y += (gravidade_padrao * gravidade_queda_multiplicador) * delta
+
+
+	# =========================
+	# GRAVIDADE
+	# =========================
+
+	if not is_on_floor():
+
+		if velocity.y < 0:
+
+			# subindo
+			velocity.y += gravidade * gravidade_subida * delta
+
+
 		else:
-			velocity.y += (gravidade_padrao * gravidade_subida_multiplicador) * delta
-			
+
+			# caindo
+			velocity.y += gravidade * gravidade_queda * delta
+
+
+
+
+	# =========================
+	# COYOTE TIME
+	# =========================
+
+	if is_on_floor():
+
+		coyote_timer = coyote_time_max
+
+	else:
+
 		coyote_timer -= delta
 
-	var current_speed = speed
-	var is_running = false
-	
-	if is_on_floor():
-		if Input.is_key_pressed(KEY_SHIFT):
-			current_speed = run_speed
-			is_running = true
-		velocidade_no_ar = current_speed
-	else:
-		current_speed = velocidade_no_ar
-		if current_speed == run_speed:
-			is_running = true
 
-	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up"):
-		if coyote_timer > 0.0:
-			velocity.y = jump_velocity
-			coyote_timer = 0.0
 
-	var direction := Input.get_axis("ui_left", "ui_right")
-	
-	if direction != 0:
-		velocity.x = direction * current_speed
+
+
+	# =========================
+	# JUMP BUFFER
+	# =========================
+
+	if Input.is_action_just_pressed("ui_accept"):
+
+		jump_buffer_timer = jump_buffer_max
+
+
 	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
+
+		jump_buffer_timer = max(
+			jump_buffer_timer - delta,
+			0
+		)
+
+
+
+
+
+	# =========================
+	# EXECUTA PULO
+	# =========================
+
+	if jump_buffer_timer > 0 and coyote_timer > 0:
+
+
+		velocity.y = forca_pulo
+
+		jump_buffer_timer = 0
+
+		coyote_timer = 0
+
+
+
+
+
+	# =========================
+	# CONTROLE DO PULO
+	# =========================
+	
+	# soltou o botão = corta o pulo
+
+	if Input.is_action_just_released("ui_accept"):
+
+		if velocity.y < 0:
+
+			velocity.y *= 0.45
+
+
+
+
+
+	# =========================
+	# MOVIMENTO HORIZONTAL
+	# =========================
+
+	var direcao := Input.get_axis(
+		"ui_left",
+		"ui_right"
+	)
+
+
+
+	var velocidade_alvo = direcao * velocidade
+
+
+
+	if direcao != 0:
+
+
+		velocity.x = move_toward(
+			velocity.x,
+			velocidade_alvo,
+			aceleracao * delta
+		)
+
+
+	else:
+
+
+		velocity.x = move_toward(
+			velocity.x,
+			0,
+			desaceleracao * delta
+		)
+
+
+
+
 
 	move_and_slide()
-	update_animation(direction, is_running)
-	gerenciar_som_passos(direction, is_running)
 
-func update_animation(direction: float, is_running: bool) -> void:
-	if direction != 0:
-		sprite.play("walk")
-		
-		if is_running:
-			sprite.speed_scale = 1.8
+
+
+	update_animation(direcao)
+
+
+
+
+
+
+# =========================
+# SISTEMA DE ANIMAÇÃO
+# =========================
+
+
+func tocar_animacao(nome: String):
+
+
+	if animacao_atual != nome:
+
+
+		sprite.play(nome)
+
+		animacao_atual = nome
+
+
+
+
+
+func update_animation(direcao: float):
+
+
+	# No ar
+
+	if not is_on_floor():
+
+
+		if velocity.y < 0:
+
+			tocar_animacao("jump")
+
+
 		else:
-			sprite.speed_scale = 1.0
-		
-		if direction < 0:
+
+			tocar_animacao("fall")
+
+
+		return
+
+
+
+
+
+	# andando
+
+	if direcao != 0:
+
+
+		tocar_animacao("walk")
+
+
+		if direcao < 0:
+
 			sprite.flip_h = true
-		elif direction > 0:
-			sprite.flip_h = false
-	else:
-		sprite.speed_scale = 1.0
-		sprite.play("idle")
 
-func gerenciar_som_passos(direction: float, is_running: bool) -> void:
-	if direction != 0 and is_on_floor():
-		if is_running:
-			som_passos.pitch_scale = 1.4
 		else:
-			som_passos.pitch_scale = 1.0
-			
-		if not som_passos.playing:
-			som_passos.play()
+
+			sprite.flip_h = false
+
+
+
+
+
+	# parado
+
 	else:
-		som_passos.stop()
 
-func receber_dano(quantidade: int) -> void:
-	vida_atual -= quantidade
-	if vida_atual <= 0:
-		morrer()
 
-func morrer() -> void:
-	get_tree().reload_current_scene()
+		tocar_animacao("idle")
