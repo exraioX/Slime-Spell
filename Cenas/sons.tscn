@@ -10,17 +10,17 @@ script = ExtResource("1_xcmdw")
 
 [node name="SomFundo" type="AudioStreamPlayer" parent="." unique_id=1574224908]
 stream = ExtResource("2_gg67j")
-volume_db = 4.5
+volume_db = 20.0
 autoplay = true
 
 [node name="SomVento" type="AudioStreamPlayer" parent="." unique_id=1859655037]
 stream = ExtResource("2_xcmdw")
-volume_db = 2.5
+volume_db = 17.0
 autoplay = true
 
 [node name="SomFabrica" type="AudioStreamPlayer" parent="." unique_id=1508971608]
 stream = ExtResource("3_gg67j")
-volume_db = -15.0
+volume_db = -11.0
 autoplay = true
 
 [node name="Timer" type="Timer" parent="SomFabrica" unique_id=612791416]
