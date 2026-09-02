@@ -4,15 +4,15 @@
 [ext_resource type="Script" uid="uid://hrgqsx5v4op1" path="res://Scripts/coletavel.gd" id="1_bsfm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xivx"]
-size = Vector2(4.9723163, 7.7110887)
+size = Vector2(17.359491, 7.357909)
 
-[node name="O Coletavel" type="Area2D" unique_id=407460026 groups=["Player"]]
+[node name="O Coletavel" type="Area2D" unique_id=407460026]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_bsfm2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1295821190]
-position = Vector2(-1.0000013, 4.499997)
+position = Vector2(21, 1.4999986)
 scale = Vector2(22.92694, 16.988522)
 shape = SubResource("RectangleShape2D_6xivx")
 
@@ -21,4 +21,13 @@ position = Vector2(-1.3985322, 2.5067677)
 scale = Vector2(0.23308869, 0.41779464)
 texture = ExtResource("1_52261")
 
+[node name="Label" type="Label" parent="." unique_id=316433597]
+offset_left = -66.0
+offset_top = -129.0
+offset_right = 6.0
+offset_bottom = -106.0
+scale = Vector2(2, 2)
+text = "Aperte(E)"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
