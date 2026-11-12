@@ -1,34 +1,34 @@
 [gd_scene format=3 uid="uid://comq41i58rb56"]
 
 [ext_resource type="Script" uid="uid://vwrffys6nvtq" path="res://Scripts/july.gd" id="1_cmhkt"]
-[ext_resource type="Texture2D" uid="uid://cvwegn88c3xg6" path="res://july/Andando/1000054727.png" id="2_4so3a"]
+[ext_resource type="Texture2D" uid="uid://cvwegn88c3xg6" path="res://july/1000054727.png" id="2_4so3a"]
 [ext_resource type="Texture2D" uid="uid://boyroa88xer7g" path="res://july/parada/1000058484.png" id="2_fmqsy"]
 [ext_resource type="Texture2D" uid="uid://dvg2mkd7sisd6" path="res://july/parada/1000058485.png" id="3_adxh2"]
-[ext_resource type="Texture2D" uid="uid://cqttdrprcrfad" path="res://july/Andando/1000054725.png" id="3_npt40"]
+[ext_resource type="Texture2D" uid="uid://cqttdrprcrfad" path="res://july/1000054725.png" id="3_npt40"]
 [ext_resource type="Texture2D" uid="uid://c8jecbodbl82" path="res://july/parada/1000058486.png" id="4_vxx1i"]
-[ext_resource type="Texture2D" uid="uid://drdibidxj3jfs" path="res://july/Andando/1000054726.png" id="4_xffux"]
-[ext_resource type="Texture2D" uid="uid://bf5jrj65no2g6" path="res://july/Andando/1000054728.png" id="5_7k7ly"]
+[ext_resource type="Texture2D" uid="uid://drdibidxj3jfs" path="res://july/1000054726.png" id="4_xffux"]
+[ext_resource type="Texture2D" uid="uid://bf5jrj65no2g6" path="res://july/1000054728.png" id="5_7k7ly"]
 [ext_resource type="Texture2D" uid="uid://ctw5jysfxf7ua" path="res://july/parada/1000058487.png" id="5_75bjl"]
 [ext_resource type="Texture2D" uid="uid://du6xg8g3ui65g" path="res://july/parada/1000058488.png" id="6_dg3bw"]
-[ext_resource type="Texture2D" uid="uid://b508rfn4fefm0" path="res://july/Andando/1000054729.png" id="6_gdqkc"]
-[ext_resource type="Texture2D" uid="uid://b5qojgrysuwio" path="res://july/Andando/1000054730.png" id="7_34kwg"]
+[ext_resource type="Texture2D" uid="uid://b508rfn4fefm0" path="res://july/1000054729.png" id="6_gdqkc"]
+[ext_resource type="Texture2D" uid="uid://b5qojgrysuwio" path="res://july/1000054730.png" id="7_34kwg"]
 [ext_resource type="Texture2D" uid="uid://hu7hmvfpv6tr" path="res://july/parada/1000058489.png" id="7_oecoq"]
 [ext_resource type="Texture2D" uid="uid://cv7n150kfdk30" path="res://july/parada/1000058490.png" id="8_qnuy5"]
-[ext_resource type="Texture2D" uid="uid://cop3o6puuvcpf" path="res://july/Andando/1000054731.png" id="8_r20uj"]
+[ext_resource type="Texture2D" uid="uid://cop3o6puuvcpf" path="res://july/1000054731.png" id="8_r20uj"]
 [ext_resource type="Texture2D" uid="uid://cmdxsxxm666ca" path="res://july/parada/1000058491.png" id="9_8kh68"]
-[ext_resource type="Texture2D" uid="uid://b4yt7j017vxwj" path="res://july/Andando/1000054732.png" id="9_8oo5h"]
+[ext_resource type="Texture2D" uid="uid://b4yt7j017vxwj" path="res://july/1000054732.png" id="9_8oo5h"]
 [ext_resource type="Texture2D" uid="uid://b03il5tqtuf1" path="res://july/parada/1000058492.png" id="10_keldp"]
-[ext_resource type="Texture2D" uid="uid://sf6s48vyv1uy" path="res://july/Andando/1000054733.png" id="10_xjapc"]
-[ext_resource type="Texture2D" uid="uid://yfnkvt640bsw" path="res://july/Andando/1000054734.png" id="11_fl2h0"]
+[ext_resource type="Texture2D" uid="uid://sf6s48vyv1uy" path="res://july/1000054733.png" id="10_xjapc"]
+[ext_resource type="Texture2D" uid="uid://yfnkvt640bsw" path="res://july/1000054734.png" id="11_fl2h0"]
 [ext_resource type="Texture2D" uid="uid://cxstve1ndrw4i" path="res://july/parada/1000058493.png" id="11_pmahc"]
-[ext_resource type="Texture2D" uid="uid://dra0arka7aye0" path="res://july/Andando/1000054735.png" id="12_1nimm"]
+[ext_resource type="Texture2D" uid="uid://dra0arka7aye0" path="res://july/1000054735.png" id="12_1nimm"]
 [ext_resource type="Texture2D" uid="uid://5bb7otwlhrjl" path="res://july/parada/1000058494.png" id="12_cag43"]
-[ext_resource type="Texture2D" uid="uid://dqe1x7fq67v3c" path="res://july/Andando/1000054736.png" id="13_agq7l"]
+[ext_resource type="Texture2D" uid="uid://dqe1x7fq67v3c" path="res://july/1000054736.png" id="13_agq7l"]
 [ext_resource type="Texture2D" uid="uid://blcxppjurcwsy" path="res://july/parada/1000058495.png" id="13_w0d88"]
-[ext_resource type="Texture2D" uid="uid://bvuxdtgj155hd" path="res://july/Andando/1000054737.png" id="14_4y4et"]
-[ext_resource type="Texture2D" uid="uid://c0g0mgig6donn" path="res://july/Andando/1000054738.png" id="15_36h68"]
-[ext_resource type="Texture2D" uid="uid://brtjp3ws2snp7" path="res://july/Andando/1000054739.png" id="16_tnhbc"]
-[ext_resource type="Texture2D" uid="uid://bdfn4ltkv4qqb" path="res://july/Andando/1000054740.png" id="17_fw0lk"]
+[ext_resource type="Texture2D" uid="uid://bvuxdtgj155hd" path="res://july/1000054737.png" id="14_4y4et"]
+[ext_resource type="Texture2D" uid="uid://c0g0mgig6donn" path="res://july/1000054738.png" id="15_36h68"]
+[ext_resource type="Texture2D" uid="uid://brtjp3ws2snp7" path="res://july/1000054739.png" id="16_tnhbc"]
+[ext_resource type="Texture2D" uid="uid://bdfn4ltkv4qqb" path="res://july/1000054740.png" id="17_fw0lk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rjqkl"]
 animations = [{
@@ -135,6 +135,14 @@ collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_cmhkt")
 tempo_andando = 8.0
+
+[node name="Sombra" type="AnimatedSprite2D" parent="." unique_id=1364185471]
+modulate = Color(0, 0, 0, 0.49411765)
+position = Vector2(-7, 7)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rjqkl")
+animation = &"idle"
+frame_progress = 0.53286856
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=693776466]
 position = Vector2(-1, 4)

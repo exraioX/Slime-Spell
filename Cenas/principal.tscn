@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
 [ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="2_8wwpk"]
-[ext_resource type="Texture2D" uid="uid://coouyfkb1q3nl" path="res://mapa/Paredes/1000051825.png" id="3_1rlcm"]
-[ext_resource type="Texture2D" uid="uid://d2pffx03y86g2" path="res://mapa/Paredes/top3 (1).jpg" id="3_8wwpk"]
-[ext_resource type="Texture2D" uid="uid://dr3d8ymvjbhnb" path="res://mapa/Paredes/1000056506.png" id="4_8wwpk"]
+[ext_resource type="Texture2D" uid="uid://coouyfkb1q3nl" path="res://mapa/1000051825.png" id="3_1rlcm"]
+[ext_resource type="Texture2D" uid="uid://d2pffx03y86g2" path="res://mapa/top3 (1).jpg" id="3_8wwpk"]
+[ext_resource type="Texture2D" uid="uid://dr3d8ymvjbhnb" path="res://mapa/1000056506.png" id="4_8wwpk"]
 [ext_resource type="PackedScene" uid="uid://4qas3uorq6qc" path="res://Cenas/sons.tscn" id="7_b3f7n"]
-[ext_resource type="PackedScene" uid="uid://ddpoowbx5jx7" path="res://Cenas/coletavel.tscn" id="8_8wwpk"]
-[ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/Paredes/1000056509.png" id="9_rxohm"]
-[ext_resource type="Texture2D" uid="uid://cjup25qk3ldr3" path="res://mapa/Paredes/1000056516.png" id="10_nlwgu"]
+[ext_resource type="Texture2D" uid="uid://b861hlxsrej0i" path="res://teste/1000314976.png" id="8_mry0o"]
+[ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/1000056509.png" id="9_rxohm"]
+[ext_resource type="Texture2D" uid="uid://cjup25qk3ldr3" path="res://mapa/1000056516.png" id="10_nlwgu"]
 [ext_resource type="Texture2D" uid="uid://rucqupcg4pfr" path="res://mapa/Chãos/Layer_0000_9.png" id="26_87uu5"]
 [ext_resource type="Texture2D" uid="uid://drddm261bg7sn" path="res://mapa/Chãos/Layer_0001_8.png" id="27_fttjg"]
 [ext_resource type="Texture2D" uid="uid://ctairqi3g0akv" path="res://mapa/Chãos/Layer_0002_7.png" id="28_ksvw5"]
@@ -4014,14 +4014,11 @@ sources/0 = SubResource("TileSetAtlasSource_tasdd")
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(842, 770)
+position = Vector2(1129, 562)
 collision_mask = 28
 
-[node name="Coletavel" parent="." unique_id=1773075378 instance=ExtResource("8_8wwpk")]
-position = Vector2(2178, 719)
-collision_mask = 1
-
 [node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
+z_index = -10
 
 [node name="FundoCinza" type="Parallax2D" parent="Paralaxs" unique_id=1738278077]
 z_index = -2
@@ -4049,25 +4046,36 @@ texture = ExtResource("4_8wwpk")
 [node name="Muro" type="Parallax2D" parent="Paralaxs" unique_id=1928891196]
 repeat_size = Vector2(1920, 0)
 
-[node name="1000056516" type="Sprite2D" parent="Paralaxs" unique_id=91853069]
-z_index = -1
-position = Vector2(2655, 391.00006)
-texture = ExtResource("10_nlwgu")
-
 [node name="mapa" type="Node2D" parent="." unique_id=647811779]
+z_index = -3
 
 [node name="paredes" type="Node2D" parent="mapa" unique_id=279000905]
 
 [node name="1000051825" type="Sprite2D" parent="mapa/paredes" unique_id=701482898]
-z_index = -1
 position = Vector2(947, 353)
 texture = ExtResource("3_1rlcm")
 
 [node name="1000056509" type="Sprite2D" parent="mapa/paredes" unique_id=516575641]
-z_index = -1
 position = Vector2(2851, 357.00006)
 rotation = -1.5707964
 texture = ExtResource("9_rxohm")
+
+[node name="1000056516" type="Sprite2D" parent="mapa/paredes" unique_id=91853069]
+position = Vector2(2655, 391.00006)
+texture = ExtResource("10_nlwgu")
+
+[node name="cidade" type="Node2D" parent="mapa" unique_id=823285906]
+position = Vector2(1134, 675)
+scale = Vector2(0.4, 0.4)
+
+[node name="FundoCinza" type="Parallax2D" parent="mapa/cidade" unique_id=947324961]
+z_index = -2
+scroll_offset = Vector2(-297.49997, -54.999996)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="1000314976" type="Sprite2D" parent="mapa/cidade/FundoCinza" unique_id=2145257041]
+texture = ExtResource("8_mry0o")
 
 [node name="july" parent="mapa" unique_id=222498092 instance=ExtResource("2_8wwpk")]
 position = Vector2(-334, 714)

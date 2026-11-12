@@ -23,6 +23,7 @@ extends CharacterBody2D
 # =========================
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sombra: AnimatedSprite2D = $Sombra
 
 
 # =========================
@@ -139,6 +140,19 @@ func _physics_process(delta: float) -> void:
 	# =========================
 
 	move_and_slide()
+
+	sincronizar_sombra()
+
+
+# =========================
+# SOMBRA
+# =========================
+
+func sincronizar_sombra() -> void:
+
+	sombra.animation = sprite.animation
+	sombra.frame = sprite.frame
+	sombra.flip_h = sprite.flip_h
 
 
 # =========================

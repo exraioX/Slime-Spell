@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://ddpoowbx5jx7"]
 
-[ext_resource type="Texture2D" uid="uid://culimwwgamlog" path="res://Coletaveis/2f9ac896952c395b1e5ce24c576f5364-removebg-preview.png" id="1_52261"]
 [ext_resource type="Script" uid="uid://hrgqsx5v4op1" path="res://Scripts/coletavel.gd" id="1_bsfm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xivx"]
@@ -15,11 +14,6 @@ script = ExtResource("1_bsfm2")
 position = Vector2(21, 1.4999986)
 scale = Vector2(22.92694, 16.988522)
 shape = SubResource("RectangleShape2D_6xivx")
-
-[node name="2f9Ac896952c395b1e5Ce24c576f5364RemovebgPreview" type="Sprite2D" parent="." unique_id=1533762451]
-position = Vector2(-1.3985322, 2.5067677)
-scale = Vector2(0.23308869, 0.41779464)
-texture = ExtResource("1_52261")
 
 [node name="Label" type="Label" parent="." unique_id=316433597]
 offset_left = -66.0
