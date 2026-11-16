@@ -240,15 +240,12 @@ scale = Vector2(3.2147949, 7.393199)
 shape = SubResource("CapsuleShape2D_b43hs")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=662635497]
-offset = Vector2(300, 0)
-zoom = Vector2(0.7, 0.7)
-limit_enabled = false
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-drag_horizontal_enabled = true
-drag_right_margin = 0.05
+limit_left = -1182
+limit_top = -371
+limit_right = 8636
+limit_bottom = 1174
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 editor_draw_drag_margin = true
 
 [node name="Sombra" type="AnimatedSprite2D" parent="." unique_id=448726823]
