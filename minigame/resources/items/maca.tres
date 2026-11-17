@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://minigame/scripts/item_data.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+id = &"maca"
+nome = "Maçã"
+categoria = 0
+cor_placeholder = Color(0.8509804, 0.2901961, 0.227451, 1)
+forma = 0
+pontuacao = 10
+especial = false
+escala = 1.0
+peso = 1.0

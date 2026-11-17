@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://7j1ghbdixngg"]
+
+[ext_resource type="Script" uid="uid://i8kaa16kkhug" path="res://minigame/scripts/game_manager.gd" id="1_game"]
+[ext_resource type="Script" uid="uid://bofle0vu4tlpl" path="res://minigame/scripts/conveyor.gd" id="2_conv"]
+[ext_resource type="Script" uid="uid://d0er4junlw3lh" path="res://minigame/scripts/basket.gd" id="3_basket"]
+[ext_resource type="Script" uid="uid://ci2aeq0q6gco0" path="res://minigame/scripts/item_spawner.gd" id="4_spawner"]
+[ext_resource type="Script" uid="uid://cciuyu7p2vpsb" path="res://minigame/scripts/input_manager.gd" id="5_input"]
+[ext_resource type="PackedScene" path="res://minigame/scenes/game_hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://minigame/scenes/main_menu.tscn" id="7_menu"]
+[ext_resource type="PackedScene" path="res://minigame/scenes/pause_menu.tscn" id="8_pause"]
+[ext_resource type="PackedScene" path="res://minigame/scenes/game_over.tscn" id="9_over"]
+
+[node name="Game" type="Node2D" unique_id=754706521]
+script = ExtResource("1_game")
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=672731609]
+z_index = -100
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.14117648, 0.11372549, 0.18039216, 1)
+
+[node name="Conveyor" type="Node2D" parent="." unique_id=1851688435]
+script = ExtResource("2_conv")
+
+[node name="Baskets" type="Node2D" parent="." unique_id=1427524810]
+
+[node name="BasketLeft" type="Node2D" parent="Baskets" unique_id=1752327219]
+position = Vector2(300, 210)
+script = ExtResource("3_basket")
+
+[node name="BasketRight" type="Node2D" parent="Baskets" unique_id=1619387474]
+position = Vector2(1620, 210)
+script = ExtResource("3_basket")
+
+[node name="Itens" type="Node2D" parent="." unique_id=1952818125]
+
+[node name="Spawner" type="Node" parent="." unique_id=523776043]
+script = ExtResource("4_spawner")
+
+[node name="InputManager" type="Node" parent="." unique_id=762919701]
+process_mode = 3
+script = ExtResource("5_input")
+
+[node name="HUD" parent="." unique_id=854925918 instance=ExtResource("6_hud")]
+
+[node name="MainMenu" parent="." unique_id=1031479950 instance=ExtResource("7_menu")]
+
+[node name="PauseMenu" parent="." unique_id=302150983 instance=ExtResource("8_pause")]
+
+[node name="GameOver" parent="." unique_id=1054632552 instance=ExtResource("9_over")]
