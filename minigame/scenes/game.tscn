@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://minigame/scripts/recycling_game.gd" id="1_game"]
+[ext_resource type="Script" path="res://minigame/scripts/fullscreen.gd" id="2_fullscreen"]
 
 [node name="RecyclingMinigame" type="Node2D"]
 script = ExtResource("1_game")
+
+[node name="Fullscreen" type="Node" parent="."]
+script = ExtResource("2_fullscreen")
