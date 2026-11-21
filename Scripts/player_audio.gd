@@ -1,7 +1,7 @@
 extends Node
 
 @export var intervalo_passo_andar: float = 0.35
-@export var intervalo_passo_correr: float = 0.18
+
 
 @onready var som_passo: AudioStreamPlayer2D = $SomPasso
 @onready var timer_passo: Timer = $TimerPasso
@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 
 func gerenciar_loop_passos(direction: float, is_running: bool) -> void:
 	if direction != 0 and player.is_on_floor():
-		var intervalo_atual = intervalo_passo_correr if is_running else intervalo_passo_andar
+		var intervalo_atual = intervalo_passo_andar
 		
 		if timer_passo.is_stopped() or timer_passo.wait_time != intervalo_atual:
 			timer_passo.wait_time = intervalo_atual

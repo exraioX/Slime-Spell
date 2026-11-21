@@ -11,7 +11,7 @@
 load_path = "res://.godot/imported/1000056506.png-d4b41162ac3a66f39aa70ee08f622634.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
-size = Vector2(64, 120)
+size = Vector2(553, 388)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -21,14 +21,27 @@ size = Vector2(64, 900)
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(3926, 464)
+position = Vector2(8463, 656)
 collision_mask = 28
+velocidade = 500.0
 
 [node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
 z_index = -10
 
-[node name="FundoCinza" type="Parallax2D" parent="Paralaxs" unique_id=1738278077]
+[node name="Nuvens2" type="Parallax2D" parent="Paralaxs" unique_id=1999255390]
 z_index = -2
+scale = Vector2(0.47, 0.47)
+scroll_offset = Vector2(-177, -112)
+repeat_size = Vector2(1350, 0)
+autoscroll = Vector2(15, 0)
+repeat_times = 13
+
+[node name="NuvensSprite" type="Sprite2D" parent="Paralaxs/Nuvens2" unique_id=1311926031]
+scale = Vector2(0.7041733, 1)
+texture = SubResource("CompressedTexture2D_mry0o")
+
+[node name="FundoCinza" type="Parallax2D" parent="Paralaxs" unique_id=1738278077]
+z_index = -10
 scroll_offset = Vector2(91, 267)
 repeat_size = Vector2(3840, 0)
 autoscroll = Vector2(50, 0)
@@ -39,30 +52,35 @@ texture = ExtResource("31_ceut")
 
 [node name="Nuvens" type="Parallax2D" parent="Paralaxs" unique_id=1208021062]
 z_index = -2
-scale = Vector2(0.5769594, 0.65743786)
-scroll_offset = Vector2(91, 267)
-repeat_size = Vector2(3840, 0)
+scale = Vector2(0.35, 0.399)
+scroll_offset = Vector2(10.000002, 216.00003)
+repeat_size = Vector2(1350, 0)
 autoscroll = Vector2(29, 0)
-repeat_times = 2
+repeat_times = 13
 
 [node name="NuvensSprite" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=607348203]
 scale = Vector2(0.7041733, 1)
 texture = SubResource("CompressedTexture2D_mry0o")
 
 [node name="Cidade" type="Parallax2D" parent="Paralaxs" unique_id=1913134148]
+scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(1.01, 1.01)
+scroll_offset = Vector2(-798, 669)
+repeat_size = Vector2(1350, 0)
+repeat_times = 11
 
 [node name="Cidade2" type="Sprite2D" parent="Paralaxs/Cidade" unique_id=919403352]
 z_index = -2
-position = Vector2(4316, 616)
-scale = Vector2(0.22611266, 0.3184635)
 texture = ExtResource("4_2jvxy")
 
 [node name="AreaSnackBaskets" type="Area2D" parent="." unique_id=392902476]
-position = Vector2(613, 467)
+position = Vector2(8748, 596)
 script = ExtResource("16_areainteracao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSnackBaskets" unique_id=1695710183]
+position = Vector2(22.5, -134)
 shape = SubResource("RectangleShape2D_ivjp3")
+debug_color = Color(0, 0.627451, 0.73333335, 0)
 
 [node name="limitadores" type="Node2D" parent="." unique_id=1959873245]
 

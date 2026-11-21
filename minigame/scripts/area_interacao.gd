@@ -1,99 +1,82 @@
+
 class_name AreaInteracao
 extends Area2D
-## Área de interação: quando o protagonista (spell) entra nela, o jogo
-## troca para a cena de destino (por padrão, o minigame Snack Baskets).
-##
-## COMO USAR:
-##   1. Instancie area_interacao.tscn em qualquer cena.
-##   2. Posicione onde quiser e ajuste o CollisionShape2D.
-##   3. (Opcional) arraste uma imagem no campo "textura" para mostrar um ícone.
-##
-## >>> TROQUE AQUI: campo "textura" abaixo aceita sua imagem sem alterar código.
 
+@export_group("Destino")
 @export_file("*.tscn") var cena_destino: String = "res://minigame/scenes/game.tscn"
-@export var grupo_jogador: StringName = &"Player"
-@export var aceitar_por_nome: String = "spell"   ## nome alternativo do protagonista
-@export var exigir_tecla: bool = true           ## se true, espera a ação "interagir"
-@export var acao_confirmar: StringName = &"ui_accept"   ## Enter / Action confirm
-@export var mostrar_area: bool = true            ## desenha um retângulo de ajuda
-@export var textura: Texture2D                   ## imagem opcional da área/portal
-@export var cor_area: Color = Color(0.4, 0.8, 1.0, 0.18)
-@export var cor_borda: Color = Color(0.4, 0.8, 1.0, 0.7)
 
-var _jogador_dentro: Node = null
-var _trocando: bool = false
+@export_group("Jogador")
+@export var grupo_jogador: StringName = &"Player"
+@export var aceitar_por_nome: String = "spell"
+
+@export_group("Interação")
+@export var acao_confirmar: StringName = &"interagir"
+@export var mensagem: String = "(Pressione E)"
+
+var _jogador_dentro: Node2D = null
+var _trocando := false
+var _label: Label
 
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	if not is_in_group("interagivel"):
-		add_to_group("interagivel")
-	queue_redraw()
+
+	_label = Label.new()
+	_label.text = mensagem
+	_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_label.add_theme_font_size_override("font_size", 40)
+	_label.add_theme_color_override("font_color", Color.WHITE)
+	_label.add_theme_color_override("font_shadow_color", Color.BLACK)
+	_label.add_theme_constant_override("shadow_offset_x", 2)
+	_label.add_theme_constant_override("shadow_offset_y", 2)
+
+	add_child(_label)
+	_label.position = Vector2(-65, -55)
+	_label.visible = false
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if not _e_o_jogador(body):
 		return
+
 	_jogador_dentro = body
-	queue_redraw()
+	_label.visible = true
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body == _jogador_dentro:
-		_jogador_dentro = null
-		queue_redraw()
+	if body != _jogador_dentro:
+		return
+
+	_jogador_dentro = null
+	_label.visible = false
 
 
 func _e_o_jogador(body: Node) -> bool:
-	if body == null:
-		return false
 	if body.is_in_group(grupo_jogador):
 		return true
-	if aceitar_por_nome != "" and body.name == aceitar_por_nome:
-		return true
-	return false
+
+	return aceitar_por_nome != "" and body.name == aceitar_por_nome
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not exigir_tecla or _jogador_dentro == null:
+	if _jogador_dentro == null or _trocando:
 		return
+
 	if event.is_action_pressed(acao_confirmar):
+		get_viewport().set_input_as_handled()
 		_ir_para_destino()
 
 
 func _ir_para_destino() -> void:
-	if _trocando or cena_destino.is_empty():
+	if cena_destino.is_empty() or _trocando:
 		return
+
 	_trocando = true
-	get_tree().change_scene_to_file(cena_destino)
 
+	var erro := get_tree().change_scene_to_file(cena_destino)
 
-func _draw() -> void:
-	var rect: Rect2 = _retangulo_shape()
-	if rect == Rect2():
-		return
-
-	if textura != null:
-		draw_texture_rect(textura, rect, false)
-
-	if mostrar_area:
-		draw_rect(rect, cor_area)
-		draw_rect(rect, cor_borda, false, 4.0)
-
-	if exigir_tecla and _jogador_dentro != null:
-		var fonte: Font = ThemeDB.fallback_font
-		if fonte != null:
-			draw_string(fonte, Vector2(rect.position.x, rect.position.y - 16.0),
-				"Pressione %s para jogar" % String(acao_confirmar).to_upper(),
-				HORIZONTAL_ALIGNMENT_LEFT, rect.size.x, 30, Color(1, 1, 1, 0.95))
-
-
-func _retangulo_shape() -> Rect2:
-	for c in get_children():
-		if c is CollisionShape2D and c.shape is RectangleShape2D:
-			var cs: CollisionShape2D = c
-			var rs: RectangleShape2D = cs.shape
-			var tam: Vector2 = rs.size * cs.scale
-			return Rect2(cs.position - tam * 0.5, tam)
-	return Rect2()
+	if erro != OK:
+		_trocando = false
+		push_error("Erro ao carregar o minigame: " + cena_destino)
