@@ -20,9 +20,6 @@ extends CharacterBody2D
 @export var frame_coleta: int = 4
 
 # Sombra
-# A sombra é forte onde existe cenário sólido atrás (paredes, muros, prédios)
-# e some completamente na frente do parallax da cidade. Ao pular, ela encolhe
-# e desaparece como uma sombra real.
 @export var sombra_alpha_max: float = 0.49411765
 @export var sombra_y_min: float = 620.0
 @export var sombra_y_max: float = 1000.0
@@ -30,8 +27,6 @@ extends CharacterBody2D
 @export var altura_salto_max: float = 160.0
 
 # Câmera
-# Zoom configurável: Vector2(1, 1) trava o modelo de design 1920x1080.
-# Ajuste pelo Inspector (Export) para dar o feel de Hollow Knight / Dead Cells.
 @export var camera_zoom: Vector2 = Vector2(0.8, 0.8)
 @export var camera_smoothing_speed: float = 8.0
 
@@ -73,13 +68,14 @@ func _ready() -> void:
 		sombra_banda
 	)
 
+	# A câmera do Spell é a câmera principal durante a exploração do mapa.
+	camera.make_current()
 	camera.zoom = camera_zoom
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = camera_smoothing_speed
 
 
 func _physics_process(delta: float) -> void:
-
 	# Gravidade
 	if not is_on_floor():
 		if velocity.y < 0:
@@ -148,24 +144,13 @@ func sincronizar_sombra() -> void:
 	sombra.flip_h = sprite.flip_h
 
 
-# =========================
-# SOMBRA - SOMBRA REAL
-# =========================
-
-# A sombra depende de duas coisas:
-#   1) existe cenário sólido atrás do personagem? (paredes)
-#   2) o personagem está no chão ou no ar? (sombra real que encolhe ao pular)
+# Sombra dependente do cenário e da distância até o chão.
 func atualizar_sombra() -> void:
-
-	# 1) Fator de parede: 0 na frente da cidade, 1 sobre o cenário.
 	var fator_parede: float = 1.0
 	if _sombra_cenario != null:
 		fator_parede = _sombra_cenario.alpha_em(global_position.x)
 
-	# 2) Contato com o chão.
 	var dist_chao: float = _distancia_ate_chao()
-
-	# Guarda a distância de referência (personagem parado no chão) uma vez.
 	if is_on_floor() and _dist_chao_parado < 0.0:
 		_dist_chao_parado = dist_chao
 
@@ -175,34 +160,27 @@ func atualizar_sombra() -> void:
 
 	var altura: float = maxf(dist_chao - referencia, 0.0)
 	var ar_t: float = clampf(altura / altura_salto_max, 0.0, 1.0)
-
-	# 3) Aplica posição no chão, encolhimento e alpha.
 	sombra.position = Vector2(_sombra_pos_base.x, _sombra_pos_base.y + altura)
 	sombra.scale = _sombra_escala_base * lerpf(1.0, 0.45, ar_t)
 	sombra.modulate.a = sombra_alpha_max * fator_parede * (1.0 - ar_t)
 
 
-# Distância (em pixels) do personagem até o chão logo abaixo.
 func _distancia_ate_chao() -> float:
 	var espaco: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var de: Vector2 = global_position
 	var ate: Vector2 = global_position + Vector2(0, 600)
-
 	var consulta := PhysicsRayQueryParameters2D.create(de, ate)
 	consulta.exclude = [get_rid()]
 	consulta.collision_mask = 16
-
 	var resultado: Dictionary = espaco.intersect_ray(consulta)
 	if resultado.is_empty():
 		return 600.0
-
 	return de.distance_to(resultado.position)
 
 
 func tocar_animacao(nome: String) -> void:
 	if fazendo_pick:
 		return
-
 	if animacao_atual != nome:
 		sprite.play(nome)
 		animacao_atual = nome
@@ -211,17 +189,13 @@ func tocar_animacao(nome: String) -> void:
 func update_animation(direcao: float) -> void:
 	if fazendo_pick:
 		return
-
-	# No ar
 	if not is_on_floor():
 		if velocity.y < 0:
 			tocar_animacao("jump")
-
-			if not animacao_pulo_travada:
-				if sprite.frame >= frame_pulo:
-					sprite.frame = frame_pulo
-					sprite.pause()
-					animacao_pulo_travada = true
+			if not animacao_pulo_travada and sprite.frame >= frame_pulo:
+				sprite.frame = frame_pulo
+				sprite.pause()
+				animacao_pulo_travada = true
 		else:
 			if animacao_pulo_travada:
 				animacao_pulo_travada = false
@@ -229,16 +203,13 @@ func update_animation(direcao: float) -> void:
 				sprite.frame = frame_pulo
 			else:
 				tocar_animacao("jump")
-
 		return
 
-	# Aterrissou
 	if esta_pulando:
 		esta_pulando = false
 		animacao_pulo_travada = false
 		sprite.play()
 
-	# Andando / parado
 	if direcao != 0:
 		tocar_animacao("walk")
 		sprite.flip_h = direcao < 0
@@ -249,12 +220,10 @@ func update_animation(direcao: float) -> void:
 func iniciar_pick(item: Node) -> void:
 	if fazendo_pick or item == null or not is_instance_valid(item):
 		return
-
 	item_do_pick = item
 	fazendo_pick = true
 	item_ja_coletado = false
 	velocity.x = 0
-
 	animacao_atual = "pick"
 	sprite.play("pick")
 	sprite.frame = 0
@@ -263,23 +232,18 @@ func iniciar_pick(item: Node) -> void:
 func processar_pick() -> void:
 	if item_ja_coletado:
 		return
-
-	if sprite.animation == "pick":
-		if sprite.frame >= frame_coleta:
-			if item_do_pick != null and is_instance_valid(item_do_pick):
-				item_do_pick.coletar()
-
-			item_ja_coletado = true
+	if sprite.animation == "pick" and sprite.frame >= frame_coleta:
+		if item_do_pick != null and is_instance_valid(item_do_pick):
+			item_do_pick.coletar()
+		item_ja_coletado = true
 
 
 func _on_animation_finished() -> void:
 	if sprite.animation != "pick":
 		return
-
 	fazendo_pick = false
 	item_do_pick = null
 	item_ja_coletado = false
 	animacao_atual = ""
-
 	var direcao := Input.get_axis("ui_left", "ui_right")
 	update_animation(direcao)
