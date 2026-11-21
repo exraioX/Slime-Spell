@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Slime-Spell"
-run/main_scene="res://Cenas/principal.tscn"
+run/main_scene="res://Cenas/menu_principal.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [audio]
 
 buses/default_bus_layout=""
+
+[autoload]
+
+Global="*res://Scripts/global.gd"
 
 [display]
 

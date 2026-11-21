@@ -50,7 +50,7 @@ func _ready() -> void:
 	vbox.add_child(_label_recorde)
 
 	var controles := Label.new()
-	controles.text = "← / A = cesto ESQUERDA (comida)\n→ / D = cesto DIREITA (lixo)\n↑ / W = pegar doce (bônus)\nESC = pausar"
+	controles.text = "← / A = cesto ESQUERDO (comida)\n→ / D = cesto DIREITA (lixo)\n↑ / W = pegar doce (bônus)\nESC = pausar"
 	controles.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	controles.add_theme_font_size_override("font_size", 26)
 	controles.add_theme_color_override("font_color", Color(1, 1, 1, 0.75))
