@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8chv0xilkepb"
-path="res://.godot/imported/1000337862.png-9bed875642a4a3371283f00e431de0cb.ctex"
+uid="uid://cxyhfcxvdn5p6"
+path="res://.godot/imported/Chão2.png-50a3a0b35ee677b2304a72777b27100b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapa/Chãos/1000337862.png"
-dest_files=["res://.godot/imported/1000337862.png-9bed875642a4a3371283f00e431de0cb.ctex"]
+source_file="res://mapa/Chãos/Chão2.png"
+dest_files=["res://.godot/imported/Chão2.png-50a3a0b35ee677b2304a72777b27100b.ctex"]
 
 [params]
 

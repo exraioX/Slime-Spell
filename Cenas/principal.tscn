@@ -2,16 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
 [ext_resource type="Texture2D" uid="uid://djm888pim10mk" path="res://mapa/cidade.png" id="4_2jvxy"]
+[ext_resource type="Texture2D" uid="uid://keode6x18u5q" path="res://mapa/Paredes/nuvem3.png" id="4_aqfvs"]
 [ext_resource type="PackedScene" uid="uid://dlggtedc4fne1" path="res://Cenas/mapa.tscn" id="5_5sagl"]
+[ext_resource type="Texture2D" uid="uid://dtgd1nsl76ysc" path="res://mapa/Paredes/nuvem4.png" id="5_8wwpk"]
 [ext_resource type="PackedScene" uid="uid://4qas3uorq6qc" path="res://Cenas/sons.tscn" id="7_b3f7n"]
 [ext_resource type="Script" uid="uid://cbuijgu3jn25" path="res://minigame/scripts/area_interacao.gd" id="16_areainteracao"]
 [ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/ceu_fita2x.png" id="31_ceut"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mry0o"]
-load_path = "res://.godot/imported/1000056506.png-d4b41162ac3a66f39aa70ee08f622634.ctex"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
-size = Vector2(553, 388)
+size = Vector2(1026, 476)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -31,14 +30,14 @@ z_index = -10
 [node name="Nuvens2" type="Parallax2D" parent="Paralaxs" unique_id=1999255390]
 z_index = -2
 scale = Vector2(0.47, 0.47)
-scroll_offset = Vector2(-177, -112)
-repeat_size = Vector2(1350, 0)
+scroll_offset = Vector2(-173, -129)
+repeat_size = Vector2(1339, 0)
 autoscroll = Vector2(15, 0)
 repeat_times = 13
 
-[node name="NuvensSprite" type="Sprite2D" parent="Paralaxs/Nuvens2" unique_id=1311926031]
-scale = Vector2(0.7041733, 1)
-texture = SubResource("CompressedTexture2D_mry0o")
+[node name="Nuvem3" type="Sprite2D" parent="Paralaxs/Nuvens2" unique_id=323697683]
+scale = Vector2(0.7, 1)
+texture = ExtResource("4_aqfvs")
 
 [node name="FundoCinza" type="Parallax2D" parent="Paralaxs" unique_id=1738278077]
 z_index = -10
@@ -53,14 +52,14 @@ texture = ExtResource("31_ceut")
 [node name="Nuvens" type="Parallax2D" parent="Paralaxs" unique_id=1208021062]
 z_index = -2
 scale = Vector2(0.35, 0.399)
-scroll_offset = Vector2(10.000002, 216.00003)
-repeat_size = Vector2(1350, 0)
+scroll_offset = Vector2(3229.0005, 253)
+repeat_size = Vector2(1341, 0)
 autoscroll = Vector2(29, 0)
 repeat_times = 13
 
-[node name="NuvensSprite" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=607348203]
-scale = Vector2(0.7041733, 1)
-texture = SubResource("CompressedTexture2D_mry0o")
+[node name="Nuvem4" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=257302719]
+scale = Vector2(0.7, 1)
+texture = ExtResource("5_8wwpk")
 
 [node name="Cidade" type="Parallax2D" parent="Paralaxs" unique_id=1913134148]
 scale = Vector2(0.2, 0.2)
@@ -78,7 +77,7 @@ position = Vector2(8748, 596)
 script = ExtResource("16_areainteracao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSnackBaskets" unique_id=1695710183]
-position = Vector2(22.5, -134)
+position = Vector2(-5, -58)
 shape = SubResource("RectangleShape2D_ivjp3")
 debug_color = Color(0, 0.627451, 0.73333335, 0)
 

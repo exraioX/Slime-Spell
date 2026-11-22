@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqs2w6ixbbnm2"
-path="res://.godot/imported/1000337965.png-4bf4148c6a624840b6f781451920204b.ctex"
+uid="uid://keode6x18u5q"
+path="res://.godot/imported/nuvem3.png-c44efc3cb640a9c27cb362d6d8ae2685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapa/Chãos/1000337965.png"
-dest_files=["res://.godot/imported/1000337965.png-4bf4148c6a624840b6f781451920204b.ctex"]
+source_file="res://mapa/Paredes/nuvem3.png"
+dest_files=["res://.godot/imported/nuvem3.png-c44efc3cb640a9c27cb362d6d8ae2685.ctex"]
 
 [params]
 
