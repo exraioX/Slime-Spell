@@ -87,7 +87,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_rxohm"]
 resource_name = "intro_july"
-length = 6.0
+length = 5.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,9 +155,18 @@ tracks/5/path = NodePath("july")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.0666666, 2.5, 3.3333333, 4.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.9666667, 2, 3.3333333, 4.4333334, 4.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
+"args": ["walk"],
+"method": &"tocar_animacao"
+}, {
+"args": [-1.0],
+"method": &"mostrar_exclamacao"
+}, {
+"args": ["idle"],
+"method": &"tocar_animacao"
+}, {
 "args": ["walk"],
 "method": &"tocar_animacao"
 }, {
@@ -166,12 +175,6 @@ tracks/5/keys = {
 }, {
 "args": [],
 "method": &"dar_pulo_susto"
-}, {
-"args": ["walk"],
-"method": &"tocar_animacao"
-}, {
-"args": ["idle"],
-"method": &"tocar_animacao"
 }]
 }
 tracks/6/type = "method"
@@ -256,9 +259,9 @@ texture = ExtResource("5_8wwpk")
 [node name="Cidade" type="Parallax2D" parent="Paralaxs" unique_id=1913134148]
 scale = Vector2(0.2, 0.2)
 scroll_scale = Vector2(1.01, 1.01)
-scroll_offset = Vector2(-798, 669)
+scroll_offset = Vector2(-201, 661)
 repeat_size = Vector2(1350, 0)
-repeat_times = 11
+repeat_times = 18
 
 [node name="Cidade2" type="Sprite2D" parent="Paralaxs/Cidade" unique_id=919403352]
 z_index = -2
@@ -291,8 +294,10 @@ z_index = -6
 z_index = -1
 position = Vector2(-1323, 596)
 collision_mask = 4
-velocidade = 400.0
 em_cutscene = true
+
+[node name="Sombra" parent="july" index="0" unique_id=1364185471]
+position = Vector2(-9, 27)
 
 [node name="AnimatedSprite2D" parent="july" index="1" unique_id=693776466]
 position = Vector2(0, 27)
@@ -318,9 +323,6 @@ rosto_july_passifica = ExtResource("6_mnaaw")
 rosto_july_pistola = ExtResource("7_rcfkj")
 rosto_july_preocupada = ExtResource("8_kel27")
 rosto_july_zangada = ExtResource("9_2jvxy")
-tocar_intro_ao_iniciar = false
-altura_barra_topo = 30.0
-altura_barra_base = 390.0
 
 [editable path="spell"]
 [editable path="july"]

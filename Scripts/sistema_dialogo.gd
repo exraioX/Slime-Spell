@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export_group("Referências da Fase")
 @export var spell: CharacterBody2D
@@ -10,6 +10,8 @@ extends Node
 @onready var caixa_dialogo: PanelContainer = $HUD_Dialogo/CaixaDialogo
 @onready var retrato: TextureRect = $HUD_Dialogo/CaixaDialogo/HBoxContainer/Retrato
 @onready var texto_fala: RichTextLabel = $HUD_Dialogo/CaixaDialogo/HBoxContainer/TextoFala
+@onready var barra_topo: ColorRect = $HUD_Dialogo/BarraTopo
+@onready var barra_base: ColorRect = $HUD_Dialogo/BarraBase
 
 # =========================
 # ROSTOS DA JULY
@@ -52,11 +54,14 @@ extends Node
 @export var intervalo_letras_som: int = 3
 
 @export_group("Câmera e Cinema (Faroeste)")
-@export var altura_barra_topo: float = 95.0
-@export var altura_barra_base: float = 160.0
-@export var zoom_cutscene: Vector2 = Vector2(0.95, 0.95)
+@export var zoom_cutscene: Vector2 = Vector2(1.1, 1.1)
 @export var intensidade_balanco: float = 4.5
 @export var velocidade_balanco: float = 2.2
+
+@export_group("Encontro com a July")
+@export var margem_fora_camera: float = 80.0
+@export var distancia_parada_spell: float = 300.0
+@export var velocidade_chegada_july: float = 220.0
 
 var falas: Array[Dictionary] = []
 var indice_fala: int = 0
@@ -75,20 +80,22 @@ var _tween_digitacao: Tween = null
 var _digitando: bool = false
 
 # Elementos de cinema e câmera
-var _barra_topo: ColorRect
-var _barra_base: ColorRect
+var _pos_topo_visivel: Vector2 = Vector2.ZERO
+var _pos_base_visivel: Vector2 = Vector2.ZERO
 var _camera_spell: Camera2D
 var _zoom_original: Vector2 = Vector2(0.8, 0.8)
+var _offset_original: Vector2 = Vector2.ZERO
 var _tempo_balanco: float = 0.0
 
 func _ready() -> void:
 	caixa_dialogo.visible = false
 	add_to_group("gerenciador_dialogo")
-	_criar_barras_cinema()
+	_preparar_barras_cinema()
 	
 	if spell != null and spell.has_node("Camera2D"):
 		_camera_spell = spell.get_node("Camera2D")
 		_zoom_original = _camera_spell.zoom
+		_offset_original = _camera_spell.offset
 	
 	if tocar_intro_ao_iniciar and cutscene_player != null and spell != null:
 		spell.em_cutscene = true
@@ -98,14 +105,12 @@ func _ready() -> void:
 		cutscene_player.play("intro_july")
 
 func _process(delta: float) -> void:
-	# 1. Efeito de câmera balançando estilo faroeste enquanto a cutscene estiver ativa
 	if _em_cutscene_ativa and _camera_spell != null:
 		_tempo_balanco += delta * velocidade_balanco
 		var balanco_x: float = sin(_tempo_balanco) * intensidade_balanco
 		var balanco_y: float = cos(_tempo_balanco * 1.4) * (intensidade_balanco * 0.6)
-		_camera_spell.offset = Vector2(balanco_x, balanco_y)
+		_camera_spell.offset = _offset_original + Vector2(balanco_x, balanco_y)
 
-	# 2. Controle unificado da tecla ESPAÇO (Clique = avança fala | Segurar = pula tudo)
 	if not _em_cutscene_ativa:
 		return
 
@@ -126,6 +131,7 @@ func _process(delta: float) -> void:
 		_tempo_segurando_espaco = 0.0
 
 	_espaco_pressionado_antes = espaco_atual
+
 func _tratar_clique_avancar_fala() -> void:
 	if _digitando and _tween_digitacao != null and _tween_digitacao.is_valid():
 		_tween_digitacao.kill()
@@ -158,46 +164,53 @@ func pular_toda_a_cena() -> void:
 	if spell != null:
 		spell.em_cutscene = false
 	if july != null:
+		july.cancelar_caminhada()
 		july.em_cutscene = false
 		july.velocity = Vector2.ZERO
 		july.tocar_animacao("idle")
 
-func _criar_barras_cinema() -> void:
-	_barra_topo = ColorRect.new()
-	_barra_topo.color = Color.BLACK
-	_barra_topo.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	_barra_topo.size.y = altura_barra_topo
-	_barra_topo.position.y = -altura_barra_topo
-	hud_dialogo.add_child(_barra_topo)
-	hud_dialogo.move_child(_barra_topo, 0)
-
-	_barra_base = ColorRect.new()
-	_barra_base.color = Color.BLACK
-	_barra_base.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
-	_barra_base.size.y = altura_barra_base
-	_barra_base.offset_top = 0
-	_barra_base.offset_bottom = altura_barra_base
-	hud_dialogo.add_child(_barra_base)
-	hud_dialogo.move_child(_barra_base, 0)
+func _preparar_barras_cinema() -> void:
+	if barra_topo != null:
+		_pos_topo_visivel = barra_topo.position
+		barra_topo.position.y = _pos_topo_visivel.y - barra_topo.size.y
+		barra_topo.visible = false
+		
+	if barra_base != null:
+		_pos_base_visivel = barra_base.position
+		barra_base.position.y = _pos_base_visivel.y + barra_base.size.y
+		barra_base.visible = false
 
 func ativar_modo_cinema(ativar: bool) -> void:
 	_em_cutscene_ativa = ativar
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	if ativar:
-		tween.tween_property(_barra_topo, "position:y", 0.0, 0.4)
-		tween.tween_property(_barra_base, "offset_top", -altura_barra_base, 0.4)
-		tween.tween_property(_barra_base, "offset_bottom", 0.0, 0.4)
+		if barra_topo != null:
+			barra_topo.visible = true
+			barra_topo.modulate.a = 1.0
+			tween.tween_property(barra_topo, "position:y", _pos_topo_visivel.y, 0.4)
+		if barra_base != null:
+			barra_base.visible = true
+			barra_base.modulate.a = 1.0
+			tween.tween_property(barra_base, "position:y", _pos_base_visivel.y, 0.4)
 		if _camera_spell != null:
-			tween.tween_property(_camera_spell, "zoom", zoom_cutscene, 0.75)
+			tween.tween_property(_camera_spell, "zoom", zoom_cutscene, 0.6)
 	else:
-		tween.tween_property(_barra_topo, "position:y", -altura_barra_topo, 0.4)
-		tween.tween_property(_barra_base, "offset_top", 0.0, 0.4)
-		tween.tween_property(_barra_base, "offset_bottom", altura_barra_base, 0.4)
+		if barra_topo != null:
+			tween.tween_property(barra_topo, "position:y", _pos_topo_visivel.y - barra_topo.size.y, 0.4)
+			tween.tween_property(barra_topo, "modulate:a", 0.0, 0.4)
+		if barra_base != null:
+			tween.tween_property(barra_base, "position:y", _pos_base_visivel.y + barra_base.size.y, 0.4)
+			tween.tween_property(barra_base, "modulate:a", 0.0, 0.4)
 		if _camera_spell != null:
-			tween.tween_property(_camera_spell, "zoom", _zoom_original, 0.69)
-			tween.tween_property(_camera_spell, "offset", Vector2.ZERO, 0.3)
-
+			tween.tween_property(_camera_spell, "zoom", _zoom_original, 0.5)
+			tween.tween_property(_camera_spell, "offset", _offset_original, 0.3)
+		
+		tween.chain().tween_callback(func():
+			if not _em_cutscene_ativa:
+				if barra_topo != null: barra_topo.visible = false
+				if barra_base != null: barra_base.visible = false
+		)
 func obter_rosto(nome_expressao: String) -> Texture2D:
 	var mapa_rostos: Dictionary = {
 		"normal": rosto_july_normal,
@@ -229,7 +242,17 @@ func iniciar_conversa_july() -> void:
 	falas = montar_lista_falas(textos_intro, expressoes_intro)
 	abrir_caixa()
 
-func iniciar_encontro_area(novas_falas: Array[Dictionary], vir_da_esquerda: bool = true) -> void:
+func _calcular_borda_esquerda_camera() -> float:
+	var largura_tela: float = get_viewport_rect().size.x
+	if _camera_spell != null:
+		# Usa o menor zoom entre o atual e o da cutscene para garantir que ela nasça fora mesmo antes do zoom terminar
+		var zoom_ref: float = minf(_camera_spell.zoom.x, zoom_cutscene.x)
+		var centro_x: float = _camera_spell.get_screen_center_position().x
+		var metade_visivel: float = (largura_tela * 0.5) / maxf(zoom_ref, 0.1)
+		return centro_x - metade_visivel - margem_fora_camera
+	return spell.global_position.x - (largura_tela * 0.6) - margem_fora_camera
+
+func iniciar_encontro_area(novas_falas: Array[Dictionary], _vir_da_esquerda: bool = true) -> void:
 	if spell == null or july == null:
 		return
 		
@@ -239,23 +262,23 @@ func iniciar_encontro_area(novas_falas: Array[Dictionary], vir_da_esquerda: bool
 	july.velocity = Vector2.ZERO
 	ativar_modo_cinema(true)
 	
-	var distancia_surgimento: float = 880.0
-	var distancia_parada: float = 30.0
-	var tempo_caminhada: float = 1.2
+	# Nasce fora da borda esquerda real da câmera e para a 100px à esquerda do Spell
+	var pos_inicial_x: float = _calcular_borda_esquerda_camera()
+	var pos_final_x: float = spell.global_position.x - distancia_parada_spell
 	
-	var lado: float = -1.0 if vir_da_esquerda else 1.0
-	var pos_inicial_x: float = spell.global_position.x + (lado * distancia_surgimento)
-	var pos_final_x: float = spell.global_position.x + (lado * distancia_parada)
+	# Garante que o ponto inicial fique sempre à esquerda do ponto de parada
+	if pos_inicial_x > pos_final_x - 150.0:
+		pos_inicial_x = pos_final_x - 150.0
 	
-	july.global_position = Vector2(pos_inicial_x, spell.global_position.y)
-	july.sprite.flip_h = not vir_da_esquerda
-	spell.sprite.flip_h = vir_da_esquerda
+	var pos_inicial_y: float = _encontrar_y_chao(pos_inicial_x, spell.global_position.y)
 	
-	july.tocar_animacao("walk")
-	var tween_movimento = create_tween()
-	tween_movimento.tween_property(july, "global_position:x", pos_final_x, tempo_caminhada)
+	july.global_position = Vector2(pos_inicial_x, pos_inicial_y)
+	july.olhar_para_direita()
+	spell.sprite.flip_h = true # Spell vira para a esquerda para olhar para ela
 	
-	await tween_movimento.finished
+	# Manda a July caminhar usando física e colisão de chão até parar a 100px do Spell
+	july.caminhar_ate_x(pos_final_x, velocidade_chegada_july)
+	await july.chegou_ao_destino
 	
 	if not _em_cutscene_ativa:
 		return
@@ -263,6 +286,21 @@ func iniciar_encontro_area(novas_falas: Array[Dictionary], vir_da_esquerda: bool
 	july.tocar_animacao("idle")
 	falas = novas_falas
 	abrir_caixa()
+
+func _encontrar_y_chao(pos_x: float, y_referencia: float) -> float:
+	var espaco: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var de := Vector2(pos_x, y_referencia - 400.0)
+	var ate := Vector2(pos_x, y_referencia + 600.0)
+	var consulta := PhysicsRayQueryParameters2D.create(de, ate)
+	if july != null:
+		consulta.exclude = [july.get_rid()]
+	if spell != null:
+		consulta.exclude.append(spell.get_rid())
+	
+	var resultado: Dictionary = espaco.intersect_ray(consulta)
+	if not resultado.is_empty():
+		return resultado.position.y - 2.0
+	return y_referencia
 
 func abrir_caixa() -> void:
 	indice_fala = 0

@@ -10,9 +10,25 @@ script = ExtResource("1_ya78o")
 
 [node name="HUD_Dialogo" type="CanvasLayer" parent="." unique_id=458063162]
 
+[node name="BarraTopo" type="ColorRect" parent="HUD_Dialogo" unique_id=1543524226]
+offset_right = 40.094646
+offset_bottom = 40.0
+scale = Vector2(47.83681, 3.0154545)
+color = Color(0, 0, 0, 1)
+
+[node name="BarraBase" type="ColorRect" parent="HUD_Dialogo" unique_id=1419625942]
+offset_top = 969.0
+offset_right = 40.041878
+offset_bottom = 1009.0
+scale = Vector2(47.9498, 2.919935)
+color = Color(0, 0, 0, 1)
+
 [node name="CaixaDialogo" type="PanelContainer" parent="HUD_Dialogo" unique_id=1145286601]
-offset_right = 1100.0
-offset_bottom = 220.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 121.0
+offset_bottom = 341.0
+grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD_Dialogo/CaixaDialogo" unique_id=209282423]
 layout_mode = 2
@@ -27,8 +43,9 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/line_separation = 6
+theme_override_constants/paragraph_separation = 4
 theme_override_fonts/normal_font = ExtResource("2_h7hrb")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 40
 
 [node name="CamadaAviso" type="Control" parent="HUD_Dialogo/CaixaDialogo" unique_id=371926176]
 layout_mode = 2

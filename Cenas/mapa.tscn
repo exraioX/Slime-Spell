@@ -458,7 +458,7 @@ region_rect = Rect2(1149, 599, 170, 219)
 [node name="1000340147" type="Sprite2D" parent="Lixos-Chão" unique_id=1097014366]
 modulate = Color(0.5411765, 0.5411765, 0.5411765, 0.8784314)
 z_index = 9
-position = Vector2(1964, 795)
+position = Vector2(1964, 803.00006)
 scale = Vector2(0.3, 0.3537035)
 texture = ExtResource("24_xbu0b")
 region_enabled = true
@@ -467,7 +467,7 @@ region_rect = Rect2(480, 549, 175, 108)
 [node name="1000340148" type="Sprite2D" parent="Lixos-Chão" unique_id=771901343]
 modulate = Color(0.796243, 0.796243, 0.796243, 0.78431374)
 z_index = 9
-position = Vector2(561, 791)
+position = Vector2(561, 806)
 scale = Vector2(0.26111105, 0.23426966)
 texture = ExtResource("25_btqdv")
 region_enabled = true
@@ -588,7 +588,7 @@ region_rect = Rect2(505, 459, 81, 286)
 [node name="1000340219" type="Sprite2D" parent="Lixos-Chão" unique_id=770389180]
 modulate = Color(0.7792914, 0.7792914, 0.7792913, 0.8745098)
 z_index = 8
-position = Vector2(602.00006, 787)
+position = Vector2(603.00006, 811)
 rotation = -1.5707964
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("26_230uu")

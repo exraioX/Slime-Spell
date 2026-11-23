@@ -32,7 +32,7 @@ extends CharacterBody2D
 # Câmera
 # Zoom configurável: Vector2(1, 1) trava o modelo de design 1920x1080.
 # Ajuste pelo Inspector (Export) para dar o feel de Hollow Knight / Dead Cells.
-@export var camera_zoom: Vector2 = Vector2(0.8, 0.8)
+
 @export var camera_smoothing_speed: float = 8.0
 
 #Cutscene
@@ -77,9 +77,11 @@ func _ready() -> void:
 		sombra_banda
 	)
 
-	camera.zoom = camera_zoom
+
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = camera_smoothing_speed
+	# Garante que a camera fique centralizada no eixo X do proprio personagem
+	camera.position = Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:

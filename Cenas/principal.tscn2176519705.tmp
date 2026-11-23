@@ -1,0 +1,333 @@
+[gd_scene format=3 uid="uid://bls2nwi65cm7k"]
+
+[ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="1_1rlcm"]
+[ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
+[ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
+[ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
+[ext_resource type="Texture2D" uid="uid://djm888pim10mk" path="res://mapa/cidade.png" id="4_2jvxy"]
+[ext_resource type="Texture2D" uid="uid://keode6x18u5q" path="res://mapa/Paredes/paredes/nuvem3.png" id="4_aqfvs"]
+[ext_resource type="Texture2D" uid="uid://dvrhif8nnwv4p" path="res://july/carasdajuly/july-feliz.jpg" id="4_jmoe8"]
+[ext_resource type="PackedScene" uid="uid://dlggtedc4fne1" path="res://Cenas/mapa.tscn" id="5_5sagl"]
+[ext_resource type="Texture2D" uid="uid://dtgd1nsl76ysc" path="res://mapa/Paredes/paredes/nuvem4.png" id="5_8wwpk"]
+[ext_resource type="Texture2D" uid="uid://p00dduvnrcuq" path="res://july/carasdajuly/july-megaFeliz.jpg" id="5_evgn8"]
+[ext_resource type="Texture2D" uid="uid://dn6uf7g82m20" path="res://july/carasdajuly/july-pacifica.jpg" id="6_mnaaw"]
+[ext_resource type="PackedScene" uid="uid://4qas3uorq6qc" path="res://Cenas/sons.tscn" id="7_b3f7n"]
+[ext_resource type="Texture2D" uid="uid://b6v0tubgc432x" path="res://july/carasdajuly/july-pistola.jpg" id="7_rcfkj"]
+[ext_resource type="Texture2D" uid="uid://xieybfwuo8jb" path="res://july/carasdajuly/july-preocupada.jpg" id="8_kel27"]
+[ext_resource type="Texture2D" uid="uid://c5iwyv3guqaa" path="res://july/carasdajuly/july-zangada.jpg" id="9_2jvxy"]
+[ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/paredes/ceu.png" id="13_6l6k6"]
+[ext_resource type="PackedScene" uid="uid://dyiv2ffmp31f3" path="res://Cenas/sistema_dialogo.tscn" id="18_6l6k6"]
+[ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
+size = Vector2(64, 900)
+
+[sub_resource type="Animation" id="Animation_nlwgu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spell/AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spell/Sombra:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spell:em_cutscene")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("july:em_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("july:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1323, 596)]
+}
+
+[sub_resource type="Animation" id="Animation_rxohm"]
+resource_name = "intro_july"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spell/AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spell/Sombra:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spell:em_cutscene")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("july:em_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("july:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1323, 596), Vector2(0, 596), Vector2(0, 596), Vector2(362, 596)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("july")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.0666666, 2.5, 3.3333333, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": ["walk"],
+"method": &"tocar_animacao"
+}, {
+"args": ["idle"],
+"method": &"tocar_animacao"
+}, {
+"args": [],
+"method": &"dar_pulo_susto"
+}, {
+"args": ["walk"],
+"method": &"tocar_animacao"
+}, {
+"args": ["idle"],
+"method": &"tocar_animacao"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SistemaDialogo")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"iniciar_conversa_july"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nlwgu"]
+_data = {
+&"RESET": SubResource("Animation_nlwgu"),
+&"intro_july": SubResource("Animation_rxohm")
+}
+
+[node name="Principal" type="Node2D" unique_id=1519746174]
+
+[node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
+
+[node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
+position = Vector2(660, 707)
+collision_mask = 28
+velocidade = 1000.0
+
+[node name="Sombra" parent="spell" index="2" unique_id=448726823]
+animation = &"idle"
+frame = 0
+frame_progress = 0.0
+flip_h = true
+
+[node name="AnimatedSprite2D" parent="spell" index="3" unique_id=1210837540]
+animation = &"idle"
+frame = 0
+frame_progress = 0.0
+flip_h = true
+
+[node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
+z_index = -30
+
+[node name="Nuvens2" type="Parallax2D" parent="Paralaxs" unique_id=1999255390]
+z_index = -2
+scale = Vector2(0.47, 0.47)
+scroll_offset = Vector2(-173, -129)
+repeat_size = Vector2(1339, 0)
+autoscroll = Vector2(15, 0)
+repeat_times = 13
+
+[node name="Nuvem3" type="Sprite2D" parent="Paralaxs/Nuvens2" unique_id=323697683]
+scale = Vector2(0.7, 1)
+texture = ExtResource("4_aqfvs")
+
+[node name="FundoCinza" type="Parallax2D" parent="Paralaxs" unique_id=1738278077]
+z_index = -10
+scroll_offset = Vector2(91, 267)
+repeat_size = Vector2(3840, 0)
+autoscroll = Vector2(50, 0)
+repeat_times = 2
+
+[node name="Ceu" type="Sprite2D" parent="Paralaxs/FundoCinza" unique_id=1538925004]
+texture = ExtResource("13_6l6k6")
+
+[node name="Nuvens" type="Parallax2D" parent="Paralaxs" unique_id=1208021062]
+z_index = -2
+scale = Vector2(0.35, 0.399)
+scroll_offset = Vector2(3229.0005, 253)
+repeat_size = Vector2(1341, 0)
+autoscroll = Vector2(29, 0)
+repeat_times = 15
+
+[node name="Nuvem4" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=257302719]
+scale = Vector2(0.7, 1)
+texture = ExtResource("5_8wwpk")
+
+[node name="Cidade" type="Parallax2D" parent="Paralaxs" unique_id=1913134148]
+scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(1.01, 1.01)
+scroll_offset = Vector2(851.99994, 623)
+repeat_size = Vector2(1350, 0)
+repeat_times = 18
+
+[node name="Cidade2" type="Sprite2D" parent="Paralaxs/Cidade" unique_id=919403352]
+z_index = -2
+texture = ExtResource("4_2jvxy")
+
+[node name="limitadores" type="Node2D" parent="." unique_id=1959873245]
+
+[node name="LimiteEsquerda" type="StaticBody2D" parent="limitadores" unique_id=1900000001]
+z_index = -3
+position = Vector2(-1520, 600)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limitadores/LimiteEsquerda" unique_id=951876725]
+shape = SubResource("RectangleShape2D_limite")
+
+[node name="LimiteDireita" type="StaticBody2D" parent="limitadores" unique_id=1900000002]
+z_index = -3
+position = Vector2(13630, 377)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limitadores/LimiteDireita" unique_id=846302854]
+shape = SubResource("RectangleShape2D_limite")
+
+[node name="mapa" parent="." unique_id=953203020 instance=ExtResource("5_5sagl")]
+z_index = -6
+
+[node name="july" parent="." unique_id=222498092 instance=ExtResource("1_1rlcm")]
+z_index = -1
+position = Vector2(-1323, 596)
+collision_mask = 4
+velocidade = 400.0
+em_cutscene = true
+
+[node name="AnimatedSprite2D" parent="july" index="1" unique_id=693776466]
+position = Vector2(0, 27)
+
+[node name="CollisionShape2D" parent="july" index="2" unique_id=1645080551]
+position = Vector2(0, 26.000008)
+scale = Vector2(1.029, 0.9)
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="." unique_id=973408358]
+libraries/ = SubResource("AnimationLibrary_nlwgu")
+
+[node name="gatilhos" parent="." unique_id=447945297 instance=ExtResource("19_mnaaw")]
+
+[node name="SistemaDialogo" parent="." unique_id=1049650363 node_paths=PackedStringArray("spell", "july", "cutscene_player") instance=ExtResource("18_6l6k6")]
+spell = NodePath("../spell")
+july = NodePath("../july")
+cutscene_player = NodePath("../CutscenePlayer")
+rosto_july_normal = ExtResource("2_mry0o")
+rosto_july_assustada = ExtResource("3_b3f7n")
+rosto_july_feliz = ExtResource("4_jmoe8")
+rosto_july_megaF = ExtResource("5_evgn8")
+rosto_july_passifica = ExtResource("6_mnaaw")
+rosto_july_pistola = ExtResource("7_rcfkj")
+rosto_july_preocupada = ExtResource("8_kel27")
+rosto_july_zangada = ExtResource("9_2jvxy")
+tocar_intro_ao_iniciar = null
+textos_intro = null
+expressoes_intro = null
+tempo_segurar_pular_tudo = null
+intervalo_letras_som = null
+altura_barra_topo = 30.0
+altura_barra_base = 390.0
+zoom_cutscene = null
+intensidade_balanco = null
+velocidade_balanco = null
+
+[editable path="spell"]
+[editable path="july"]

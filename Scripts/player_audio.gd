@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 
 	gerenciar_loop_passos(direction, is_running)
 
-func gerenciar_loop_passos(direction: float, is_running: bool) -> void:
+func gerenciar_loop_passos(direction: float, _is_running: bool) -> void:
 	if direction != 0 and player.is_on_floor():
 		var intervalo_atual = intervalo_passo_andar
 		

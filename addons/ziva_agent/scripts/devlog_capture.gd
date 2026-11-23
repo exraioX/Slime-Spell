@@ -1,12 +1,4 @@
 extends Node
-## Devlog gameplay capture. Ziva's extension adds this autoload, in memory only, to every game the
-## editor launches while STATE_PATH exists; it records the run (F5, run_scene, playtests) from
-## inside the game, so no OS screen-recording permission is involved. Idle when the state says
-## recording is off or paused.
-##
-## Frames are read back asynchronously where the renderer allows it (Forward+/Mobile) and piped
-## to Ziva's bundled ffmpeg, which writes 10-second segments. The Compatibility renderer has no
-## async readback, so it records at 15 fps to keep the per-frame stall small.
 
 const STATE_PATH := "user://ziva/extensions/godot-gamedev/devlog/state.json"
 const SEGMENT_SECONDS := 10
@@ -24,7 +16,6 @@ var _size := Vector2i.ZERO
 var _async := false
 
 func _ready() -> void:
-	# Headless runs (Ziva's run_tests and execute_script tools, CI) draw no frames to record.
 	if OS.has_feature("template") or DisplayServer.get_name() == "headless" or not FileAccess.file_exists(STATE_PATH):
 		queue_free()
 		return
@@ -42,7 +33,6 @@ func _ready() -> void:
 	_fps = 30 if _async else 15
 	var out := dir.path_join("game/%d" % int(Time.get_unix_time_from_system()))
 	DirAccess.make_dir_recursive_absolute(out)
-	# Wait one frame so the window has its final size before the encoder is sized.
 	await get_tree().process_frame
 	_size = Vector2i(get_viewport().get_texture().get_size())
 	if not _start_encoder(ffmpeg, out):
@@ -59,12 +49,8 @@ func _start_encoder(ffmpeg: String, out: String) -> bool:
 		"-pix_fmt", "yuv420p", "-g", str(_fps * 2),
 		"-f", "segment", "-segment_time", str(SEGMENT_SECONDS), "-reset_timestamps", "1", "-segment_format", "mp4",
 		"-segment_format_options", "movflags=+frag_keyframe+empty_moov+default_base_moof", out.replace("%", "%%").path_join("seg_%04d.mp4")])
-	# ffmpeg writes its own diagnostics next to the segments so an encoder failure is never silent.
-	# Both FFmpeg filenames expand '%'; escape only the directory so seg_%04d stays a template.
-	# FFREPORT also splits on ':' and treats a backslash as an escape.
 	OS.set_environment("FFREPORT", "file=%s:level=24" % out.path_join("ffmpeg.log").replace("%", "%%").replace("\\", "/").replace(":", "\\:"))
 	var p := OS.execute_with_pipe(ffmpeg, args)
-	# Unset so the game's own child processes do not write reports here.
 	OS.unset_environment("FFREPORT")
 	if p.is_empty():
 		push_error("Ziva Devlog: the video encoder at %s could not start, so this run is not recorded." % ffmpeg)
@@ -94,7 +80,6 @@ func _enqueue(buf: PackedByteArray, copies: int) -> void:
 	if _stopping:
 		return
 	if buf.size() != _size.x * _size.y * 4:
-		# A resized window or an HDR 2D viewport no longer matches the encoder's RGBA8 input.
 		push_error("Ziva Devlog: the game's frames changed size or format (%d bytes, expected %d); recording of this run stopped." % [buf.size(), _size.x * _size.y * 4])
 		_finish.call_deferred()
 		return
@@ -111,7 +96,6 @@ func _on_post_draw() -> void:
 		_next_ms = now
 	if now < _next_ms:
 		return
-	# One frame per elapsed tick keeps the recording in real time even if the game stalls.
 	var ticks := int((now - _next_ms) / (1000.0 / _fps)) + 1
 	_next_ms += ticks * (1000.0 / _fps)
 	var tex := get_viewport().get_texture()
