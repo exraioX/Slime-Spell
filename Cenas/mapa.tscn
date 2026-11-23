@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dlggtedc4fne1"]
 
 [ext_resource type="Texture2D" uid="uid://cjup25qk3ldr3" path="res://mapa/Paredes/pixações/1000056516.png" id="1_juovg"]
-[ext_resource type="Script" uid="uid://cbuijgu3jn25" path="res://minigame/scripts/area_interacao.gd" id="2_fm3jm"]
 [ext_resource type="Texture2D" uid="uid://5u4iu5pwl0xn" path="res://mapa/Paredes/pixações/pixachao.png" id="2_jarr7"]
 [ext_resource type="Texture2D" uid="uid://bg4ths2xhyfhr" path="res://mapa/Paredes/paredes/1000339685.png" id="2_uyyw5"]
 [ext_resource type="Texture2D" uid="uid://bmulvnql5vjp6" path="res://mapa/Paredes/paredes/1000338042 (1).png" id="3_fm3jm"]
@@ -15,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://c5a5oywh02ji4" path="res://mapa/Paredes/mano da pixação/1000274941.png" id="10_pfey7"]
 [ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/Paredes/paredes/1000056509.png" id="12_5xn1r"]
 [ext_resource type="Texture2D" uid="uid://diwummmb587cx" path="res://lixos/lixos-chão/1000340034.png" id="17_gv7pa"]
-[ext_resource type="Texture2D" uid="uid://dkc21ke2v61wp" path="res://mapa/Chãos/Chão3.png" id="17_jopfo"]
+[ext_resource type="Texture2D" uid="uid://dkc21ke2v61wp" path="res://mapa/Chãos(não tirei nenhum porque demora 10 minutos pra trocar o chão, vai ficar assim mesmo/Chão3.png" id="17_jopfo"]
 [ext_resource type="Texture2D" uid="uid://b5f77m1hnaxqh" path="res://lixos/lixos-chão/1000340035.png" id="18_mftpr"]
 [ext_resource type="Texture2D" uid="uid://b7fxm1qi388jf" path="res://lixos/lixos-chão/1000340036.png" id="19_0cr4s"]
-[ext_resource type="Texture2D" uid="uid://cxyhfcxvdn5p6" path="res://mapa/Chãos/Chão2.png" id="20_pfx8a"]
+[ext_resource type="Texture2D" uid="uid://cxyhfcxvdn5p6" path="res://mapa/Chãos(não tirei nenhum porque demora 10 minutos pra trocar o chão, vai ficar assim mesmo/Chão2.png" id="20_pfx8a"]
 [ext_resource type="Texture2D" uid="uid://cfs348ug5py65" path="res://lixos/lixos-chão/1000340037.png" id="20_uyyw5"]
 [ext_resource type="Texture2D" uid="uid://cuw1g6vr8hwhr" path="res://lixos/lixos-chão/1000340140.png" id="21_fm3jm"]
 [ext_resource type="Texture2D" uid="uid://bys4prhpw7ce6" path="res://lixos/lixos-chão/1000340141.png" id="22_c66xa"]
@@ -36,9 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://x56hy56khqgd" path="res://mapa/Paredes/paredes/parede-substituição.png" id="34_c66xa"]
 [ext_resource type="Texture2D" uid="uid://dxl03bfebb5iv" path="res://mapa/Paredes/paredes/parede-lado do coração.png" id="36_c66xa"]
 [ext_resource type="Texture2D" uid="uid://1x0w4sbd3obn" path="res://mapa/Paredes/paredes/parede-inicio.png" id="36_fm3jm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c66xa"]
-size = Vector2(1026, 476)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ivjp3"]
 animations = [{
@@ -193,6 +189,24 @@ metadata/_edit_vertical_guides_ = [3019.0]
 [node name="paredes" type="Node2D" parent="." unique_id=1159512667]
 z_index = -9
 
+[node name="pixações" type="Node2D" parent="paredes" unique_id=1614200456]
+
+[node name="1000056516" type="Sprite2D" parent="paredes/pixações" unique_id=327257884]
+z_index = 1
+position = Vector2(2058, 246)
+texture = ExtResource("1_juovg")
+
+[node name="Pixachao" type="Sprite2D" parent="paredes/pixações" unique_id=880788694]
+position = Vector2(7053, 260)
+texture = ExtResource("2_jarr7")
+
+[node name="mn da pixação" type="AnimatedSprite2D" parent="paredes/pixações" unique_id=890748544]
+z_index = 7
+position = Vector2(6816, 460)
+sprite_frames = SubResource("SpriteFrames_ivjp3")
+autoplay = "default"
+frame_progress = 0.18363531
+
 [node name="Barraca2(2)" type="Sprite2D" parent="paredes" unique_id=812630097]
 z_index = -5
 position = Vector2(12539.001, 437)
@@ -200,14 +214,6 @@ scale = Vector2(0.6979911, 0.58205134)
 texture = ExtResource("32_gv7pa")
 region_enabled = true
 region_rect = Rect2(66, 421, 896, 1170)
-
-[node name="AreaSnackBaskets" type="Area2D" parent="paredes/Barraca2(2)" unique_id=1631368403]
-script = ExtResource("2_fm3jm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paredes/Barraca2(2)/AreaSnackBaskets" unique_id=944925462]
-position = Vector2(-5, -58)
-shape = SubResource("RectangleShape2D_c66xa")
-debug_color = Color(0, 0.627451, 0.73333335, 0)
 
 [node name="parede-porta" type="Sprite2D" parent="paredes" unique_id=566309500]
 z_index = -10
@@ -227,24 +233,6 @@ region_rect = Rect2(1.0529022, 388.4448, 1909.4034, 677.14026)
 position = Vector2(2528, 257)
 rotation = 4.712389
 texture = ExtResource("12_5xn1r")
-
-[node name="pixações" type="Node2D" parent="paredes" unique_id=1614200456]
-
-[node name="1000056516" type="Sprite2D" parent="paredes/pixações" unique_id=327257884]
-z_index = 1
-position = Vector2(2058, 246)
-texture = ExtResource("1_juovg")
-
-[node name="Pixachao" type="Sprite2D" parent="paredes/pixações" unique_id=880788694]
-position = Vector2(7053, 260)
-texture = ExtResource("2_jarr7")
-
-[node name="mn da pixação" type="AnimatedSprite2D" parent="paredes/pixações" unique_id=890748544]
-z_index = 7
-position = Vector2(6816, 460)
-sprite_frames = SubResource("SpriteFrames_ivjp3")
-autoplay = "default"
-frame_progress = 0.18363531
 
 [node name="ParedeSubstituição" type="Sprite2D" parent="paredes" unique_id=215282015]
 z_index = -7

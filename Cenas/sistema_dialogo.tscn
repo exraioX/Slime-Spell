@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dyiv2ffmp31f3"]
+
+[ext_resource type="Script" uid="uid://b77nhpt5vuenq" path="res://Scripts/sistema_dialogo.gd" id="1_ya78o"]
+[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="2_h7hrb"]
+
+[node name="SistemaDialogo" type="Node2D" unique_id=1049650363]
+script = ExtResource("1_ya78o")
+
+[node name="SomFala" type="AudioStreamPlayer" parent="." unique_id=1525981047]
+
+[node name="HUD_Dialogo" type="CanvasLayer" parent="." unique_id=458063162]
+
+[node name="CaixaDialogo" type="PanelContainer" parent="HUD_Dialogo" unique_id=1145286601]
+offset_right = 1100.0
+offset_bottom = 220.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD_Dialogo/CaixaDialogo" unique_id=209282423]
+layout_mode = 2
+
+[node name="Retrato" type="TextureRect" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=1715869757]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextoFala" type="RichTextLabel" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=1745762200]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("2_h7hrb")
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CamadaAviso" type="Control" parent="HUD_Dialogo/CaixaDialogo" unique_id=371926176]
+layout_mode = 2
+
+[node name="TextoProsseguir" type="Label" parent="HUD_Dialogo/CaixaDialogo/CamadaAviso" unique_id=177347757]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h7hrb")
+theme_override_font_sizes/font_size = 24
+text = "[Espaço] Avançar  |  [Segurar Espaço] Pular"
+horizontal_alignment = 2
+vertical_alignment = 2

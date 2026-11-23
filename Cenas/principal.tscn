@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="1_1rlcm"]
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
-[ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Scripts/principal.gd" id="1_rxohm"]
 [ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
 [ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
 [ext_resource type="Texture2D" uid="uid://djm888pim10mk" path="res://mapa/cidade.png" id="4_2jvxy"]
@@ -17,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://xieybfwuo8jb" path="res://july/carasdajuly/july-preocupada.jpg" id="8_kel27"]
 [ext_resource type="Texture2D" uid="uid://c5iwyv3guqaa" path="res://july/carasdajuly/july-zangada.jpg" id="9_2jvxy"]
 [ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/paredes/ceu.png" id="13_6l6k6"]
-[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="13_b3f7n"]
-[ext_resource type="Script" uid="uid://djjsmckbwevdg" path="res://Scripts/gatilho_conversa_1.gd" id="16_xlaei"]
+[ext_resource type="PackedScene" uid="uid://dyiv2ffmp31f3" path="res://Cenas/sistema_dialogo.tscn" id="18_6l6k6"]
+[ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -144,10 +143,10 @@ tracks/4/path = NodePath("july:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.99, 3.35, 4.5),
+"times": PackedFloat32Array(0, 2, 3.5, 4.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-1323, 596), Vector2(-292, 622), Vector2(-292, 622), Vector2(50, 623)]
+"values": [Vector2(-1323, 596), Vector2(0, 596), Vector2(0, 596), Vector2(362, 596)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -156,7 +155,7 @@ tracks/5/path = NodePath("july")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.16666667, 2.0666666, 2.5, 3.3333333, 4.7),
+"times": PackedFloat32Array(0, 2.0666666, 2.5, 3.3333333, 4.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": ["walk"],
@@ -178,11 +177,11 @@ tracks/5/keys = {
 tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".")
+tracks/6/path = NodePath("SistemaDialogo")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(4.733333),
+"times": PackedFloat32Array(5.133333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -196,23 +195,12 @@ _data = {
 &"intro_july": SubResource("Animation_rxohm")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyloi"]
-
 [node name="Principal" type="Node2D" unique_id=1519746174]
-script = ExtResource("1_rxohm")
-rosto_july_normal = ExtResource("2_mry0o")
-rosto_july_assustada = ExtResource("3_b3f7n")
-rosto_july_feliz = ExtResource("4_jmoe8")
-rosto_july_megaF = ExtResource("5_evgn8")
-rosto_july_passifica = ExtResource("6_mnaaw")
-rosto_july_pistola = ExtResource("7_rcfkj")
-rosto_july_preocupada = ExtResource("8_kel27")
-rosto_july_zangada = ExtResource("9_2jvxy")
 
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(11071, 596)
+position = Vector2(660, 707)
 collision_mask = 28
 velocidade = 1000.0
 
@@ -306,75 +294,33 @@ collision_mask = 4
 velocidade = 400.0
 em_cutscene = true
 
-[node name="HUD_Dialogo" type="CanvasLayer" parent="." unique_id=187618430]
+[node name="AnimatedSprite2D" parent="july" index="1" unique_id=693776466]
+position = Vector2(0, 27)
 
-[node name="CaixaDialogo" type="PanelContainer" parent="HUD_Dialogo" unique_id=434637623]
-offset_right = 1100.0
-offset_bottom = 220.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD_Dialogo/CaixaDialogo" unique_id=693054277]
-layout_mode = 2
-
-[node name="Retrato" type="TextureRect" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=1343985797]
-custom_minimum_size = Vector2(220, 220)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TextoFala" type="RichTextLabel" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=398857310]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/line_separation = 6
-theme_override_fonts/normal_font = ExtResource("13_b3f7n")
-theme_override_font_sizes/normal_font_size = 32
-
-[node name="CamadaAviso" type="Control" parent="HUD_Dialogo/CaixaDialogo" unique_id=1859220272]
-layout_mode = 2
-
-[node name="TextoProsseguir" type="Label" parent="HUD_Dialogo/CaixaDialogo/CamadaAviso" unique_id=95955607]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -15.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("13_b3f7n")
-theme_override_font_sizes/font_size = 24
-text = "Pressione ESPAÇO"
-horizontal_alignment = 2
-vertical_alignment = 2
+[node name="CollisionShape2D" parent="july" index="2" unique_id=1645080551]
+position = Vector2(0, 26.000008)
+scale = Vector2(1.029, 0.9)
 
 [node name="CutscenePlayer" type="AnimationPlayer" parent="." unique_id=973408358]
 libraries/ = SubResource("AnimationLibrary_nlwgu")
 
-[node name="GatilhoConversa1" type="Area2D" parent="." unique_id=714622548]
-position = Vector2(7002, 561)
-script = ExtResource("16_xlaei")
-textos_fala = Array[String](["Olha só, você chegou até aqui!", "Essa Arte é muito legal, né?", "É sobre os 3R's, já ouviu falar?", "Primeiro R: REDUZIR
-Segundo R: RECICLAR
-E por ultimo: REUTILIZAR
-", "Bem, impressionante."])
-expressoes = Array[String](["feliz", "megaF", "megaF", "megaF", "feliz"])
+[node name="gatilhos" parent="." unique_id=447945297 instance=ExtResource("19_mnaaw")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa1" unique_id=1886829655]
-scale = Vector2(12.822541, 18.820927)
-shape = SubResource("RectangleShape2D_uyloi")
-
-[node name="GatilhoConversa2" type="Area2D" parent="." unique_id=468500979]
-position = Vector2(11665, 561)
-script = ExtResource("16_xlaei")
-textos_fala = Array[String](["chegamos!!, aqui é 
-aonde tem a barraca da reciclagem.", "Aqui, sempre que acharmos uma, podemos reciclar os lixos.", "Terá um minigame para concluir e conseguir limpar o ambiente."])
-expressoes = Array[String](["feliz", "megaF", "feliz"])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa2" unique_id=424577533]
-scale = Vector2(12.822541, 18.820927)
-shape = SubResource("RectangleShape2D_uyloi")
-
-[connection signal="body_entered" from="GatilhoConversa1" to="GatilhoConversa1" method="_on_body_entered"]
-[connection signal="body_entered" from="GatilhoConversa2" to="GatilhoConversa2" method="_on_body_entered"]
+[node name="SistemaDialogo" parent="." unique_id=1049650363 node_paths=PackedStringArray("spell", "july", "cutscene_player") instance=ExtResource("18_6l6k6")]
+spell = NodePath("../spell")
+july = NodePath("../july")
+cutscene_player = NodePath("../CutscenePlayer")
+rosto_july_normal = ExtResource("2_mry0o")
+rosto_july_assustada = ExtResource("3_b3f7n")
+rosto_july_feliz = ExtResource("4_jmoe8")
+rosto_july_megaF = ExtResource("5_evgn8")
+rosto_july_passifica = ExtResource("6_mnaaw")
+rosto_july_pistola = ExtResource("7_rcfkj")
+rosto_july_preocupada = ExtResource("8_kel27")
+rosto_july_zangada = ExtResource("9_2jvxy")
+tocar_intro_ao_iniciar = false
+altura_barra_topo = 30.0
+altura_barra_base = 390.0
 
 [editable path="spell"]
 [editable path="july"]

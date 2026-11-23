@@ -129,12 +129,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jgt2"]
-size = Vector2(40.803894, 349.8282)
+size = Vector2(40.803894, 315.95593)
 
 [node name="july" type="CharacterBody2D" unique_id=222498092]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_cmhkt")
+velocidade = 300.0
 tempo_andando = 8.0
 
 [node name="Sombra" type="AnimatedSprite2D" parent="." unique_id=1364185471]
@@ -153,6 +154,7 @@ animation = &"idle"
 frame_progress = 0.53286856
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1645080551]
+position = Vector2(0, -15.249992)
 scale = Vector2(1.0293128, 0.90044194)
 shape = SubResource("RectangleShape2D_1jgt2")
 

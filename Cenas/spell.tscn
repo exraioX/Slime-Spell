@@ -1,47 +1,47 @@
 [gd_scene format=3 uid="uid://60y4nipryqjn"]
 
 [ext_resource type="Script" uid="uid://d2wbmrjosv10y" path="res://Scripts/spell.gd" id="1_05711"]
-[ext_resource type="Texture2D" uid="uid://ixqq6tf11dxf" path="res://spell/1000054715.png" id="2_ddhpq"]
+[ext_resource type="Texture2D" uid="uid://ixqq6tf11dxf" path="res://spell/Andando/1000054715.png" id="2_ddhpq"]
 [ext_resource type="Texture2D" uid="uid://dwjegl4lblib2" path="res://spell/Parado/1000058084.png" id="2_p5rf8"]
 [ext_resource type="Texture2D" uid="uid://t0kdp0ikk3wx" path="res://spell/Pulando/1000058105.png" id="3_aenyf"]
 [ext_resource type="Texture2D" uid="uid://dluhry8677a2m" path="res://spell/Parado/1000058085.png" id="3_rbdi6"]
-[ext_resource type="Texture2D" uid="uid://sjth7igsoylw" path="res://spell/1000054710 (1).png" id="3_xvbcy"]
-[ext_resource type="Texture2D" uid="uid://camb4248q6oh" path="res://spell/1000054711.png" id="4_1mnrx"]
+[ext_resource type="Texture2D" uid="uid://sjth7igsoylw" path="res://spell/Andando/1000054710 (1).png" id="3_xvbcy"]
+[ext_resource type="Texture2D" uid="uid://camb4248q6oh" path="res://spell/Andando/1000054711.png" id="4_1mnrx"]
 [ext_resource type="Texture2D" uid="uid://bp2dfiwmmr757" path="res://spell/Parado/1000058086.png" id="4_8mwhu"]
 [ext_resource type="Texture2D" uid="uid://cptdtmwlq2hcs" path="res://spell/Pulando/1000058106.png" id="4_klixs"]
 [ext_resource type="Texture2D" uid="uid://bhlmy1l60rcof" path="res://spell/Pulando/1000058107.png" id="5_bduxe"]
-[ext_resource type="Texture2D" uid="uid://bdk8wig7pfjm6" path="res://spell/1000054712.png" id="5_q4t1y"]
+[ext_resource type="Texture2D" uid="uid://bdk8wig7pfjm6" path="res://spell/Andando/1000054712.png" id="5_q4t1y"]
 [ext_resource type="Texture2D" uid="uid://cnhwmnylh5jbm" path="res://spell/Parado/1000058087.png" id="5_rsvpw"]
 [ext_resource type="Texture2D" uid="uid://cn1602ud5ples" path="res://spell/Pulando/1000058108.png" id="6_6uam5"]
 [ext_resource type="Texture2D" uid="uid://bikqrexchbhte" path="res://spell/Parado/1000058088.png" id="6_e83qr"]
-[ext_resource type="Texture2D" uid="uid://cy6tugu0luo16" path="res://spell/1000054713.png" id="6_qjige"]
-[ext_resource type="Texture2D" uid="uid://7ip8utqks4yo" path="res://spell/1000054714.png" id="7_b2ql2"]
+[ext_resource type="Texture2D" uid="uid://cy6tugu0luo16" path="res://spell/Andando/1000054713.png" id="6_qjige"]
+[ext_resource type="Texture2D" uid="uid://7ip8utqks4yo" path="res://spell/Andando/1000054714.png" id="7_b2ql2"]
 [ext_resource type="Texture2D" uid="uid://bh5xm0wls53vb" path="res://spell/Pulando/1000058109.png" id="7_chhqg"]
 [ext_resource type="Texture2D" uid="uid://djdnea5jfagje" path="res://spell/Parado/1000058089.png" id="7_kvn56"]
 [ext_resource type="Texture2D" uid="uid://by262lb2npm8e" path="res://spell/Parado/1000058090.png" id="8_aijud"]
 [ext_resource type="Texture2D" uid="uid://w74ua87dxktm" path="res://spell/Pulando/1000058110.png" id="8_onwt1"]
-[ext_resource type="Texture2D" uid="uid://d2hfvjbta2x6d" path="res://spell/1000054716.png" id="8_pv7v7"]
+[ext_resource type="Texture2D" uid="uid://d2hfvjbta2x6d" path="res://spell/Andando/1000054716.png" id="8_pv7v7"]
 [ext_resource type="Texture2D" uid="uid://bmx3y15lirkkl" path="res://spell/Pulando/1000058111.png" id="9_ikqmb"]
 [ext_resource type="Texture2D" uid="uid://d311mkuti8x3q" path="res://spell/Parado/1000058091.png" id="9_tdtmq"]
-[ext_resource type="Texture2D" uid="uid://5etjk1yg2a2d" path="res://spell/1000054717.png" id="9_ttoxh"]
+[ext_resource type="Texture2D" uid="uid://5etjk1yg2a2d" path="res://spell/Andando/1000054717.png" id="9_ttoxh"]
 [ext_resource type="Texture2D" uid="uid://d1hntttie3i65" path="res://spell/Pulando/1000058112.png" id="10_43lrb"]
-[ext_resource type="Texture2D" uid="uid://dtl3hjxtovlc2" path="res://spell/1000054718.png" id="10_d3e4l"]
+[ext_resource type="Texture2D" uid="uid://dtl3hjxtovlc2" path="res://spell/Andando/1000054718.png" id="10_d3e4l"]
 [ext_resource type="Texture2D" uid="uid://dti7fhh8xahjh" path="res://spell/Parado/1000058092.png" id="10_oglfb"]
 [ext_resource type="Texture2D" uid="uid://4u8el710274d" path="res://spell/Parado/1000058093.png" id="11_2p14k"]
-[ext_resource type="Texture2D" uid="uid://b0j062fqky7yk" path="res://spell/1000054719.png" id="11_7ym3j"]
+[ext_resource type="Texture2D" uid="uid://b0j062fqky7yk" path="res://spell/Andando/1000054719.png" id="11_7ym3j"]
 [ext_resource type="Texture2D" uid="uid://c2ruhyr6joh1s" path="res://spell/Pulando/1000058113.png" id="11_dapd8"]
 [ext_resource type="Texture2D" uid="uid://b6oaq1xe32e5i" path="res://spell/Parado/1000058094.png" id="12_d18uw"]
 [ext_resource type="Texture2D" uid="uid://ddkds7h11u2kb" path="res://spell/Pulando/1000058114.png" id="12_og83y"]
-[ext_resource type="Texture2D" uid="uid://dqqfkwhmgep2e" path="res://spell/1000054720.png" id="12_uj8s3"]
-[ext_resource type="Texture2D" uid="uid://bg3tpdcqsvku0" path="res://spell/1000054721.png" id="13_1pj5a"]
+[ext_resource type="Texture2D" uid="uid://dqqfkwhmgep2e" path="res://spell/Andando/1000054720.png" id="12_uj8s3"]
+[ext_resource type="Texture2D" uid="uid://bg3tpdcqsvku0" path="res://spell/Andando/1000054721.png" id="13_1pj5a"]
 [ext_resource type="Texture2D" uid="uid://bdinsootwtqxa" path="res://spell/Parado/1000058096.png" id="13_82uae"]
 [ext_resource type="Texture2D" uid="uid://coxuskq1rjhsi" path="res://spell/Parado/1000058097.png" id="14_736s5"]
-[ext_resource type="Texture2D" uid="uid://c4sd03p55l6rb" path="res://spell/1000054722.png" id="14_u8nn7"]
+[ext_resource type="Texture2D" uid="uid://c4sd03p55l6rb" path="res://spell/Andando/1000054722.png" id="14_u8nn7"]
 [ext_resource type="Texture2D" uid="uid://db0bxrg70k5fu" path="res://spell/Parado/1000058098.png" id="15_cxuh4"]
-[ext_resource type="Texture2D" uid="uid://ccbt7hh57n04" path="res://spell/1000054723.png" id="15_obifa"]
+[ext_resource type="Texture2D" uid="uid://ccbt7hh57n04" path="res://spell/Andando/1000054723.png" id="15_obifa"]
 [ext_resource type="Texture2D" uid="uid://ci2qp5hr4n1ht" path="res://spell/Parado/1000058099.png" id="16_cahlu"]
 [ext_resource type="Script" uid="uid://dhx8pptluhcdo" path="res://Scripts/player_audio.gd" id="16_iab2y"]
-[ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/1000054724.png" id="16_ynenk"]
+[ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/Andando/1000054724.png" id="16_ynenk"]
 [ext_resource type="Texture2D" uid="uid://cso3mtssh0417" path="res://spell/Parado/1000058100.png" id="17_86w4e"]
 [ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
 [ext_resource type="Texture2D" uid="uid://gdbh3utjdpqv" path="res://spell/Parado/1000058101.png" id="18_x318q"]
@@ -55,7 +55,8 @@
 [ext_resource type="Texture2D" uid="uid://iaij1hj0pn0r" path="res://spell/pegando/1000058127.png" id="36_86w4e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b43hs"]
-height = 26.240334
+radius = 8.791864
+height = 18.665804
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ornx7"]
 animations = [{
@@ -240,8 +241,6 @@ scale = Vector2(3.2147949, 7.393199)
 shape = SubResource("CapsuleShape2D_b43hs")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=662635497]
-position = Vector2(383, 2)
-zoom = Vector2(0.8, 0.8)
 limit_left = -1450
 limit_smoothed = true
 position_smoothing_enabled = true
