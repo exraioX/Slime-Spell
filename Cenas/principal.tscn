@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dyiv2ffmp31f3" path="res://Cenas/sistema_dialogo.tscn" id="18_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
 [ext_resource type="Script" uid="uid://do1ia667deowq" path="res://Scripts/entrada_minigame.gd" id="20_mnaaw"]
+[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="21_rcfkj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -254,6 +255,15 @@ scroll_offset = Vector2(3229.0005, 253)
 repeat_size = Vector2(1341, 0)
 autoscroll = Vector2(29, 0)
 repeat_times = 15
+
+[node name="Label" type="Label" parent="Paralaxs/Nuvens" unique_id=1539963791]
+offset_left = -3715.8604
+offset_top = -180.45117
+offset_right = -3614.8604
+offset_bottom = -131.45117
+theme_override_fonts/font = ExtResource("21_rcfkj")
+text = "vsfd heitor
+"
 
 [node name="Nuvem4" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=257302719]
 scale = Vector2(0.7, 1)

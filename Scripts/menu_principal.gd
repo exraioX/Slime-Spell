@@ -11,6 +11,7 @@ func _ready() -> void:
 	tela_loading.visible = false
 	# Inicia a música global assim que o menu abre
 	MusicaMenu.tocar_musica(musica_tema)
+ 
 
 func _process(delta: float) -> void:
 	if ja_clicou:

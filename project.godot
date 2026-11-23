@@ -21,6 +21,7 @@ buses/default_bus_layout=""
 [autoload]
 
 MusicaMenu="*uid://bxb4jll0lt5xo"
+SomCliqueGlobal="uid://d1l6ymxqlh7t7"
 
 [display]
 

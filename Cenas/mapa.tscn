@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://v72lhuiofu07" path="res://mapa/Paredes/mano da pixação/1000274939.png" id="8_yj8tp"]
 [ext_resource type="Texture2D" uid="uid://2ncxdcrs2img" path="res://mapa/Paredes/mano da pixação/1000274940.png" id="9_ptg2d"]
 [ext_resource type="Texture2D" uid="uid://c5a5oywh02ji4" path="res://mapa/Paredes/mano da pixação/1000274941.png" id="10_pfey7"]
+[ext_resource type="AudioStream" uid="uid://8om3ho45s3j3" path="res://Sons/spay.mp3" id="11_fm3jm"]
 [ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/Paredes/paredes/1000056509.png" id="12_5xn1r"]
 [ext_resource type="Texture2D" uid="uid://diwummmb587cx" path="res://lixos/lixos-chão/1000340034.png" id="17_gv7pa"]
 [ext_resource type="Texture2D" uid="uid://dkc21ke2v61wp" path="res://mapa/Chãos(não tirei nenhum porque demora 10 minutos pra trocar o chão, vai ficar assim mesmo/Chão3.png" id="17_jopfo"]
@@ -206,6 +207,14 @@ position = Vector2(6816, 460)
 sprite_frames = SubResource("SpriteFrames_ivjp3")
 autoplay = "default"
 frame_progress = 0.18363531
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="paredes/pixações/mn da pixação" unique_id=238432109]
+stream = ExtResource("11_fm3jm")
+volume_db = 5.0
+autoplay = true
+max_distance = 400.0
+attenuation = 1.5
+parameters/looping = true
 
 [node name="Barraca2(2)" type="Sprite2D" parent="paredes" unique_id=812630097]
 z_index = -5

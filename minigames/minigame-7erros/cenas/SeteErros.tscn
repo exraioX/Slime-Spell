@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://divj26s5ivpkr"]
+
+[ext_resource type="Script" uid="uid://cftr5wsfrxj11" path="res://minigames/minigame-7erros/fase_sete_erros.gd" id="1_x8smv"]
+
+[node name="SeteErros" type="Control" unique_id=267048296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8smv")
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=436416731]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="HBoxContainer" parent="." unique_id=1229609898]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelErros" type="Label" parent="HUD" unique_id=253004148]
+layout_mode = 2
+
+[node name="LabelTempo" type="Label" parent="HUD" unique_id=576151809]
+layout_mode = 2
+
+[node name="ContainerImagens" type="HBoxContainer" parent="." unique_id=2003120942]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImagemOriginal" type="TextureRect" parent="ContainerImagens" unique_id=1924191134]
+layout_mode = 2
+
+[node name="ImagemComErros" type="TextureRect" parent="ContainerImagens" unique_id=2020990078]
+layout_mode = 2
+
+[node name="AreaErros" type="Control" parent="ContainerImagens" unique_id=1140567213]
+layout_mode = 2
+
+[node name="Erro1" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1445262]
+
+[node name="Erro2" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1592432150]
+
+[node name="Erro3" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=845717831]
+
+[node name="Erro4" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1167723378]
+
+[node name="Erro5" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1163053184]
+
+[node name="Erro6" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1877225573]
+
+[node name="Erro7" type="Marker2D" parent="ContainerImagens/AreaErros" unique_id=1316724459]
+
+[node name="LabelMensagemFinal" type="Label" parent="." unique_id=840427804]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
