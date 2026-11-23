@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dr2f01wlwm4r3" path="res://menu/1000076017.png" id="2_xc8du"]
 [ext_resource type="Texture2D" uid="uid://k0ysuqkxj1t4" path="res://menu/1000076018.png" id="3_7f1x0"]
 [ext_resource type="Texture2D" uid="uid://inu3fd60jing" path="res://menu/1000076019.png" id="4_y8dk8"]
-[ext_resource type="Texture2D" uid="uid://bm0q0hl0804ug" path="res://lixos/1000074177.png" id="5_y8dk8"]
+[ext_resource type="Texture2D" uid="uid://bm0q0hl0804ug" path="res://lixos/lixos-minigame/1000074177.png" id="5_y8dk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
 size = Vector2(53.7236, 34.205822)

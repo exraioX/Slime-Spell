@@ -12,17 +12,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Se o jogador já clicou, gira a latinha continuamente
 	if ja_clicou:
-		latinha.rotation += 5.0 * delta # Aumente ou diminua o 5.0 para mudar a velocidade
+		latinha.rotation += 5.0 * delta
 
-func _on_areaplay_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_areaplay_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not ja_clicou and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		ja_clicou = true
 		
-		# Mostra a tela preta e a latinha girando
+		# Prepara o fade-in deixando os elementos visuais transparentes no início
 		tela_loading.visible = true
+		var tween := create_tween().set_parallel(true)
+		for filho in tela_loading.get_children():
+			if filho is CanvasItem:
+				filho.modulate.a = 0.0
+				tween.tween_property(filho, "modulate:a", 1.0, 0.4)
 		
-		# Espera 2 segundos
-		await get_tree().create_timer(2.0).timeout
+		# Espera o fade-in terminar + 1.6s (totalizando 2.0 segundos de loading)
+		await tween.finished
+		await get_tree().create_timer(1.6).timeout
 		
 		# Vai para a cena principal
 		get_tree().change_scene_to_file("res://Cenas/principal.tscn")

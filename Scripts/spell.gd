@@ -35,9 +35,13 @@ extends CharacterBody2D
 @export var camera_zoom: Vector2 = Vector2(0.8, 0.8)
 @export var camera_smoothing_speed: float = 8.0
 
+#Cutscene
+@export var em_cutscene: bool = false
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sombra: AnimatedSprite2D = $Sombra
 @onready var camera: Camera2D = $Camera2D
+
 
 var _sombra_cenario: SombraCenario = null
 var _sombra_pos_base: Vector2 = Vector2.ZERO
@@ -79,13 +83,22 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
-	# Gravidade
+	# Gravidade (funciona mesmo durante a cutscene)
 	if not is_on_floor():
 		if velocity.y < 0:
 			velocity.y += gravidade * gravidade_subida * delta
 		else:
 			velocity.y += gravidade * gravidade_queda * delta
+
+	# Bloqueia controles do jogador durante a cutscene
+	if em_cutscene:
+		velocity.x = 0
+		move_and_slide()
+		if is_on_floor():
+			tocar_animacao("idle")
+		sincronizar_sombra()
+		atualizar_sombra()
+		return
 
 	# Coyote time
 	if is_on_floor():

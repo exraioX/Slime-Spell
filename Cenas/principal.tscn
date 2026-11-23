@@ -1,31 +1,235 @@
 [gd_scene format=3 uid="uid://bls2nwi65cm7k"]
 
+[ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="1_1rlcm"]
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
+[ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Scripts/principal.gd" id="1_rxohm"]
+[ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
+[ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
 [ext_resource type="Texture2D" uid="uid://djm888pim10mk" path="res://mapa/cidade.png" id="4_2jvxy"]
-[ext_resource type="Texture2D" uid="uid://keode6x18u5q" path="res://mapa/Paredes/nuvem3.png" id="4_aqfvs"]
+[ext_resource type="Texture2D" uid="uid://keode6x18u5q" path="res://mapa/Paredes/paredes/nuvem3.png" id="4_aqfvs"]
+[ext_resource type="Texture2D" uid="uid://dvrhif8nnwv4p" path="res://july/carasdajuly/july-feliz.jpg" id="4_jmoe8"]
 [ext_resource type="PackedScene" uid="uid://dlggtedc4fne1" path="res://Cenas/mapa.tscn" id="5_5sagl"]
-[ext_resource type="Texture2D" uid="uid://dtgd1nsl76ysc" path="res://mapa/Paredes/nuvem4.png" id="5_8wwpk"]
+[ext_resource type="Texture2D" uid="uid://dtgd1nsl76ysc" path="res://mapa/Paredes/paredes/nuvem4.png" id="5_8wwpk"]
+[ext_resource type="Texture2D" uid="uid://p00dduvnrcuq" path="res://july/carasdajuly/july-megaFeliz.jpg" id="5_evgn8"]
+[ext_resource type="Texture2D" uid="uid://dn6uf7g82m20" path="res://july/carasdajuly/july-pacifica.jpg" id="6_mnaaw"]
 [ext_resource type="PackedScene" uid="uid://4qas3uorq6qc" path="res://Cenas/sons.tscn" id="7_b3f7n"]
-[ext_resource type="Script" uid="uid://cbuijgu3jn25" path="res://minigame/scripts/area_interacao.gd" id="16_areainteracao"]
-[ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/ceu_fita2x.png" id="31_ceut"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
-size = Vector2(1026, 476)
+[ext_resource type="Texture2D" uid="uid://b6v0tubgc432x" path="res://july/carasdajuly/july-pistola.jpg" id="7_rcfkj"]
+[ext_resource type="Texture2D" uid="uid://xieybfwuo8jb" path="res://july/carasdajuly/july-preocupada.jpg" id="8_kel27"]
+[ext_resource type="Texture2D" uid="uid://c5iwyv3guqaa" path="res://july/carasdajuly/july-zangada.jpg" id="9_2jvxy"]
+[ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/paredes/ceu.png" id="13_6l6k6"]
+[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="13_b3f7n"]
+[ext_resource type="Script" uid="uid://djjsmckbwevdg" path="res://Scripts/gatilho_conversa_1.gd" id="16_xlaei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
 
+[sub_resource type="Animation" id="Animation_nlwgu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spell/AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spell/Sombra:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spell:em_cutscene")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("july:em_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("july:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1323, 596)]
+}
+
+[sub_resource type="Animation" id="Animation_rxohm"]
+resource_name = "intro_july"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spell/AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spell/Sombra:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spell:em_cutscene")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("july:em_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("july:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.99, 3.35, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1323, 596), Vector2(-292, 622), Vector2(-292, 622), Vector2(50, 623)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("july")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.16666667, 2.0666666, 2.5, 3.3333333, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": ["walk"],
+"method": &"tocar_animacao"
+}, {
+"args": ["idle"],
+"method": &"tocar_animacao"
+}, {
+"args": [],
+"method": &"dar_pulo_susto"
+}, {
+"args": ["walk"],
+"method": &"tocar_animacao"
+}, {
+"args": ["idle"],
+"method": &"tocar_animacao"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"iniciar_conversa_july"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nlwgu"]
+_data = {
+&"RESET": SubResource("Animation_nlwgu"),
+&"intro_july": SubResource("Animation_rxohm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyloi"]
+
 [node name="Principal" type="Node2D" unique_id=1519746174]
+script = ExtResource("1_rxohm")
+rosto_july_normal = ExtResource("2_mry0o")
+rosto_july_assustada = ExtResource("3_b3f7n")
+rosto_july_feliz = ExtResource("4_jmoe8")
+rosto_july_megaF = ExtResource("5_evgn8")
+rosto_july_passifica = ExtResource("6_mnaaw")
+rosto_july_pistola = ExtResource("7_rcfkj")
+rosto_july_preocupada = ExtResource("8_kel27")
+rosto_july_zangada = ExtResource("9_2jvxy")
 
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(8463, 656)
+position = Vector2(11071, 596)
 collision_mask = 28
-velocidade = 500.0
+velocidade = 1000.0
+
+[node name="Sombra" parent="spell" index="2" unique_id=448726823]
+animation = &"idle"
+frame = 0
+frame_progress = 0.0
+flip_h = true
+
+[node name="AnimatedSprite2D" parent="spell" index="3" unique_id=1210837540]
+animation = &"idle"
+frame = 0
+frame_progress = 0.0
+flip_h = true
 
 [node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
-z_index = -10
+z_index = -30
 
 [node name="Nuvens2" type="Parallax2D" parent="Paralaxs" unique_id=1999255390]
 z_index = -2
@@ -46,8 +250,8 @@ repeat_size = Vector2(3840, 0)
 autoscroll = Vector2(50, 0)
 repeat_times = 2
 
-[node name="CeuSprite" type="Sprite2D" parent="Paralaxs/FundoCinza" unique_id=165141625]
-texture = ExtResource("31_ceut")
+[node name="Ceu" type="Sprite2D" parent="Paralaxs/FundoCinza" unique_id=1538925004]
+texture = ExtResource("13_6l6k6")
 
 [node name="Nuvens" type="Parallax2D" parent="Paralaxs" unique_id=1208021062]
 z_index = -2
@@ -55,7 +259,7 @@ scale = Vector2(0.35, 0.399)
 scroll_offset = Vector2(3229.0005, 253)
 repeat_size = Vector2(1341, 0)
 autoscroll = Vector2(29, 0)
-repeat_times = 13
+repeat_times = 15
 
 [node name="Nuvem4" type="Sprite2D" parent="Paralaxs/Nuvens" unique_id=257302719]
 scale = Vector2(0.7, 1)
@@ -72,15 +276,6 @@ repeat_times = 11
 z_index = -2
 texture = ExtResource("4_2jvxy")
 
-[node name="AreaSnackBaskets" type="Area2D" parent="." unique_id=392902476]
-position = Vector2(8748, 596)
-script = ExtResource("16_areainteracao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSnackBaskets" unique_id=1695710183]
-position = Vector2(-5, -58)
-shape = SubResource("RectangleShape2D_ivjp3")
-debug_color = Color(0, 0.627451, 0.73333335, 0)
-
 [node name="limitadores" type="Node2D" parent="." unique_id=1959873245]
 
 [node name="LimiteEsquerda" type="StaticBody2D" parent="limitadores" unique_id=1900000001]
@@ -94,7 +289,7 @@ shape = SubResource("RectangleShape2D_limite")
 
 [node name="LimiteDireita" type="StaticBody2D" parent="limitadores" unique_id=1900000002]
 z_index = -3
-position = Vector2(6339, -2546)
+position = Vector2(13630, 377)
 collision_layer = 16
 collision_mask = 0
 
@@ -102,3 +297,84 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_limite")
 
 [node name="mapa" parent="." unique_id=953203020 instance=ExtResource("5_5sagl")]
+z_index = -6
+
+[node name="july" parent="." unique_id=222498092 instance=ExtResource("1_1rlcm")]
+z_index = -1
+position = Vector2(-1323, 596)
+collision_mask = 4
+velocidade = 400.0
+em_cutscene = true
+
+[node name="HUD_Dialogo" type="CanvasLayer" parent="." unique_id=187618430]
+
+[node name="CaixaDialogo" type="PanelContainer" parent="HUD_Dialogo" unique_id=434637623]
+offset_right = 1100.0
+offset_bottom = 220.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD_Dialogo/CaixaDialogo" unique_id=693054277]
+layout_mode = 2
+
+[node name="Retrato" type="TextureRect" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=1343985797]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextoFala" type="RichTextLabel" parent="HUD_Dialogo/CaixaDialogo/HBoxContainer" unique_id=398857310]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("13_b3f7n")
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CamadaAviso" type="Control" parent="HUD_Dialogo/CaixaDialogo" unique_id=1859220272]
+layout_mode = 2
+
+[node name="TextoProsseguir" type="Label" parent="HUD_Dialogo/CaixaDialogo/CamadaAviso" unique_id=95955607]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_b3f7n")
+theme_override_font_sizes/font_size = 24
+text = "Pressione ESPAÇO"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="." unique_id=973408358]
+libraries/ = SubResource("AnimationLibrary_nlwgu")
+
+[node name="GatilhoConversa1" type="Area2D" parent="." unique_id=714622548]
+position = Vector2(7002, 561)
+script = ExtResource("16_xlaei")
+textos_fala = Array[String](["Olha só, você chegou até aqui!", "Essa Arte é muito legal, né?", "É sobre os 3R's, já ouviu falar?", "Primeiro R: REDUZIR
+Segundo R: RECICLAR
+E por ultimo: REUTILIZAR
+", "Bem, impressionante."])
+expressoes = Array[String](["feliz", "megaF", "megaF", "megaF", "feliz"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa1" unique_id=1886829655]
+scale = Vector2(12.822541, 18.820927)
+shape = SubResource("RectangleShape2D_uyloi")
+
+[node name="GatilhoConversa2" type="Area2D" parent="." unique_id=468500979]
+position = Vector2(11665, 561)
+script = ExtResource("16_xlaei")
+textos_fala = Array[String](["chegamos!!, aqui é 
+aonde tem a barraca da reciclagem.", "Aqui, sempre que acharmos uma, podemos reciclar os lixos.", "Terá um minigame para concluir e conseguir limpar o ambiente."])
+expressoes = Array[String](["feliz", "megaF", "feliz"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa2" unique_id=424577533]
+scale = Vector2(12.822541, 18.820927)
+shape = SubResource("RectangleShape2D_uyloi")
+
+[connection signal="body_entered" from="GatilhoConversa1" to="GatilhoConversa1" method="_on_body_entered"]
+[connection signal="body_entered" from="GatilhoConversa2" to="GatilhoConversa2" method="_on_body_entered"]
+
+[editable path="spell"]
+[editable path="july"]

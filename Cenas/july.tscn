@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://c0g0mgig6donn" path="res://july/Andando/1000054738.png" id="15_36h68"]
 [ext_resource type="Texture2D" uid="uid://brtjp3ws2snp7" path="res://july/Andando/1000054739.png" id="16_tnhbc"]
 [ext_resource type="Texture2D" uid="uid://bdfn4ltkv4qqb" path="res://july/Andando/1000054740.png" id="17_fw0lk"]
+[ext_resource type="Texture2D" uid="uid://c0d2nd4eoay0g" path="res://july/ponto-de-exclamacao.png" id="30_adxh2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rjqkl"]
 animations = [{
@@ -163,3 +164,9 @@ collision_mask = 8
 [node name="ray1" type="RayCast2D" parent="." unique_id=1026992154]
 target_position = Vector2(-133, 193)
 collision_mask = 8
+
+[node name="BalaoSusto" type="Sprite2D" parent="." unique_id=1348856129]
+visible = false
+position = Vector2(105, -161.00002)
+scale = Vector2(0.2782609, 0.32320443)
+texture = ExtResource("30_adxh2")
