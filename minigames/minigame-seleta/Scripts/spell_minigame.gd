@@ -6,6 +6,11 @@ signal inventario_atualizado(inventario: Dictionary)
 @export var aceleracao: float = 1800.0
 @export var atrito: float = 1600.0
 @export var limite_mochila: int = 10
+@export var intervalo_coleta: float = 0.5
+
+@export_group("Áudios da Lixeira")
+@export var som_acerto: AudioStream
+@export var som_erro: AudioStream
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_interacao: Area2D = $AreaInteracao
@@ -14,6 +19,8 @@ var inventario: Dictionary = {}
 var ultima_direcao: Vector2 = Vector2.DOWN
 var animacao_atual: String = ""
 var _espaco_antes: bool = false
+var _pode_pegar: bool = true
+var _player_som: AudioStreamPlayer
 
 func _ready() -> void:
 	# Garante que o CharacterBody2D use visão top-down (não trava no chão como plataforma)
@@ -21,6 +28,10 @@ func _ready() -> void:
 	
 	if area_interacao != null:
 		area_interacao.rotation = Vector2.DOWN.angle()
+		
+	# Cria o reprodutor de som automaticamente por código
+	_player_som = AudioStreamPlayer.new()
+	add_child(_player_som)
 
 func _physics_process(delta: float) -> void:
 	# 1. Leitura de movimento em X e Y (funciona com Setas E com WASD)
@@ -59,7 +70,7 @@ func _verificar_espaco() -> void:
 	_espaco_antes = espaco_agora
 
 func _tentar_pegar_material() -> void:
-	if _total_itens_mochila() >= limite_mochila:
+	if not _pode_pegar or _total_itens_mochila() >= limite_mochila:
 		return
 
 	var alvos: Array[Node2D] = []
@@ -68,15 +79,24 @@ func _tentar_pegar_material() -> void:
 
 	for alvo in alvos:
 		if alvo.is_in_group("reciclavel"):
-			var tipo: String = alvo.get("tipo_material")
-			inventario[tipo] = inventario.get(tipo, 0) + 1
-			alvo.queue_free()
+			_pode_pegar = false
 			
+			# 1. Toca a animação primeiro e espera terminar
 			if sprite.sprite_frames.has_animation("pick"):
 				sprite.play("pick")
 				animacao_atual = "pick"
-				
-			inventario_atualizado.emit(inventario)
+				await sprite.animation_finished
+			
+			# 2. Coleta o item após a animação (se ele ainda estiver na esteira)
+			if is_instance_valid(alvo):
+				var tipo: String = alvo.get("tipo_material")
+				inventario[tipo] = inventario.get(tipo, 0) + 1
+				alvo.queue_free()
+				inventario_atualizado.emit(inventario)
+			
+			# 3. Aguarda o intervalo de 0.5s antes de liberar uma nova coleta
+			await get_tree().create_timer(intervalo_coleta).timeout
+			_pode_pegar = true
 			return
 
 func _tentar_despejar_na_lixeira() -> bool:
@@ -86,21 +106,27 @@ func _tentar_despejar_na_lixeira() -> bool:
 			var qtd_na_mochila: int = inventario.get(tipo_lixeira, 0)
 			
 			if qtd_na_mochila > 0:
-				# Despeja toda a quantidade daquela categoria de uma vez
+				# Acertou: despeja toda a quantidade daquela categoria de uma vez e toca o som de acerto
 				inventario.erase(tipo_lixeira)
 				area.receber_despejo(tipo_lixeira, qtd_na_mochila, true)
+				_tocar_som(som_acerto)
 				inventario_atualizado.emit(inventario)
 				return true
 			elif not inventario.is_empty():
-				# Penaliza 1 item errado se apertar Espaço na lixeira errada sem ter o material dela
+				# Errou: despeja toda a quantidade do primeiro item errado de uma vez e toca o som de erro
 				var primeiro_errado: String = inventario.keys()[0]
-				inventario[primeiro_errado] -= 1
-				if inventario[primeiro_errado] <= 0:
-					inventario.erase(primeiro_errado)
-				area.receber_despejo(primeiro_errado, 1, false)
+				var qtd_errada: int = inventario[primeiro_errado]
+				inventario.erase(primeiro_errado)
+				area.receber_despejo(primeiro_errado, qtd_errada, false)
+				_tocar_som(som_erro)
 				inventario_atualizado.emit(inventario)
 				return true
 	return false
+
+func _tocar_som(audio: AudioStream) -> void:
+	if audio != null and _player_som != null:
+		_player_som.stream = audio
+		_player_som.play()
 
 func _total_itens_mochila() -> int:
 	var soma: int = 0

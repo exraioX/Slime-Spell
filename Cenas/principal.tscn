@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bls2nwi65cm7k"]
 
 [ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="1_1rlcm"]
-[ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Cenas/principal.gd" id="1_6l6k6"]
+[ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Scripts/principal.gd" id="1_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
 [ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
 [ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/paredes/ceu.png" id="13_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://dyiv2ffmp31f3" path="res://Cenas/sistema_dialogo.tscn" id="18_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
-[ext_resource type="Script" uid="uid://do1ia667deowq" path="res://Cenas/entrada_minigame.gd" id="20_mnaaw"]
+[ext_resource type="Script" uid="uid://do1ia667deowq" path="res://Scripts/entrada_minigame.gd" id="20_mnaaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -209,9 +209,8 @@ script = ExtResource("1_6l6k6")
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(660, 707)
+position = Vector2(581, 697)
 collision_mask = 28
-velocidade = 1000.0
 
 [node name="AnimatedSprite2D" parent="spell" index="2" unique_id=1210837540]
 animation = &"idle"
