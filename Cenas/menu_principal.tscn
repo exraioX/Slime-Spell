@@ -13,6 +13,7 @@ size = Vector2(53.7236, 34.205822)
 size = Vector2(216, 77)
 
 [node name="MenuPrincipal" type="CanvasLayer" unique_id=339002486]
+follow_viewport_enabled = true
 script = ExtResource("1_7f1x0")
 
 [node name="july" type="Sprite2D" parent="." unique_id=1714876049]
@@ -48,6 +49,8 @@ region_enabled = true
 region_rect = Rect2(9.851273, 533.692, 218.96175, 75.717834)
 
 [node name="TelaLoading" type="CanvasLayer" parent="." unique_id=749220204]
+layer = 10
+follow_viewport_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="TelaLoading" unique_id=1911939464]
 anchors_preset = 15
@@ -66,6 +69,10 @@ color = Color(0, 0, 0, 1)
 position = Vector2(1203, 607)
 scale = Vector2(0.0800727, 0.08495818)
 texture = ExtResource("5_y8dk8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=174325750]
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)
 
 [connection signal="input_event" from="Areaplay" to="." method="_on_areaplay_input_event"]
 [connection signal="input_event" from="Areaconfig" to="." method="_on_areaconfig_input_event"]

@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Slime-Spell"
-run/main_scene="uid://bls2nwi65cm7k"
+run/main_scene="uid://bkg8k7al4bl7a"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [audio]
 
 buses/default_bus_layout=""
+
+[autoload]
+
+MusicaMenu="*uid://bxb4jll0lt5xo"
 
 [display]
 

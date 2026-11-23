@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bls2nwi65cm7k"]
 
 [ext_resource type="PackedScene" uid="uid://comq41i58rb56" path="res://Cenas/july.tscn" id="1_1rlcm"]
+[ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Cenas/principal.gd" id="1_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
 [ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
 [ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://diaeew0veg0ro" path="res://mapa/Paredes/paredes/ceu.png" id="13_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://dyiv2ffmp31f3" path="res://Cenas/sistema_dialogo.tscn" id="18_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
+[ext_resource type="Script" uid="uid://do1ia667deowq" path="res://Cenas/entrada_minigame.gd" id="20_mnaaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -198,7 +200,11 @@ _data = {
 &"intro_july": SubResource("Animation_rxohm")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
+size = Vector2(20.33136, 20)
+
 [node name="Principal" type="Node2D" unique_id=1519746174]
+script = ExtResource("1_6l6k6")
 
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
 
@@ -207,16 +213,14 @@ position = Vector2(660, 707)
 collision_mask = 28
 velocidade = 1000.0
 
-[node name="Sombra" parent="spell" index="2" unique_id=448726823]
+[node name="AnimatedSprite2D" parent="spell" index="2" unique_id=1210837540]
 animation = &"idle"
 frame = 0
 frame_progress = 0.0
 flip_h = true
 
-[node name="AnimatedSprite2D" parent="spell" index="3" unique_id=1210837540]
+[node name="Sombra" parent="spell" index="3" unique_id=516015769]
 animation = &"idle"
-frame = 0
-frame_progress = 0.0
 flip_h = true
 
 [node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
@@ -323,6 +327,16 @@ rosto_july_passifica = ExtResource("6_mnaaw")
 rosto_july_pistola = ExtResource("7_rcfkj")
 rosto_july_preocupada = ExtResource("8_kel27")
 rosto_july_zangada = ExtResource("9_2jvxy")
+
+[node name="EntradaMinigame" type="Area2D" parent="." unique_id=128306375]
+position = Vector2(12525, 494)
+script = ExtResource("20_mnaaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntradaMinigame" unique_id=707428729]
+position = Vector2(4.7304688, 0)
+rotation = 3.1415927
+scale = Vector2(28.553782, -25.30928)
+shape = SubResource("RectangleShape2D_ivjp3")
 
 [editable path="spell"]
 [editable path="july"]

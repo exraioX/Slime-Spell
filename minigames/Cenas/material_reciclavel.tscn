@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ytos5gu8k371"]
+
+[ext_resource type="Script" uid="uid://ol8nt5uqoljr" path="res://minigames/Scripts/material_reciclavel.gd" id="1_tdgsi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
+
+[node name="material_reciclavel" type="Area2D" unique_id=1693267071]
+script = ExtResource("1_tdgsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=938178321]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308226506]
+shape = SubResource("RectangleShape2D_ivjp3")
