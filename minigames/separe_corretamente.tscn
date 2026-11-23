@@ -1,3 +1,71 @@
 [gd_scene format=3 uid="uid://cib1k88ptt328"]
 
+[ext_resource type="Texture2D" uid="uid://cshkmriv30l2" path="res://mapa/Paredes/paredes/parede-toda cinza.png" id="1_blrm7"]
+[ext_resource type="Texture2D" uid="uid://codv50her34gg" path="res://minigames/lixeiras/1000077781.png" id="4_egvcy"]
+[ext_resource type="Texture2D" uid="uid://bendq4km6r48p" path="res://minigames/lixeiras/1000077786.png" id="5_3ahwx"]
+[ext_resource type="Texture2D" uid="uid://u4vwbycr76f" path="res://minigames/lixeiras/1000077787.png" id="6_qn53o"]
+[ext_resource type="Texture2D" uid="uid://cq4lexwxw5r71" path="res://minigames/lixeiras/1000077788.png" id="7_xlryp"]
+[ext_resource type="Texture2D" uid="uid://ckgup5d1rhnn2" path="res://minigames/saida do lixo.png" id="8_1f18o"]
+[ext_resource type="PackedScene" uid="uid://ce58skqxtwkvj" path="res://minigames/spell-minigame.tscn" id="22_r1ti5"]
+[ext_resource type="VideoStream" uid="uid://dwd43uinw70so" path="res://minigames/esteira.ogv" id="23_sy521"]
+
 [node name="Separe Corretamente" type="Node2D" unique_id=1925403009]
+
+[node name="ParedeTodaCinza" type="Sprite2D" parent="." unique_id=522065059]
+position = Vector2(954, 534)
+scale = Vector2(1.0307941, 1.0129629)
+texture = ExtResource("1_blrm7")
+region_enabled = true
+region_rect = Rect2(0, 0, 1851.1279, 1080)
+
+[node name="spell" parent="." unique_id=852491934 instance=ExtResource("22_r1ti5")]
+position = Vector2(351, 802)
+scale = Vector2(0.8, 0.8)
+
+[node name="lixeira-Plastico" type="Area2D" parent="." unique_id=1127876181]
+
+[node name="lixeira-Papel" type="Area2D" parent="." unique_id=1455770195]
+
+[node name="lixeira-Metal" type="Area2D" parent="." unique_id=1558492783]
+
+[node name="lixeira-Vidro" type="Area2D" parent="." unique_id=1825791250]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1449360266]
+offset_left = 74.0
+offset_top = 67.0
+offset_right = 1994.0
+offset_bottom = 1147.0
+scale = Vector2(0.92519474, 0.22652008)
+stream = ExtResource("23_sy521")
+autoplay = true
+loop = true
+
+[node name="1000077781" type="Sprite2D" parent="." unique_id=773214410]
+position = Vector2(197, 1081)
+texture = ExtResource("4_egvcy")
+region_enabled = true
+region_rect = Rect2(1168, 736, 428, 344)
+
+[node name="1000077786" type="Sprite2D" parent="." unique_id=707082530]
+position = Vector2(1182, 1081)
+texture = ExtResource("5_3ahwx")
+region_enabled = true
+region_rect = Rect2(243, 734, 428, 346)
+
+[node name="1000077787" type="Sprite2D" parent="." unique_id=57577630]
+position = Vector2(1679, 1081)
+texture = ExtResource("6_qn53o")
+region_enabled = true
+region_rect = Rect2(244, 3, 433, 321)
+
+[node name="1000077788" type="Sprite2D" parent="." unique_id=1542614323]
+position = Vector2(690, 1081)
+texture = ExtResource("7_xlryp")
+region_enabled = true
+region_rect = Rect2(1174, 3, 428, 320)
+
+[node name="SaidaDoLixo" type="Sprite2D" parent="." unique_id=1668890270]
+position = Vector2(957, 245)
+texture = ExtResource("8_1f18o")
+region_enabled = true
+region_rect = Rect2(0, 139.40823, 1920, 721.67773)

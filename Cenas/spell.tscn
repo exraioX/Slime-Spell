@@ -40,10 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://db0bxrg70k5fu" path="res://spell/Parado/1000058098.png" id="15_cxuh4"]
 [ext_resource type="Texture2D" uid="uid://ccbt7hh57n04" path="res://spell/Andando/1000054723.png" id="15_obifa"]
 [ext_resource type="Texture2D" uid="uid://ci2qp5hr4n1ht" path="res://spell/Parado/1000058099.png" id="16_cahlu"]
-[ext_resource type="Script" uid="uid://dhx8pptluhcdo" path="res://Scripts/player_audio.gd" id="16_iab2y"]
 [ext_resource type="Texture2D" uid="uid://ddpb8oagfs5j0" path="res://spell/Andando/1000054724.png" id="16_ynenk"]
 [ext_resource type="Texture2D" uid="uid://cso3mtssh0417" path="res://spell/Parado/1000058100.png" id="17_86w4e"]
-[ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
 [ext_resource type="Texture2D" uid="uid://gdbh3utjdpqv" path="res://spell/Parado/1000058101.png" id="18_x318q"]
 [ext_resource type="Texture2D" uid="uid://sawujj2irxfk" path="res://spell/pegando/1000058120.png" id="29_oglfb"]
 [ext_resource type="Texture2D" uid="uid://dya5s34gn4vd5" path="res://spell/pegando/1000058121.png" id="30_2p14k"]
@@ -249,16 +247,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 editor_draw_drag_margin = true
 
-[node name="Sombra" type="AnimatedSprite2D" parent="." unique_id=448726823]
-modulate = Color(0, 0, 0, 0.49411765)
-position = Vector2(-6.000002, 3)
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_ornx7")
-animation = &"pick"
-autoplay = "idle"
-frame = 7
-frame_progress = 1.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1210837540]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_ornx7")
@@ -266,11 +254,3 @@ animation = &"pick"
 autoplay = "idle"
 frame = 7
 frame_progress = 1.0
-
-[node name="PlayerAudio" type="Node2D" parent="." unique_id=1860197088]
-script = ExtResource("16_iab2y")
-
-[node name="SomPasso" type="AudioStreamPlayer2D" parent="PlayerAudio" unique_id=526729435]
-stream = ExtResource("17_ddhpq")
-
-[node name="TimerPasso" type="Timer" parent="PlayerAudio" unique_id=1080561648]

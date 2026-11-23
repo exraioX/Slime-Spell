@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da4txjr2in4gq"
-path="res://.godot/imported/1000073990.png-936c49fba70711e8c957c2786870c137.ctex"
+uid="uid://ckgup5d1rhnn2"
+path="res://.godot/imported/saida do lixo.png-bdbea5526d2abe0d219f98941676cbb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lixeiras-sprites/1000073990.png"
-dest_files=["res://.godot/imported/1000073990.png-936c49fba70711e8c957c2786870c137.ctex"]
+source_file="res://minigames/saida do lixo.png"
+dest_files=["res://.godot/imported/saida do lixo.png-bdbea5526d2abe0d219f98941676cbb5.ctex"]
 
 [params]
 

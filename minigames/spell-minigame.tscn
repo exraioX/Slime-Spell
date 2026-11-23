@@ -240,14 +240,6 @@ position = Vector2(-7, -46)
 scale = Vector2(3.2147949, 7.393199)
 shape = SubResource("CapsuleShape2D_b43hs")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=662635497]
-position = Vector2(0, 23)
-limit_left = -1450
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
-editor_draw_drag_margin = true
-
 [node name="Sombra" type="AnimatedSprite2D" parent="." unique_id=448726823]
 modulate = Color(0, 0, 0, 0.49411765)
 position = Vector2(-6.000002, 3)

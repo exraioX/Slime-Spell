@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceaofx03ips1g"
-path="res://.godot/imported/1000073980.png-cb68ff8d8e8a100090c2459686c73a0c.ctex"
+uid="uid://fe3byhfs0dg5"
+path="res://.godot/imported/1000073982.png-87a16f199cd0a2581b05b8c193a1f122.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lixeiras-sprites/1000073980.png"
-dest_files=["res://.godot/imported/1000073980.png-cb68ff8d8e8a100090c2459686c73a0c.ctex"]
+source_file="res://minigames/lixeiras-sprites/1000073982.png"
+dest_files=["res://.godot/imported/1000073982.png-87a16f199cd0a2581b05b8c193a1f122.ctex"]
 
 [params]
 
