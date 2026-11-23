@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://divj26s5ivpkr"]
 
 [ext_resource type="Script" uid="uid://cftr5wsfrxj11" path="res://minigames/minigame-7erros/fase_sete_erros.gd" id="1_x8smv"]
+[ext_resource type="Texture2D" path="res://minigames/minigame-7erros/Imagens/1000341903.png" id="2_5gpa5"]
 
 [node name="SeteErros" type="Control" unique_id=267048296]
 layout_mode = 3
@@ -46,6 +47,7 @@ grow_vertical = 2
 
 [node name="ImagemOriginal" type="TextureRect" parent="ContainerImagens" unique_id=1924191134]
 layout_mode = 2
+texture = ExtResource("2_5gpa5")
 
 [node name="ImagemComErros" type="TextureRect" parent="ContainerImagens" unique_id=2020990078]
 layout_mode = 2
