@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ytos5gu8k371"]
 
-[ext_resource type="Script" uid="uid://ol8nt5uqoljr" path="res://minigames/Scripts/material_reciclavel.gd" id="1_tdgsi"]
+[ext_resource type="Script" uid="uid://ol8nt5uqoljr" path="res://minigames/minigame-seleta/Scripts/material_reciclavel.gd" id="1_tdgsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
 

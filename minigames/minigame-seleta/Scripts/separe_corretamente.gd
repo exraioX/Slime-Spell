@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_group("Cenas e Transição")
-@export var cena_material: PackedScene = preload("res://minigames/Cenas/material_reciclavel.tscn")
+@export var cena_material: PackedScene = preload("res://minigames/minigame-seleta/Cenas/material_reciclavel.tscn")
 @export_file("*.tscn") var cena_mundo_principal: String = "res://Cenas/principal.tscn"
 
 @export_group("Regras das Fases")

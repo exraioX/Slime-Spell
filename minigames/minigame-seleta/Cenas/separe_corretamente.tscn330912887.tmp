@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://cib1k88ptt328"]
+
+[ext_resource type="Script" uid="uid://yviv45hbt3vh" path="res://minigames/minigame-seleta/Scripts/separe_corretamente.gd" id="1_jvwcy"]
+[ext_resource type="Texture2D" uid="uid://cshkmriv30l2" path="res://mapa/Paredes/paredes/parede-toda cinza.png" id="2_aevri"]
+[ext_resource type="Script" uid="uid://32xgs34ytxa6" path="res://minigames/minigame-seleta/Scripts/lixeira.gd" id="3_3hjfx"]
+[ext_resource type="Texture2D" uid="uid://codv50her34gg" path="res://minigames/lixeiras/1000077781.png" id="4_a1bb2"]
+[ext_resource type="Texture2D" uid="uid://u4vwbycr76f" path="res://minigames/lixeiras/1000077787.png" id="5_3nw2r"]
+[ext_resource type="Texture2D" uid="uid://cq4lexwxw5r71" path="res://minigames/lixeiras/1000077788.png" id="6_hjevq"]
+[ext_resource type="Texture2D" uid="uid://bendq4km6r48p" path="res://minigames/lixeiras/1000077786.png" id="7_kvxko"]
+[ext_resource type="VideoStream" uid="uid://dwd43uinw70so" path="res://minigames/Sources/esteira.ogv" id="8_khx5p"]
+[ext_resource type="Texture2D" uid="uid://ckgup5d1rhnn2" path="res://minigames/Sources/saida do lixo.png" id="9_dtcv3"]
+[ext_resource type="PackedScene" uid="uid://ce58skqxtwkvj" path="res://minigames/minigame-seleta/Cenas/spell-minigame.tscn" id="10_pm4ti"]
+[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="11_aevri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt1gu"]
+size = Vector2(24.810186, 32.81826)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
+size = Vector2(20, 24.504318)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyloi"]
+size = Vector2(20.985619, 23.57557)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf1hl"]
+size = Vector2(70.37489, 78.204865)
+
+[node name="Separe Corretamente" type="Node2D" unique_id=1925403009]
+scale = Vector2(1, 1.1192888)
+script = ExtResource("1_jvwcy")
+
+[node name="ParedeTodaCinza" type="Sprite2D" parent="." unique_id=522065059]
+z_index = -10
+position = Vector2(958.50006, 620.5)
+scale = Vector2(1.0356563, 1.1731482)
+texture = ExtResource("2_aevri")
+region_enabled = true
+region_rect = Rect2(0, 0, 1851.1279, 1080)
+metadata/_edit_lock_ = true
+
+[node name="spell" parent="." unique_id=852491934 instance=ExtResource("10_pm4ti")]
+position = Vector2(790, 590)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1619047068]
+position = Vector2(968, 590)
+scale = Vector2(1, 0.6946231)
+zoom = Vector2(0.95, 0.8)
+
+[node name="PontoSpawnEsteira" type="Marker2D" parent="." unique_id=1499428356]
+position = Vector2(-7, 192)
+
+[node name="Lixeiras" type="Node2D" parent="." unique_id=1412968568]
+
+[node name="lixeira-Plastico" type="Area2D" parent="Lixeiras" unique_id=1127876181]
+script = ExtResource("3_3hjfx")
+
+[node name="1000077781" type="Sprite2D" parent="Lixeiras/lixeira-Plastico" unique_id=773214410]
+position = Vector2(197, 1081)
+texture = ExtResource("4_a1bb2")
+region_enabled = true
+region_rect = Rect2(1168, 736, 428, 344)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixeiras/lixeira-Plastico" unique_id=192962135]
+position = Vector2(194, 1103.2786)
+scale = Vector2(18.43326, 9.153193)
+shape = SubResource("RectangleShape2D_wt1gu")
+
+[node name="lixeira-Papel" type="Area2D" parent="Lixeiras" unique_id=1455770195]
+script = ExtResource("3_3hjfx")
+
+[node name="1000077787" type="Sprite2D" parent="Lixeiras/lixeira-Papel" unique_id=57577630]
+position = Vector2(1679, 1081)
+texture = ExtResource("5_3nw2r")
+region_enabled = true
+region_rect = Rect2(244, 3, 433, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixeiras/lixeira-Papel" unique_id=1700016847]
+position = Vector2(1703, 1107.063)
+scale = Vector2(24.446993, 11.949838)
+shape = SubResource("RectangleShape2D_ivjp3")
+
+[node name="lixeira-Metal" type="Area2D" parent="Lixeiras" unique_id=1558492783]
+script = ExtResource("3_3hjfx")
+
+[node name="1000077788" type="Sprite2D" parent="Lixeiras/lixeira-Metal" unique_id=1542614323]
+position = Vector2(691.00006, 1081)
+scale = Vector2(1.0327103, 1.0406251)
+texture = ExtResource("6_hjevq")
+region_enabled = true
+region_rect = Rect2(1174, 3, 428, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixeiras/lixeira-Metal" unique_id=199904468]
+position = Vector2(693.5, 1101.0709)
+scale = Vector2(22.539246, 12.701562)
+shape = SubResource("RectangleShape2D_uyloi")
+
+[node name="lixeira-Vidro" type="Area2D" parent="Lixeiras" unique_id=1825791250]
+script = ExtResource("3_3hjfx")
+
+[node name="1000077786" type="Sprite2D" parent="Lixeiras/lixeira-Vidro" unique_id=707082530]
+position = Vector2(1182, 1081)
+texture = ExtResource("7_kvxko")
+region_enabled = true
+region_rect = Rect2(243, 734, 428, 346)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixeiras/lixeira-Vidro" unique_id=946715012]
+position = Vector2(1194.7081, 1105.8276)
+scale = Vector2(6.6583953, 3.7987494)
+shape = SubResource("RectangleShape2D_xf1hl")
+
+[node name="Esteira" type="Node2D" parent="." unique_id=1087587267]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Esteira" unique_id=1449360266]
+z_index = -5
+offset_top = 67.0
+offset_right = 2071.9963
+offset_bottom = 1147.0
+scale = Vector2(0.92519474, 0.22652008)
+stream = ExtResource("8_khx5p")
+autoplay = true
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SaidaDoLixo" type="Sprite2D" parent="Esteira" unique_id=1668890270]
+z_index = 5
+position = Vector2(958.5, 180)
+scale = Vector2(0.9984375, 0.53536755)
+texture = ExtResource("9_dtcv3")
+region_enabled = true
+region_rect = Rect2(0, 139.40823, 1920, 721.67773)
+
+[node name="TimerSpawn" type="Timer" parent="Esteira" unique_id=175381089]
+
+[node name="ColorRect" type="ColorRect" parent="Esteira" unique_id=1645043783]
+z_index = 5
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(-4.3437057, 9.018488)
+color = Color(0.2627451, 0.29411766, 0.3254902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Esteira" unique_id=2004821420]
+z_index = 5
+offset_left = 2095.0
+offset_right = 2135.0
+offset_bottom = 40.0
+scale = Vector2(-4.3437057, 9.018488)
+color = Color(0.2627451, 0.29411766, 0.3254902, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=990631509]
+
+[node name="LabelPedidos" type="Label" parent="HUD" unique_id=2123835836]
+offset_left = 1396.0
+offset_top = 649.0
+offset_right = 1436.0
+offset_bottom = 700.0
+scale = Vector2(1, 1.1192888)
+theme_override_fonts/font = ExtResource("11_aevri")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelTempo" type="Label" parent="HUD" unique_id=1514654028]
+offset_left = 1122.0
+offset_top = 39.999996
+offset_right = 1162.0
+offset_bottom = 91.0
+scale = Vector2(1, 1.1192888)
+theme_override_fonts/font = ExtResource("11_aevri")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="InventarioVisual" type="HBoxContainer" parent="HUD" unique_id=1781720842]
+offset_left = 80.0
+offset_top = 609.0
+offset_right = 120.0
+offset_bottom = 649.0

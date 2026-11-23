@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cib1k88ptt328"]
 
-[ext_resource type="Script" uid="uid://yviv45hbt3vh" path="res://minigames/Scripts/separe_corretamente.gd" id="1_jvwcy"]
+[ext_resource type="Script" uid="uid://yviv45hbt3vh" path="res://minigames/minigame-seleta/Scripts/separe_corretamente.gd" id="1_jvwcy"]
 [ext_resource type="Texture2D" uid="uid://cshkmriv30l2" path="res://mapa/Paredes/paredes/parede-toda cinza.png" id="2_aevri"]
-[ext_resource type="Script" uid="uid://32xgs34ytxa6" path="res://minigames/Scripts/lixeira.gd" id="3_3hjfx"]
+[ext_resource type="Script" uid="uid://32xgs34ytxa6" path="res://minigames/minigame-seleta/Scripts/lixeira.gd" id="3_3hjfx"]
 [ext_resource type="Texture2D" uid="uid://codv50her34gg" path="res://minigames/lixeiras/1000077781.png" id="4_a1bb2"]
 [ext_resource type="Texture2D" uid="uid://u4vwbycr76f" path="res://minigames/lixeiras/1000077787.png" id="5_3nw2r"]
 [ext_resource type="Texture2D" uid="uid://cq4lexwxw5r71" path="res://minigames/lixeiras/1000077788.png" id="6_hjevq"]
 [ext_resource type="Texture2D" uid="uid://bendq4km6r48p" path="res://minigames/lixeiras/1000077786.png" id="7_kvxko"]
 [ext_resource type="VideoStream" uid="uid://dwd43uinw70so" path="res://minigames/Sources/esteira.ogv" id="8_khx5p"]
 [ext_resource type="Texture2D" uid="uid://ckgup5d1rhnn2" path="res://minigames/Sources/saida do lixo.png" id="9_dtcv3"]
-[ext_resource type="PackedScene" uid="uid://ce58skqxtwkvj" path="res://minigames/Cenas/spell-minigame.tscn" id="10_pm4ti"]
+[ext_resource type="PackedScene" uid="uid://ce58skqxtwkvj" path="res://minigames/minigame-seleta/Cenas/spell-minigame.tscn" id="10_pm4ti"]
 [ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="11_aevri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt1gu"]
@@ -23,6 +23,9 @@ size = Vector2(20.985619, 23.57557)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xf1hl"]
 size = Vector2(70.37489, 78.204865)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjs12"]
+size = Vector2(31.507416, 34.86428)
 
 [node name="Separe Corretamente" type="Node2D" unique_id=1925403009]
 scale = Vector2(1, 1.1192888)
@@ -39,6 +42,7 @@ metadata/_edit_lock_ = true
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("10_pm4ti")]
 position = Vector2(790, 590)
+collision_mask = 4
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1619047068]
 position = Vector2(968, 590)
@@ -172,3 +176,29 @@ offset_left = 80.0
 offset_top = 609.0
 offset_right = 120.0
 offset_bottom = 649.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2080514681]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=199782676]
+position = Vector2(-98.999985, 600.8278)
+scale = Vector2(5.7325573, 61.12807)
+shape = SubResource("RectangleShape2D_sjs12")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1202029651]
+position = Vector2(2003, 641.47876)
+scale = Vector2(5.7325573, 61.12807)
+shape = SubResource("RectangleShape2D_sjs12")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=585310068]
+position = Vector2(969.40674, 1141.8698)
+rotation = 1.5707964
+scale = Vector2(5.7325573, 61.12807)
+shape = SubResource("RectangleShape2D_sjs12")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=752373633]
+position = Vector2(952, -17.86853)
+rotation = 1.5707964
+scale = Vector2(5.7325573, 61.12807)
+shape = SubResource("RectangleShape2D_sjs12")
