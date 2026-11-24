@@ -22,6 +22,8 @@ var _regiao_play_hover: Rect2 = Rect2(8, 212, 90, 36)
 var _regiao_config_hover: Rect2 = Rect2(6, 279, 113, 37)
 var _tex_play_normal: Texture2D
 var _tex_config_normal: Texture2D
+var _scale_play_normal: Vector2 = Vector2.ONE
+var _scale_config_normal: Vector2 = Vector2.ONE
 
 func _ready() -> void:
 	tela_loading.visible = false
@@ -31,6 +33,8 @@ func _ready() -> void:
 	_tex_config_normal = sprite_config.texture
 	_regiao_play = sprite_play.region_rect
 	_regiao_config = sprite_config.region_rect
+	_scale_play_normal = sprite_play.scale
+	_scale_config_normal = sprite_config.scale
 
 	area_play.mouse_entered.connect(func(): _set_hover(sprite_play, textura_play_hover))
 	area_play.mouse_exited.connect(func(): _set_normal(sprite_play, _tex_play_normal, _regiao_play))
@@ -45,13 +49,19 @@ func _set_hover(sprite: Sprite2D, tex: Texture2D) -> void:
 	sprite.region_enabled = true
 	if sprite == sprite_play:
 		sprite.region_rect = _regiao_play_hover
+		sprite.scale = Vector2(178.348 / 90.0 * 1.15, 77.236 / 36.0 * 1.15)
 	else:
 		sprite.region_rect = _regiao_config_hover
+		sprite.scale = Vector2(218.962 / 113.0 * 1.15, 75.718 / 37.0 * 1.15)
 
 func _set_normal(sprite: Sprite2D, tex: Texture2D, regiao: Rect2) -> void:
 	sprite.texture = tex
 	sprite.region_enabled = true
 	sprite.region_rect = regiao
+	if sprite == sprite_play:
+		sprite.scale = _scale_play_normal
+	else:
+		sprite.scale = _scale_config_normal
 
 func _process(delta: float) -> void:
 	if ja_clicou:
