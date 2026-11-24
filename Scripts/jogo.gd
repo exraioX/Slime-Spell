@@ -8,6 +8,7 @@ const ARQUIVO_SAVE: String = "user://progresso_jogo.cfg"
 @export var duracao_transicao: float = 0.55
 
 var intro_assistida: bool = false
+var tocar_intro_principal: bool = false
 var _posicoes_salvas: Dictionary = {}
 var _gatilhos_concluidos: Array[String] = []
 var _trocando_cena: bool = false

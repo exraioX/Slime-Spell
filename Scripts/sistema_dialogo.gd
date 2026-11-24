@@ -103,12 +103,13 @@ func _ready() -> void:
 		cutscene_player.animation_finished.connect(_on_cutscene_animation_finished)
 
 	# A abertura animada só acontece uma vez, mesmo depois de sair e voltar à fase.
-	if tocar_intro_ao_iniciar and cutscene_player != null and spell != null and not Jogo.gatilho_foi_concluido(ID_CUTSCENE_INICIAL):
+	if cutscene_player != null and spell != null and (Jogo.tocar_intro_principal or (tocar_intro_ao_iniciar and not Jogo.gatilho_foi_concluido(ID_CUTSCENE_INICIAL))):
 		spell.em_cutscene = true
 		spell.sprite.flip_h = false
 		_em_cutscene_animada = true
 		ativar_modo_cinema(true)
 		cutscene_player.play("intro_july")
+		Jogo.tocar_intro_principal = false
 
 func _on_cutscene_animation_finished(nome_animacao: StringName) -> void:
 	if nome_animacao == &"intro_july":

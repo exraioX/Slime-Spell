@@ -185,11 +185,11 @@ func _verificar_pedido_completo() -> void:
 		_concluir_fase_atual()
 
 func _aplicar_melhoria() -> void:
-	# +velocidade e +vel. de coleta a cada pedido
-	velocidade_esteira_atual += 30.0
+	# +velocidade do spell (player) e da esteira a cada pedido
+	velocidade_esteira_atual = min(450.0, velocidade_esteira_atual + 30.0)
 	timer_spawn.wait_time = max(0.6, timer_spawn.wait_time - 0.1)
 	if spell != null:
-		spell.velocidade += 20.0
+		spell.velocidade = min(400.0, spell.velocidade + 20.0)
 		spell.intervalo_coleta = max(0.15, spell.intervalo_coleta - 0.05)
 	_mostrar_melhoria("+velocidade\n+vel. de coleta")
 
@@ -201,7 +201,7 @@ func _mostrar_melhoria(texto: String) -> void:
 	label.position = Vector2(get_viewport_rect().size.x / 2.0 - 80.0, get_viewport_rect().size.y / 2.0 - 40.0)
 	add_child(label)
 	var tween := create_tween()
-	tween.tween_property(label, "modulate:a", 0.0, 1.5)
+	tween.tween_property(label, "modulate:a", 0.0, 1.0)
 	tween.tween_callback(label.queue_free)
 
 func _concluir_fase_atual() -> void:

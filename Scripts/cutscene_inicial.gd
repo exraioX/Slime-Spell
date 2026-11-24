@@ -42,6 +42,8 @@ func _on_video_finished() -> void:
 	_finalizada = true
 	print("CUTSCENE: video finalizado. Indo para a fase principal.")
 
+	Jogo.tocar_intro_principal = true
+
 	if not ResourceLoader.exists(cena_principal):
 		push_error("CUTSCENE: cena principal nao encontrada: " + cena_principal)
 		return
