@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg4ths2xhyfhr"
-path="res://.godot/imported/1000339685.png-58dfe52613d66b3280b878afddf97c14.ctex"
+path="res://.godot/imported/parede-porta.png-36a8960a082b5c5ba4e1a3160c5fdd00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapa/Paredes/paredes/1000339685.png"
-dest_files=["res://.godot/imported/1000339685.png-58dfe52613d66b3280b878afddf97c14.ctex"]
+source_file="res://mapa/Paredes/paredes/parede-porta.png"
+dest_files=["res://.godot/imported/parede-porta.png-36a8960a082b5c5ba4e1a3160c5fdd00.ctex"]
 
 [params]
 

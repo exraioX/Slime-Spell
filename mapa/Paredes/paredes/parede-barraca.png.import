@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8adqf4elxwkl"
-path="res://.godot/imported/1000056509.png-0ff41259fa7f8decadefe1b97d04a154.ctex"
+uid="uid://c2qmtxltkc34o"
+path="res://.godot/imported/parede-barraca.png-127dcf2472f2736abb58f8e5615b6aac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapa/Paredes/paredes/1000056509.png"
-dest_files=["res://.godot/imported/1000056509.png-0ff41259fa7f8decadefe1b97d04a154.ctex"]
+source_file="res://mapa/Paredes/paredes/parede-barraca.png"
+dest_files=["res://.godot/imported/parede-barraca.png-127dcf2472f2736abb58f8e5615b6aac.ctex"]
 
 [params]
 

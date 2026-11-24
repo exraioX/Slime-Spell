@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coouyfkb1q3nl"
-path="res://.godot/imported/1000051825.png-9d38f3cd9b2f1f52be8b8df39fbfbd1b.ctex"
+uid="uid://c8adqf4elxwkl"
+path="res://.godot/imported/parede-mofo.png-086cd031d4645a48b0dc9433e48fad03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapa/Paredes/paredes/1000051825.png"
-dest_files=["res://.godot/imported/1000051825.png-9d38f3cd9b2f1f52be8b8df39fbfbd1b.ctex"]
+source_file="res://mapa/Paredes/paredes/parede-mofo.png"
+dest_files=["res://.godot/imported/parede-mofo.png-086cd031d4645a48b0dc9433e48fad03.ctex"]
 
 [params]
 

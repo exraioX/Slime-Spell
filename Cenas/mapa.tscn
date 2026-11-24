@@ -2,8 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjup25qk3ldr3" path="res://mapa/Paredes/pixações/1000056516.png" id="1_juovg"]
 [ext_resource type="Texture2D" uid="uid://5u4iu5pwl0xn" path="res://mapa/Paredes/pixações/pixachao.png" id="2_jarr7"]
-[ext_resource type="Texture2D" uid="uid://bg4ths2xhyfhr" path="res://mapa/Paredes/paredes/1000339685.png" id="2_uyyw5"]
-[ext_resource type="Texture2D" uid="uid://bmulvnql5vjp6" path="res://mapa/Paredes/paredes/1000338042 (1).png" id="3_fm3jm"]
+[ext_resource type="Texture2D" uid="uid://bg4ths2xhyfhr" path="res://mapa/Paredes/paredes/parede-porta.png" id="2_uyyw5"]
 [ext_resource type="Texture2D" uid="uid://delb8bwesi4xd" path="res://mapa/Paredes/mano da pixação/1000274934.png" id="3_jopfo"]
 [ext_resource type="Texture2D" uid="uid://cenemeevcdq5m" path="res://mapa/Paredes/mano da pixação/1000274935.png" id="4_xsjnb"]
 [ext_resource type="Texture2D" uid="uid://bk01d8ghbotny" path="res://mapa/Paredes/mano da pixação/1000274936.png" id="5_pfx8a"]
@@ -13,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://2ncxdcrs2img" path="res://mapa/Paredes/mano da pixação/1000274940.png" id="9_ptg2d"]
 [ext_resource type="Texture2D" uid="uid://c5a5oywh02ji4" path="res://mapa/Paredes/mano da pixação/1000274941.png" id="10_pfey7"]
 [ext_resource type="AudioStream" uid="uid://8om3ho45s3j3" path="res://Sons/spay.mp3" id="11_fm3jm"]
-[ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/Paredes/paredes/1000056509.png" id="12_5xn1r"]
+[ext_resource type="Texture2D" uid="uid://c8adqf4elxwkl" path="res://mapa/Paredes/paredes/parede-mofo.png" id="12_5xn1r"]
 [ext_resource type="Texture2D" uid="uid://diwummmb587cx" path="res://lixos/lixos-chão/1000340034.png" id="17_gv7pa"]
 [ext_resource type="Texture2D" uid="uid://dkc21ke2v61wp" path="res://mapa/Chãos(não tirei nenhum porque demora 10 minutos pra trocar o chão, vai ficar assim mesmo/Chão3.png" id="17_jopfo"]
 [ext_resource type="Texture2D" uid="uid://b5f77m1hnaxqh" path="res://lixos/lixos-chão/1000340035.png" id="18_mftpr"]
@@ -129,6 +128,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uyyw5"]
+load_path = "res://.godot/imported/1000338042 (1).png-e4efaa56534a543d0c80bee065d4db56.ctex"
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1rlcm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rxohm"]
@@ -234,7 +236,7 @@ texture = ExtResource("2_uyyw5")
 z_index = -6
 position = Vector2(12677, 427.75)
 scale = Vector2(1, 1.0110782)
-texture = ExtResource("3_fm3jm")
+texture = SubResource("CompressedTexture2D_uyyw5")
 region_enabled = true
 region_rect = Rect2(1.0529022, 388.4448, 1909.4034, 677.14026)
 
