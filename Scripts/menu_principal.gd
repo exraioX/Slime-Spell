@@ -18,6 +18,8 @@ extends CanvasLayer
 var ja_clicou := false
 var _regiao_play: Rect2
 var _regiao_config: Rect2
+var _regiao_play_hover: Rect2 = Rect2(8, 212, 90, 36)
+var _regiao_config_hover: Rect2 = Rect2(6, 279, 113, 37)
 var _tex_play_normal: Texture2D
 var _tex_config_normal: Texture2D
 
@@ -40,7 +42,11 @@ func _set_hover(sprite: Sprite2D, tex: Texture2D) -> void:
 	if tex == null:
 		return
 	sprite.texture = tex
-	sprite.region_enabled = false
+	sprite.region_enabled = true
+	if sprite == sprite_play:
+		sprite.region_rect = _regiao_play_hover
+	else:
+		sprite.region_rect = _regiao_config_hover
 
 func _set_normal(sprite: Sprite2D, tex: Texture2D, regiao: Rect2) -> void:
 	sprite.texture = tex
