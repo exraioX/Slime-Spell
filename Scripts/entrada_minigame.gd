@@ -8,6 +8,10 @@ extends Area2D
 @export_dir var pasta_minigame: String = "res://minigames/minigame-7erros"
 @export_file("*.tscn") var cena_minigame: String = ""
 
+@export_group("Minigame de Separação")
+@export var nome_minigame_separacao: String = "Separe Corretamente"
+@export_file("*.tscn") var cena_minigame_separacao: String = "res://minigames/minigame-seleta/Cenas/separe_corretamente.tscn"
+
 @export_group("Outros jogos")
 # Para adicionar outro minigame, inclua um Dictionary:
 # { "nome": "Nome do jogo", "cena": "res://caminho/cena.tscn" }
@@ -104,6 +108,9 @@ func _obter_jogos() -> Array[Dictionary]:
 
 	if not caminho_principal.is_empty():
 		jogos.append({"nome": nome_minigame, "cena": caminho_principal})
+
+	if not cena_minigame_separacao.strip_edges().is_empty() and ResourceLoader.exists(cena_minigame_separacao, "PackedScene"):
+		jogos.append({"nome": nome_minigame_separacao, "cena": cena_minigame_separacao})
 
 	for opcao in jogos_adicionais:
 		var nome: String = str(opcao.get("nome", "Jogo"))

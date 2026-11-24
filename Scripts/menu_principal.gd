@@ -33,5 +33,8 @@ func _on_areaplay_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		await tween.finished
 		await get_tree().create_timer(1.6).timeout
 		
+		# Para a música do menu quando a tela de carregamento termina.
+		await MusicaMenu.parar_com_fade(0.3)
+		
 		# MODO DE TESTE: sempre abre a cutscene, mesmo se ela ja foi assistida.
 		await Jogo.trocar_cena(cena_cutscene_inicial, false)

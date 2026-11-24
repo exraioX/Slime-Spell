@@ -240,7 +240,7 @@ func _encerrar_por_tempo() -> void:
 
 func _voltar_mundo_principal() -> void:
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
-		get_tree().change_scene_to_file(cena_mundo_principal)
+		await Jogo.trocar_cena(cena_mundo_principal, false)
 
 func _atualizar_hud_inventario(inventario_atual: Dictionary) -> void:
 	if box_inventario == null:

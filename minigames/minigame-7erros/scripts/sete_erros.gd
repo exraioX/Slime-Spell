@@ -529,7 +529,7 @@ func _ao_clicar_repetir() -> void:
 
 func _ao_clicar_sair() -> void:
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
-		get_tree().change_scene_to_file.call_deferred(cena_mundo_principal)
+		await Jogo.trocar_cena(cena_mundo_principal, false)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint() or fase_encerrada:
