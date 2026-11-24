@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://divj26s5ivpkr"]
 
-[ext_resource type="Script" uid="uid://cftr5wsfrxj11" path="res://minigames/minigame-7erros/fase_sete_erros.gd" id="1_x8smv"]
-[ext_resource type="Texture2D" uid="uid://hqk2t0wfy58i" path="res://minigames/minigame-7erros/Imagens/spell-certo.png" id="4_xb570"]
-[ext_resource type="Texture2D" uid="uid://c1l3a7cik3ts3" path="res://minigames/minigame-7erros/Imagens/spell-errado.png" id="7_ujhe5"]
+[ext_resource type="Script" uid="uid://uvxce8qnveq3" path="res://minigames/minigame-7erros/scripts/sete_erros.gd" id="1_x8smv"]
+[ext_resource type="Texture2D" uid="uid://d265pbm2hiks5" path="res://minigames/minigame-7erros/Imagens/mão-certa.png" id="2_yx7ec"]
+[ext_resource type="Texture2D" uid="uid://dcpuo3svq2fce" path="res://minigames/minigame-7erros/Imagens/mão-errada.png" id="3_7wbkr"]
+[ext_resource type="Texture2D" uid="uid://biqmm1fjet2w3" path="res://minigames/minigame-7erros/Imagens/tartaruga-certa.png" id="5_jpm8p"]
+[ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="6_msex8"]
+[ext_resource type="Texture2D" uid="uid://cqwbg3xgjekce" path="res://minigames/minigame-7erros/Imagens/tartaruga-errada.png" id="8_v5vyr"]
 
 [node name="SeteErros" type="Control" unique_id=267048296]
 layout_mode = 3
@@ -11,6 +14,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x8smv")
+deitadas_originais = Array[Texture2D]([ExtResource("2_yx7ec")])
+deitadas_com_erros = Array[Texture2D]([ExtResource("3_7wbkr")])
+em_pe_originais = Array[Texture2D]([ExtResource("5_jpm8p")])
+em_pe_com_erros = Array[Texture2D]([ExtResource("8_v5vyr")])
+fonte_personalizada = ExtResource("6_msex8")
+fase_para_marcar_no_editor = 2
 
 [node name="Fundo" type="ColorRect" parent="." unique_id=436416731]
 layout_mode = 1
@@ -33,123 +43,119 @@ layout_mode = 2
 [node name="LabelTempo" type="Label" parent="HUD" unique_id=576151809]
 layout_mode = 2
 
-[node name="ContainerImagens" type="HBoxContainer" parent="." unique_id=2003120942]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_x8smv")
-
-[node name="ImagemOriginal" type="TextureRect" parent="ContainerImagens" unique_id=1924191134]
-layout_mode = 2
-size_flags_horizontal = 2
-texture = ExtResource("4_xb570")
-
-[node name="ImagemComErros" type="TextureRect" parent="ContainerImagens" unique_id=2020990078]
-layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("7_ujhe5")
-
-[node name="fase1" type="Control" parent="ContainerImagens/ImagemComErros" unique_id=1750117610]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="Marker2D" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=787302137]
-position = Vector2(564.5, 503)
-
-[node name="Marker2D2" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=945021433]
-position = Vector2(54.5, 205)
-
-[node name="Marker2D3" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=13085747]
-position = Vector2(520.5, 226)
-
-[node name="Marker2D4" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=431628155]
-position = Vector2(949.5, 1045)
-
-[node name="Marker2D5" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=2072479037]
-position = Vector2(591.5, 768)
-
-[node name="Marker2D6" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=2104169763]
-position = Vector2(479.5, 19)
-
-[node name="Marker2D7" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase1" unique_id=949670410]
-position = Vector2(1028.5, 33)
-
-[node name="fase2" type="Control" parent="ContainerImagens/ImagemComErros" unique_id=1733709553]
-visible = false
-anchors_preset = 0
-offset_left = -5.5
-offset_top = -75.0
-offset_right = 34.5
-offset_bottom = -35.0
-mouse_filter = 2
-
-[node name="Marker2D8" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=1702498856]
-
-[node name="Marker2D9" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=189642693]
-
-[node name="Marker2D10" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=1688943278]
-
-[node name="Marker2D11" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=79881781]
-
-[node name="Marker2D12" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=2147019726]
-
-[node name="Marker2D13" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=92824818]
-
-[node name="Marker2D14" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase2" unique_id=223892167]
-
-[node name="fase3" type="Control" parent="ContainerImagens/ImagemComErros" unique_id=64298854]
-visible = false
-anchors_preset = 0
-offset_left = 128.5
-offset_top = -103.0
-offset_right = 168.5
-offset_bottom = -63.0
-mouse_filter = 2
-
-[node name="Marker2D15" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=1079160291]
-
-[node name="Marker2D16" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=1571523837]
-
-[node name="Marker2D17" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=15278653]
-
-[node name="Marker2D18" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=227820739]
-
-[node name="Marker2D19" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=625929307]
-
-[node name="Marker2D20" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=2078257251]
-
-[node name="Marker2D21" type="Marker2D" parent="ContainerImagens/ImagemComErros/fase3" unique_id=1621436035]
-
 [node name="LabelMensagemFinal" type="Label" parent="." unique_id=840427804]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="AreaErros" type="Control" parent="." unique_id=1140567213]
-anchors_preset = 0
-offset_left = 2009.5
-offset_right = 2009.5
-offset_bottom = 1080.0
+[node name="ContainerEmPe" type="HBoxContainer" parent="." unique_id=112548201]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 75.0
+offset_right = -95.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 170
+
+[node name="ImagemOriginal" type="TextureRect" parent="ContainerEmPe" unique_id=480649445]
+layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource("5_jpm8p")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Erro1" type="Marker2D" parent="AreaErros" unique_id=1445262]
+[node name="ImagemComErros" type="TextureRect" parent="ContainerEmPe" unique_id=1095539653]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("8_v5vyr")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Erro2" type="Marker2D" parent="AreaErros" unique_id=1592432150]
+[node name="fase1" type="Control" parent="ContainerEmPe/ImagemComErros" unique_id=1364111621]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Erro3" type="Marker2D" parent="AreaErros" unique_id=845717831]
+[node name="Marker2D" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=207735315]
+position = Vector2(472, 538)
 
-[node name="Erro4" type="Marker2D" parent="AreaErros" unique_id=1167723378]
+[node name="Marker2D2" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=70988190]
+position = Vector2(503, 148)
 
-[node name="Erro5" type="Marker2D" parent="AreaErros" unique_id=1163053184]
+[node name="Marker2D3" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=372882574]
+position = Vector2(475, 813)
 
-[node name="Erro6" type="Marker2D" parent="AreaErros" unique_id=1877225573]
+[node name="Marker2D4" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=640483191]
+position = Vector2(507, 394)
 
-[node name="Erro7" type="Marker2D" parent="AreaErros" unique_id=1316724459]
+[node name="Marker2D5" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=1593893714]
+position = Vector2(600, 358)
+
+[node name="Marker2D6" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=421424043]
+position = Vector2(421, 755)
+
+[node name="Marker2D7" type="Marker2D" parent="ContainerEmPe/ImagemComErros/fase1" unique_id=202053551]
+position = Vector2(633, 883)
+
+[node name="ContainerDeitada" type="HBoxContainer" parent="." unique_id=1429347962]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 75.0
+offset_right = -10.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 170
+
+[node name="ImagemOriginal" type="TextureRect" parent="ContainerDeitada" unique_id=1078793684]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_yx7ec")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ImagemComErros" type="TextureRect" parent="ContainerDeitada" unique_id=363937490]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_7wbkr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="fase1" type="Control" parent="ContainerDeitada/ImagemComErros" unique_id=1368406016]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Marker2D15" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=159285842]
+position = Vector2(466, 432)
+
+[node name="Marker2D16" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=823683951]
+position = Vector2(791, 692)
+
+[node name="Marker2D17" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=1426478107]
+position = Vector2(431, 320)
+
+[node name="Marker2D18" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=1085636270]
+position = Vector2(42, 313)
+
+[node name="Marker2D19" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=390869886]
+position = Vector2(853, 234)
+
+[node name="Marker2D20" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=1966468976]
+position = Vector2(494, 563)
+
+[node name="Marker2D21" type="Marker2D" parent="ContainerDeitada/ImagemComErros/fase1" unique_id=1596405413]
+position = Vector2(408, 222)
