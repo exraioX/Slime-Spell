@@ -51,6 +51,8 @@
 [ext_resource type="Texture2D" uid="uid://b3j68fsvqc5y6" path="res://spell/pegando/1000058125.png" id="34_cxuh4"]
 [ext_resource type="Texture2D" uid="uid://5g6c8e2yamt7" path="res://spell/pegando/1000058126.png" id="35_cahlu"]
 [ext_resource type="Texture2D" uid="uid://iaij1hj0pn0r" path="res://spell/pegando/1000058127.png" id="36_86w4e"]
+[ext_resource type="Script" uid="uid://dhx8pptluhcdo" path="res://Scripts/player_audio.gd" id="16_iab2y"]
+[ext_resource type="AudioStream" uid="uid://drthdyga764pm" path="res://Sons/Passos.wav" id="17_ddhpq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b43hs"]
 radius = 8.791864
@@ -436,3 +438,12 @@ scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_kvn56")
 animation = &"pick"
 autoplay = "idle"
+
+[node name="PlayerAudio" type="Node2D" parent="." unique_id=1860197088]
+script = ExtResource("16_iab2y")
+
+[node name="SomPasso" type="AudioStreamPlayer2D" parent="PlayerAudio" unique_id=526729435]
+stream = ExtResource("17_ddhpq")
+volume_db = 22.0
+
+[node name="TimerPasso" type="Timer" parent="PlayerAudio" unique_id=1080561648]
