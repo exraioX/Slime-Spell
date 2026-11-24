@@ -8,6 +8,8 @@ extends Node2D
 @export var musica_menu: AudioStream
 @export var som_mundo: AudioStream
 @export_range(-40.0, 6.0) var volume_musica_db: float = -8.0
+@export_range(-40.0, 6.0) var volume_musica_menu_db: float = -8.0
+@export_range(-40.0, 6.0) var volume_som_mundo_db: float = -8.0
 
 var _player_musica: AudioStreamPlayer
 var _player_clique: AudioStreamPlayer
@@ -33,7 +35,15 @@ func _input(event: InputEvent) -> void:
 		if _player_clique.stream != null:
 			_player_clique.play()
 
-func _repetir_faixa() -> void:
+func _process(_delta: float) -> void:
+	if _player_musica == null:
+		return
+	if _faixa_atual == musica_menu:
+		_player_musica.volume_db = volume_musica_menu_db
+	elif _faixa_atual == som_mundo:
+		_player_musica.volume_db = volume_som_mundo_db
+	else:
+		_player_musica.volume_db = volume_musica_db
 	if _faixa_atual != null:
 		_player_musica.play()
 
@@ -46,6 +56,12 @@ func tocar(nova_faixa: AudioStream) -> void:
 		
 	_faixa_atual = nova_faixa
 	_player_musica.stream = nova_faixa
+	if nova_faixa == musica_menu:
+		_player_musica.volume_db = volume_musica_menu_db
+	elif nova_faixa == som_mundo:
+		_player_musica.volume_db = volume_som_mundo_db
+	else:
+		_player_musica.volume_db = volume_musica_db
 	_player_musica.play()
 
 func parar() -> void:
