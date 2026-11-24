@@ -44,6 +44,8 @@ func _process(_delta: float) -> void:
 		_player_musica.volume_db = volume_som_mundo_db
 	else:
 		_player_musica.volume_db = volume_musica_db
+
+func _repetir_faixa() -> void:
 	if _faixa_atual != null:
 		_player_musica.play()
 
