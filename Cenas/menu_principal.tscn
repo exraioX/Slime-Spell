@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dr2f01wlwm4r3" path="res://menu/1000076017.png" id="2_xc8du"]
 [ext_resource type="Texture2D" uid="uid://k0ysuqkxj1t4" path="res://menu/1000076018.png" id="3_7f1x0"]
 [ext_resource type="Texture2D" uid="uid://inu3fd60jing" path="res://menu/1000076019.png" id="4_y8dk8"]
+[ext_resource type="Texture2D" path="res://menu/play-preto.png" id="9_playpreto"]
+[ext_resource type="Texture2D" path="res://menu/config-preto.png" id="10_configpreto"]
 [ext_resource type="Texture2D" uid="uid://bm0q0hl0804ug" path="res://lixos/lixos-minigame/metal/1000074177.png" id="5_y8dk8"]
 [ext_resource type="Script" uid="uid://146aeijlibm0" path="res://Scripts/audio_menu.gd" id="6_ski6p"]
 [ext_resource type="AudioStream" uid="uid://vh7gu58lquuf" path="res://Sons/som-menu.mpeg.wav" id="7_qb56n"]
@@ -19,6 +21,8 @@ size = Vector2(216, 77)
 follow_viewport_enabled = true
 script = ExtResource("1_7f1x0")
 musica_tema = ExtResource("7_qb56n")
+textura_play_hover = ExtResource("9_playpreto")
+textura_config_hover = ExtResource("10_configpreto")
 
 [node name="july" type="Sprite2D" parent="." unique_id=1714876049]
 position = Vector2(679.5, 365)

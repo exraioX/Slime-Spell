@@ -4,16 +4,48 @@ extends CanvasLayer
 @export_file("*.tscn") var cena_cutscene_inicial: String = "res://Cenas/cutscene_inicial.tscn"
 @export_file("*.tscn") var cena_principal: String = "res://Cenas/principal.tscn"
 
+@export_group("Botões")
+@export var textura_play_hover: Texture2D
+@export var textura_config_hover: Texture2D
+
 @onready var tela_loading: CanvasLayer = $TelaLoading
 @onready var latinha: Sprite2D = $TelaLoading/Latinha
+@onready var sprite_play: Sprite2D = $Areaplay/play
+@onready var sprite_config: Sprite2D = $Areaconfig/config
+@onready var area_play: Area2D = $Areaplay
+@onready var area_config: Area2D = $Areaconfig
 
 var ja_clicou := false
+var _regiao_play: Rect2
+var _regiao_config: Rect2
+var _tex_play_normal: Texture2D
+var _tex_config_normal: Texture2D
 
 func _ready() -> void:
 	tela_loading.visible = false
 	# Inicia a música global assim que o menu abre
 	MusicaMenu.tocar_musica(musica_tema)
+	_tex_play_normal = sprite_play.texture
+	_tex_config_normal = sprite_config.texture
+	_regiao_play = sprite_play.region_rect
+	_regiao_config = sprite_config.region_rect
+
+	area_play.mouse_entered.connect(func(): _set_hover(sprite_play, textura_play_hover))
+	area_play.mouse_exited.connect(func(): _set_normal(sprite_play, _tex_play_normal, _regiao_play))
+	area_config.mouse_entered.connect(func(): _set_hover(sprite_config, textura_config_hover))
+	area_config.mouse_exited.connect(func(): _set_normal(sprite_config, _tex_config_normal, _regiao_config))
  
+
+func _set_hover(sprite: Sprite2D, tex: Texture2D) -> void:
+	if tex == null:
+		return
+	sprite.texture = tex
+	sprite.region_enabled = false
+
+func _set_normal(sprite: Sprite2D, tex: Texture2D, regiao: Rect2) -> void:
+	sprite.texture = tex
+	sprite.region_enabled = true
+	sprite.region_rect = regiao
 
 func _process(delta: float) -> void:
 	if ja_clicou:
@@ -22,6 +54,10 @@ func _process(delta: float) -> void:
 func _on_areaplay_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not ja_clicou and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		ja_clicou = true
+		
+		# Fica branco por 0.2s antes de carregar
+		_set_normal(sprite_play, _tex_play_normal, _regiao_play)
+		await get_tree().create_timer(0.2).timeout
 		
 		tela_loading.visible = true
 		var tween := create_tween().set_parallel(true)
@@ -38,3 +74,8 @@ func _on_areaplay_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		
 		# MODO DE TESTE: sempre abre a cutscene, mesmo se ela ja foi assistida.
 		await Jogo.trocar_cena(cena_cutscene_inicial, false)
+
+func _on_areaconfig_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_set_normal(sprite_config, _tex_config_normal, _regiao_config)
+		await get_tree().create_timer(0.2).timeout
