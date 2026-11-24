@@ -208,6 +208,7 @@ size = Vector2(20.33136, 20)
 script = ExtResource("1_6l6k6")
 
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
+volume_musica_db = -18.318
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
 position = Vector2(581, 697)

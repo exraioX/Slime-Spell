@@ -18,6 +18,7 @@ size = Vector2(216, 77)
 [node name="MenuPrincipal" type="CanvasLayer" unique_id=339002486]
 follow_viewport_enabled = true
 script = ExtResource("1_7f1x0")
+musica_tema = ExtResource("7_qb56n")
 
 [node name="july" type="Sprite2D" parent="." unique_id=1714876049]
 position = Vector2(679.5, 365)

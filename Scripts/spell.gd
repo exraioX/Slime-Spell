@@ -62,6 +62,7 @@ var item_ja_coletado: bool = false
 
 
 func _ready() -> void:
+	add_to_group("jogador")
 	if not sprite.animation_finished.is_connected(_on_animation_finished):
 		sprite.animation_finished.connect(_on_animation_finished)
 

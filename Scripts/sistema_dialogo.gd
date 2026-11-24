@@ -1,5 +1,7 @@
 extends Node2D
 
+const ID_CUTSCENE_INICIAL: String = "cutscene_july_inicial"
+
 @export_group("Referências da Fase")
 @export var spell: CharacterBody2D
 @export var july: CharacterBody2D
@@ -96,13 +98,22 @@ func _ready() -> void:
 		_camera_spell = spell.get_node("Camera2D")
 		_zoom_original = _camera_spell.zoom
 		_offset_original = _camera_spell.offset
-	
-	if tocar_intro_ao_iniciar and cutscene_player != null and spell != null:
+
+	if cutscene_player != null and not cutscene_player.animation_finished.is_connected(_on_cutscene_animation_finished):
+		cutscene_player.animation_finished.connect(_on_cutscene_animation_finished)
+
+	# A abertura animada só acontece uma vez, mesmo depois de sair e voltar à fase.
+	if tocar_intro_ao_iniciar and cutscene_player != null and spell != null and not Jogo.gatilho_foi_concluido(ID_CUTSCENE_INICIAL):
 		spell.em_cutscene = true
 		spell.sprite.flip_h = false
 		_em_cutscene_animada = true
 		ativar_modo_cinema(true)
 		cutscene_player.play("intro_july")
+
+func _on_cutscene_animation_finished(nome_animacao: StringName) -> void:
+	if nome_animacao == &"intro_july":
+		Jogo.marcar_gatilho_concluido(ID_CUTSCENE_INICIAL)
+
 
 func _process(delta: float) -> void:
 	if _em_cutscene_ativa and _camera_spell != null:
@@ -146,6 +157,8 @@ func _tratar_clique_avancar_fala() -> void:
 		encerrar_dialogo()
 
 func pular_toda_a_cena() -> void:
+	if _em_cutscene_animada:
+		Jogo.marcar_gatilho_concluido(ID_CUTSCENE_INICIAL)
 	if _tween_digitacao != null and _tween_digitacao.is_valid():
 		_tween_digitacao.kill()
 	

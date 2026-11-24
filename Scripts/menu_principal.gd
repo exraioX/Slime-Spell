@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @export var musica_tema: AudioStream
+@export_file("*.tscn") var cena_cutscene_inicial: String = "res://Cenas/cutscene_inicial.tscn"
+@export_file("*.tscn") var cena_principal: String = "res://Cenas/principal.tscn"
 
 @onready var tela_loading: CanvasLayer = $TelaLoading
 @onready var latinha: Sprite2D = $TelaLoading/Latinha
@@ -31,4 +33,4 @@ func _on_areaplay_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		await tween.finished
 		await get_tree().create_timer(1.6).timeout
 		
-		get_tree().change_scene_to_file("res://Cenas/principal.tscn")
+		Jogo.iniciar_jogo(cena_cutscene_inicial, cena_principal)

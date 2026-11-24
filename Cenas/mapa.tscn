@@ -129,7 +129,6 @@ animations = [{
 }]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uyyw5"]
-load_path = "res://.godot/imported/1000338042 (1).png-e4efaa56534a543d0c80bee065d4db56.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1rlcm"]
 

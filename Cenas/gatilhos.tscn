@@ -22,6 +22,7 @@ shape = SubResource("RectangleShape2D_ninyc")
 [node name="GatilhoConversa2" type="Area2D" parent="." unique_id=1119414088]
 position = Vector2(11665, 561)
 script = ExtResource("1_j4grf")
+id_progresso = "encontro_july_2"
 textos_fala = Array[String](["chegamos!!, aqui é 
 aonde tem a barraca da reciclagem.", "Aqui, sempre que acharmos uma, podemos reciclar os lixos.", "Terá um minigame para concluir e conseguir limpar o ambiente."])
 expressoes = Array[String](["feliz", "megaF", "feliz"])
