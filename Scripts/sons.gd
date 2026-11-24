@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export_group("Cliques")
 @export var som_clique: AudioStream

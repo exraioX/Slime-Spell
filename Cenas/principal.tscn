@@ -211,7 +211,7 @@ script = ExtResource("1_6l6k6")
 volume_musica_db = -18.318
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
-position = Vector2(581, 697)
+position = Vector2(553, 697)
 collision_mask = 28
 
 [node name="AnimatedSprite2D" parent="spell" index="2" unique_id=1210837540]

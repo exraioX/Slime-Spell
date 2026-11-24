@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://o7y1t7ydo2mp"]
 
 [ext_resource type="Script" uid="uid://xxkxy00d68dp" path="res://Scripts/cutscene_inicial.gd" id="1_script"]
-[ext_resource type="VideoStream" uid="uid://ceip08ntdvkj8" path="res://Cutscene-Video/video.ogv" id="2_c2wc4"]
+[ext_resource type="VideoStream" uid="uid://cmbwxals8r8lf" path="res://Cutscene-Video/video2.ogv" id="2_c2wc4"]
 
 [node name="CutsceneInicial" type="Control" unique_id=1070521964]
 layout_mode = 3

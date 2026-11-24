@@ -16,10 +16,10 @@ func _ready() -> void:
 		video.finished.connect(_on_video_finished)
 
 	if video.stream == null:
-		push_error("CUTSCENE: nenhum vídeo foi atribuído ao VideoStreamPlayer.")
+		push_error("CUTSCENE: nenhum OGV foi atribuido ao VideoStreamPlayer.")
 		return
 
-	print("CUTSCENE: iniciando vídeo: ", video.stream.resource_path)
+	print("CUTSCENE: cena aberta. Video: ", video.stream.resource_path)
 	call_deferred("_iniciar_video")
 
 
@@ -29,11 +29,10 @@ func _iniciar_video() -> void:
 
 	video.stop()
 	video.play()
-
-	# Confirma no Output se o player conseguiu iniciar.
 	await get_tree().process_frame
+
 	if not video.is_playing():
-		push_warning("CUTSCENE: o VideoStreamPlayer não iniciou. Confira o formato/importação do OGV.")
+		push_error("CUTSCENE: o video nao iniciou. Confira o Stream e o arquivo OGV.")
 
 
 func _on_video_finished() -> void:
@@ -41,14 +40,10 @@ func _on_video_finished() -> void:
 		return
 
 	_finalizada = true
-	print("CUTSCENE: vídeo terminou; iniciando transição.")
-
-	if not is_instance_valid(Jogo):
-		push_error("CUTSCENE: o Autoload 'Jogo' não está configurado.")
-		return
+	print("CUTSCENE: video finalizado. Indo para a fase principal.")
 
 	if not ResourceLoader.exists(cena_principal):
-		push_error("CUTSCENE: cena principal não encontrada: " + cena_principal)
+		push_error("CUTSCENE: cena principal nao encontrada: " + cena_principal)
 		return
 
 	await Jogo.trocar_cena(cena_principal, false)

@@ -34,7 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	ja_ativou = true
-	monitoring = false
+	set_deferred("monitoring", false)
 	Jogo.marcar_gatilho_concluido(id_progresso)
 
 	var lista_formatada: Array[Dictionary] = sistema.montar_lista_falas(textos_fala, expressoes)
