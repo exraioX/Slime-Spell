@@ -77,50 +77,70 @@ func _tentar_pegar_material() -> void:
 	alvos.append_array(area_interacao.get_overlapping_bodies())
 	alvos.append_array(area_interacao.get_overlapping_areas())
 
+	var alvo_reciclavel: Node2D = null
 	for alvo in alvos:
-		if alvo.is_in_group("reciclavel"):
-			_pode_pegar = false
-			
-			# 1. Toca a animação primeiro e espera terminar
-			if sprite.sprite_frames.has_animation("pick"):
-				sprite.play("pick")
-				animacao_atual = "pick"
-				await sprite.animation_finished
-			
-			# 2. Coleta o item após a animação (se ele ainda estiver na esteira)
-			if is_instance_valid(alvo):
-				var tipo: String = alvo.get("tipo_material")
-				inventario[tipo] = inventario.get(tipo, 0) + 1
-				alvo.queue_free()
-				inventario_atualizado.emit(inventario)
-			
-			# 3. Aguarda o intervalo de 0.5s antes de liberar uma nova coleta
-			await get_tree().create_timer(intervalo_coleta).timeout
-			_pode_pegar = true
-			return
+		if is_instance_valid(alvo) and alvo.is_in_group("reciclavel"):
+			alvo_reciclavel = alvo
+			break
 
-func _tentar_despejar_na_lixeira() -> bool:
+	if alvo_reciclavel == null:
+		return
+
+	_pode_pegar = false
+	var alvo: Node2D = alvo_reciclavel
+
+	# 1. Toca a animação primeiro e espera terminar
+	if sprite != null and sprite.sprite_frames != null and sprite.sprite_frames.has_animation("pick"):
+		sprite.play("pick")
+		animacao_atual = "pick"
+		await sprite.animation_finished
+
+	# 2. Coleta o item após a animação (se ele ainda estiver na esteira)
+	if is_instance_valid(alvo) and alvo.is_in_group("reciclavel"):
+		var tipo: String = str(alvo.get("tipo_material"))
+		inventario[tipo] = inventario.get(tipo, 0) + 1
+		alvo.queue_free()
+		inventario_atualizado.emit(inventario)
+
+	# 3. Aguarda o intervalo antes de liberar uma nova coleta
+	await get_tree().create_timer(intervalo_coleta).timeout
+	_pode_pegar = true
+
+func _lixeira_mais_proxima() -> Area2D:
+	var melhor: Area2D = null
+	var melhor_dist: float = INF
 	for area in area_interacao.get_overlapping_areas():
 		if area.is_in_group("lixeira") and area.has_method("receber_despejo"):
-			var tipo_lixeira: String = area.get("tipo_aceito")
-			var qtd_na_mochila: int = inventario.get(tipo_lixeira, 0)
-			
-			if qtd_na_mochila > 0:
-				# Acertou: despeja toda a quantidade daquela categoria de uma vez e toca o som de acerto
-				inventario.erase(tipo_lixeira)
-				area.receber_despejo(tipo_lixeira, qtd_na_mochila, true)
-				_tocar_som(som_acerto)
-				inventario_atualizado.emit(inventario)
-				return true
-			elif not inventario.is_empty():
-				# Errou: despeja toda a quantidade do primeiro item errado de uma vez e toca o som de erro
-				var primeiro_errado: String = inventario.keys()[0]
-				var qtd_errada: int = inventario[primeiro_errado]
-				inventario.erase(primeiro_errado)
-				area.receber_despejo(primeiro_errado, qtd_errada, false)
-				_tocar_som(som_erro)
-				inventario_atualizado.emit(inventario)
-				return true
+			var d: float = global_position.distance_to(area.global_position)
+			if d < melhor_dist:
+				melhor_dist = d
+				melhor = area
+	return melhor
+
+func _tentar_despejar_na_lixeira() -> bool:
+	var area: Area2D = _lixeira_mais_proxima()
+	if area == null:
+		return false
+	if not area_interacao.overlaps_area(area):
+		return false
+
+	var tipo_lixeira: String = str(area.get("tipo_aceito"))
+	var qtd_na_mochila: int = inventario.get(tipo_lixeira, 0)
+
+	if qtd_na_mochila > 0:
+		inventario.erase(tipo_lixeira)
+		area.receber_despejo(tipo_lixeira, qtd_na_mochila, true)
+		_tocar_som(som_acerto)
+		inventario_atualizado.emit(inventario)
+		return true
+	elif not inventario.is_empty():
+		var primeiro_errado: String = str(inventario.keys()[0])
+		var qtd_errada: int = int(inventario[primeiro_errado])
+		inventario.erase(primeiro_errado)
+		area.receber_despejo(primeiro_errado, qtd_errada, false)
+		_tocar_som(som_erro)
+		inventario_atualizado.emit(inventario)
+		return true
 	return false
 
 func _tocar_som(audio: AudioStream) -> void:

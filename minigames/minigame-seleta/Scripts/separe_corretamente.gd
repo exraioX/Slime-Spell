@@ -176,11 +176,33 @@ func _verificar_pedido_completo() -> void:
 	pedidos_concluidos_na_fase += 1
 	pontuacao_total += 150 * fase_atual
 
+	_aplicar_melhoria()
+
 	if pedidos_concluidos_na_fase < pedidos_por_fase:
 		_sortear_novo_pedido()
 		_atualizar_hud_pedidos()
 	else:
 		_concluir_fase_atual()
+
+func _aplicar_melhoria() -> void:
+	# +velocidade e +vel. de coleta a cada pedido
+	velocidade_esteira_atual += 30.0
+	timer_spawn.wait_time = max(0.6, timer_spawn.wait_time - 0.1)
+	if spell != null:
+		spell.velocidade += 20.0
+		spell.intervalo_coleta = max(0.15, spell.intervalo_coleta - 0.05)
+	_mostrar_melhoria("+velocidade\n+vel. de coleta")
+
+func _mostrar_melhoria(texto: String) -> void:
+	var label := Label.new()
+	label.text = texto
+	label.add_theme_font_size_override("font_size", 28)
+	label.modulate = Color(0.2, 1.0, 0.2, 1.0)
+	label.position = Vector2(get_viewport_rect().size.x / 2.0 - 80.0, get_viewport_rect().size.y / 2.0 - 40.0)
+	add_child(label)
+	var tween := create_tween()
+	tween.tween_property(label, "modulate:a", 0.0, 1.5)
+	tween.tween_callback(label.queue_free)
 
 func _concluir_fase_atual() -> void:
 	pausado_entre_fases = true
