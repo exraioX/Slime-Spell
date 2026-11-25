@@ -48,6 +48,8 @@ const ID_CUTSCENE_INICIAL: String = "cutscene_july_inicial"
 	"megaF"
 ]
 
+
+
 # =========================
 # CONFIGURAÇÕES DE PULO, VOZ E CÂMERA FAROESTE
 # =========================
@@ -92,6 +94,7 @@ var _ultimo_som_voz: AudioStream = null
 # Blips por fala: 1 obrigatório, no máximo 3, até o fim de cada fala
 var _alvos_fala_atual: Array[int] = []
 var _proximo_alvo_fala: int = 0
+
 
 # Elementos de cinema e câmera
 var _pos_topo_visivel: Vector2 = Vector2.ZERO

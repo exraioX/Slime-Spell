@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xxkxy00d68dp" path="res://Scripts/cutscene_inicial.gd" id="1_script"]
 [ext_resource type="VideoStream" uid="uid://cmbwxals8r8lf" path="res://Cutscene-Video/video2.ogv" id="2_c2wc4"]
+[ext_resource type="AudioStream" uid="uid://46pi0itwpjr" path="res://Cutscene-Video/som-cutscene.wav" id="2_l3rn4"]
 
 [node name="CutsceneInicial" type="Control" unique_id=1070521964]
 layout_mode = 3
@@ -12,6 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_script")
+audio_cutscene = ExtResource("2_l3rn4")
+volume_audio_cutscene_db = 0.0
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=2006550169]
 layout_mode = 1

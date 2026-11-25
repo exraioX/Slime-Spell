@@ -2,9 +2,14 @@ extends Control
 
 @export_file("*.tscn") var cena_principal: String = "res://Cenas/principal.tscn"
 
+@export_group("Áudio da Cutscene")
+@export var audio_cutscene: AudioStream
+@export_range(-40.0, 6.0) var volume_audio_cutscene_db: float = -8.0
+
 @onready var video: VideoStreamPlayer = $VideoStreamPlayer
 
 var _finalizada: bool = false
+var _player_audio: AudioStreamPlayer = null
 
 
 func _ready() -> void:
@@ -29,6 +34,15 @@ func _iniciar_video() -> void:
 
 	video.stop()
 	video.play()
+
+	# Toca o áudio junto com o vídeo, encerrando com ele
+	if audio_cutscene != null:
+		_player_audio = AudioStreamPlayer.new()
+		_player_audio.stream = audio_cutscene
+		_player_audio.volume_db = volume_audio_cutscene_db
+		add_child(_player_audio)
+		_player_audio.play()
+
 	await get_tree().process_frame
 
 	if not video.is_playing():
@@ -41,6 +55,11 @@ func _on_video_finished() -> void:
 
 	_finalizada = true
 	print("CUTSCENE: video finalizado. Indo para a fase principal.")
+
+	if _player_audio != null:
+		_player_audio.stop()
+		_player_audio.queue_free()
+		_player_audio = null
 
 	Jogo.tocar_intro_principal = true
 

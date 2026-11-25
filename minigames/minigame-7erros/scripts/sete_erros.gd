@@ -242,7 +242,12 @@ func _criar_ui_dinamica() -> void:
 	_btn_avancar.text = "Avançar"
 	_btn_avancar.custom_minimum_size = Vector2(140, 48)
 	_btn_avancar.add_theme_font_size_override("font_size", 18)
-	_btn_avancar.pressed.connect(func(): _iniciar_fase(indice_fase_atual + 1))
+	_btn_avancar.pressed.connect(func():
+		if indice_fase_atual + 1 >= _fila_fases.size():
+			_exibir_resumo_final()
+		else:
+			_iniciar_fase(indice_fase_atual + 1)
+	)
 	hbox.add_child(_btn_avancar)
 	
 	_btn_repetir = Button.new()

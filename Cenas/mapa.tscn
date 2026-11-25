@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://dxl03bfebb5iv" path="res://mapa/Paredes/paredes/parede-lado do coração.png" id="36_c66xa"]
 [ext_resource type="Texture2D" uid="uid://1x0w4sbd3obn" path="res://mapa/Paredes/paredes/parede-inicio.png" id="36_fm3jm"]
 [ext_resource type="Texture2D" uid="uid://c2qmtxltkc34o" path="res://mapa/Paredes/paredes/parede-barraca.png" id="37_bj6yt"]
+[ext_resource type="Texture2D" uid="uid://53k8h4wgvpgx" path="res://mapa/Paredes/paredes/parede-coracao.png" id="37_c66xa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ivjp3"]
 animations = [{
@@ -746,3 +747,10 @@ skew = 0.35953784
 texture = ExtResource("32_0g8rf")
 region_enabled = true
 region_rect = Rect2(798, 553, 264, 168)
+
+[node name="ParedeCoracao" type="Sprite2D" parent="." unique_id=841682503]
+z_index = -15
+position = Vector2(12674, 434)
+texture = ExtResource("37_c66xa")
+region_enabled = true
+region_rect = Rect2(0, 382.79865, 1913.7335, 697.20135)

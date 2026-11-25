@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b6n6ek77feto6" path="res://Scripts/principal.gd" id="1_6l6k6"]
 [ext_resource type="PackedScene" uid="uid://60y4nipryqjn" path="res://Cenas/spell.tscn" id="1_aqfvs"]
 [ext_resource type="Texture2D" uid="uid://dynyob8bx0upx" path="res://july/carasdajuly/july-normal_1.jpg" id="2_mry0o"]
+[ext_resource type="AudioStream" uid="uid://djuaybrmuhhxn" path="res://Sons/som-cidade.wav" id="3_2jvxy"]
 [ext_resource type="Texture2D" uid="uid://dgqbfpa2tdt0i" path="res://july/carasdajuly/july-assustada_1.jpg" id="3_b3f7n"]
 [ext_resource type="Texture2D" uid="uid://djm888pim10mk" path="res://mapa/cidade.png" id="4_2jvxy"]
 [ext_resource type="Texture2D" uid="uid://keode6x18u5q" path="res://mapa/Paredes/paredes/nuvem3.png" id="4_aqfvs"]
@@ -209,7 +210,9 @@ size = Vector2(20.33136, 20)
 script = ExtResource("1_6l6k6")
 
 [node name="Sons" parent="." unique_id=1808240201 instance=ExtResource("7_b3f7n")]
+musica_mundo_extra = ExtResource("3_2jvxy")
 volume_musica_db = -18.318
+volume_musica_mundo_extra_db = 0.0
 
 [node name="spell" parent="." unique_id=852491934 instance=ExtResource("1_aqfvs")]
 position = Vector2(553, 697)
@@ -342,9 +345,7 @@ rosto_july_pistola = ExtResource("7_rcfkj")
 rosto_july_preocupada = ExtResource("8_kel27")
 rosto_july_zangada = ExtResource("9_2jvxy")
 sons_voz = Array[AudioStream]([ExtResource("37_vozjuly")])
-toques_min_por_dialogo = 2
-toques_max_por_dialogo = 3
-volume_voz_db = -22.0
+volume_voz_db = 2.0
 
 [node name="EntradaMinigame" type="Area2D" parent="." unique_id=128306375]
 position = Vector2(12525, 494)
