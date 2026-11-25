@@ -496,16 +496,6 @@ texture = ExtResource("25_btqdv")
 region_enabled = true
 region_rect = Rect2(828, 620, 153, 178)
 
-[node name="1000340046" type="Sprite2D" parent="Lixos-Chão" unique_id=1575686384]
-modulate = Color(0.5921569, 0.5921569, 0.5921569, 0.7411765)
-material = SubResource("CanvasItemMaterial_juovg")
-position = Vector2(10161, 1113)
-rotation = -1.5606375
-scale = Vector2(0.15000756, 0.24791192)
-texture = ExtResource("17_gv7pa")
-region_enabled = true
-region_rect = Rect2(512.2996, 32.01242, 354.64252, 380.35434)
-
 [node name="1000340047" type="Sprite2D" parent="Lixos-Chão" unique_id=1372475862]
 modulate = Color(0.5921569, 0.5921569, 0.5921569, 0.8784314)
 material = SubResource("CanvasItemMaterial_juovg")
@@ -523,15 +513,6 @@ position = Vector2(9199.001, 791.0001)
 rotation = -0.4093974
 scale = Vector2(0.15541574, 0.17744388)
 skew = -0.98611104
-texture = ExtResource("18_mftpr")
-region_enabled = true
-region_rect = Rect2(196.87158, 249.12064, 358.8678, 409.144)
-
-[node name="1000340052" type="Sprite2D" parent="Lixos-Chão" unique_id=134035461]
-modulate = Color(0.7792914, 0.7792914, 0.7792913, 0.7529412)
-position = Vector2(9941, 1007)
-rotation = -3.286487
-scale = Vector2(0.24440756, 0.19799693)
 texture = ExtResource("18_mftpr")
 region_enabled = true
 region_rect = Rect2(196.87158, 249.12064, 358.8678, 409.144)
@@ -828,28 +809,59 @@ texture = ExtResource("39_230uu")
 position = Vector2(4654, 790)
 
 [node name="PilhaDeLixo" type="Sprite2D" parent="." unique_id=1917815927]
-modulate = Color(0.6255971, 0.6255971, 0.6255971, 0.6666667)
+modulate = Color(0.8978127, 0.8978127, 0.89781266, 0.6666667)
 z_index = -10
 position = Vector2(448.5, 475.125)
 scale = Vector2(0.36111182, 0.439041)
 texture = ExtResource("40_as5sp")
 
 [node name="PilhaDeLixo2" type="Sprite2D" parent="." unique_id=434243980]
-modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+modulate = Color(0.91055226, 0.816218, 0.76981777, 1)
 z_index = -6
 position = Vector2(2229, 737)
 scale = Vector2(0.36111182, 0.439041)
 texture = ExtResource("40_as5sp")
 
 [node name="PilhaDeLixo8" type="Sprite2D" parent="." unique_id=1411323638]
-modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+modulate = Color(0.953242, 0.900843, 0.87585056, 1)
 z_index = -6
-position = Vector2(7814, 730)
+position = Vector2(7814.0005, 727)
 scale = Vector2(0.36111182, 0.439041)
 texture = ExtResource("40_as5sp")
 
+[node name="PilhaDeLixo9" type="Sprite2D" parent="." unique_id=1454227713]
+modulate = Color(0.953242, 0.900843, 0.87585056, 1)
+z_index = -17
+position = Vector2(9855, 728)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo10" type="Sprite2D" parent="." unique_id=186295811]
+modulate = Color(0.953242, 0.900843, 0.87585056, 1)
+z_index = -17
+position = Vector2(9857.999, 658.00024)
+rotation = -0.4484652
+scale = Vector2(-0.38604218, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo11" type="Sprite2D" parent="." unique_id=1904714891]
+modulate = Color(0.953242, 0.900843, 0.87585056, 1)
+z_index = -15
+position = Vector2(12232, 722.99994)
+rotation = -0.19818291
+scale = Vector2(-0.38604218, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo12" type="Sprite2D" parent="." unique_id=1814724694]
+modulate = Color(0.953242, 0.900843, 0.87585056, 1)
+z_index = -15
+position = Vector2(12878, 729.9999)
+rotation = 0.6717974
+scale = Vector2(-0.38604218, 0.439041)
+texture = ExtResource("40_as5sp")
+
 [node name="PilhaDeLixo3" type="Sprite2D" parent="." unique_id=1965731410]
-modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+modulate = Color(0.91764706, 0.827451, 0.78039217, 1)
 z_index = -6
 position = Vector2(2559, 734)
 scale = Vector2(0.36111182, 0.439041)
@@ -878,10 +890,52 @@ rotation = 0.015604079
 scale = Vector2(0.36111182, 0.439041)
 texture = ExtResource("40_as5sp")
 
+[node name="PilhaDeLixo13" type="Sprite2D" parent="." unique_id=1138881689]
+modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
+z_index = 20
+position = Vector2(8456.735, 821.1882)
+rotation = 0.015604079
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo14" type="Sprite2D" parent="." unique_id=1849093696]
+modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
+z_index = 20
+position = Vector2(8610.735, 821.1882)
+rotation = 0.015604079
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo15" type="Sprite2D" parent="." unique_id=733710928]
+modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
+z_index = 20
+position = Vector2(8531.735, 784.1881)
+rotation = 0.015604079
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+region_enabled = true
+region_rect = Rect2(0, 0, 684, 393.31628)
+
 [node name="PilhaDeLixo7" type="Sprite2D" parent="." unique_id=688558488]
 modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
 z_index = 20
 position = Vector2(4604.4355, 829.8547)
+rotation = 0.015604079
+scale = Vector2(0.42345682, 0.4800215)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo16" type="Sprite2D" parent="." unique_id=212321558]
+modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
+z_index = 20
+position = Vector2(10870, 825)
+rotation = 0.015604079
+scale = Vector2(0.42345682, 0.4800215)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo17" type="Sprite2D" parent="." unique_id=375825278]
+modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
+z_index = 20
+position = Vector2(11160, 822.00006)
 rotation = 0.015604079
 scale = Vector2(0.42345682, 0.4800215)
 texture = ExtResource("40_as5sp")

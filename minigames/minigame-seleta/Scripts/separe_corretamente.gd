@@ -267,6 +267,7 @@ func _encerrar_por_tempo() -> void:
 	get_tree().reload_current_scene()
 
 func _voltar_mundo_principal() -> void:
+	Jogo.marcar_gatilho_concluido("minigame_separacao")
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
 		await Jogo.trocar_cena(cena_mundo_principal, false)
 

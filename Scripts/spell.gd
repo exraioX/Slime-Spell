@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 # Movimento
 @export var velocidade: float = 450.0
+var velocidade_multiplicador: float = 1.0
+var _lixo_count: int = 0
 @export var aceleracao: float = 2500.0
 @export var desaceleracao: float = 2800.0
 
@@ -136,7 +138,7 @@ func _physics_process(delta: float) -> void:
 
 	# Movimento horizontal
 	var direcao := Input.get_axis("ui_left", "ui_right")
-	var velocidade_alvo := direcao * velocidade
+	var velocidade_alvo := direcao * velocidade * velocidade_multiplicador
 
 	if direcao != 0:
 		velocity.x = move_toward(velocity.x, velocidade_alvo, aceleracao * delta)
@@ -299,3 +301,14 @@ func _on_animation_finished() -> void:
 
 	var direcao := Input.get_axis("ui_left", "ui_right")
 	update_animation(direcao)
+
+func entrar_lixo() -> void:
+	_lixo_count += 1
+	_atualizar_multiplicador_lixo()
+
+func sair_lixo() -> void:
+	_lixo_count = max(0, _lixo_count - 1)
+	_atualizar_multiplicador_lixo()
+
+func _atualizar_multiplicador_lixo() -> void:
+	velocidade_multiplicador = 0.5 if _lixo_count > 0 else 1.0

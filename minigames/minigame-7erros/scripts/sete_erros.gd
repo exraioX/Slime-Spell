@@ -550,6 +550,7 @@ func _ao_clicar_repetir() -> void:
 		_iniciar_fase(indice_fase_atual)
 
 func _ao_clicar_sair() -> void:
+	Jogo.marcar_gatilho_concluido("minigame_7erros")
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
 		await Jogo.trocar_cena(cena_mundo_principal, false)
 

@@ -29,6 +29,7 @@ var _spell: Node
 var _camada_menu: CanvasLayer
 var _root_menu: Control
 var _lista_botoes: VBoxContainer
+var _label_contagem: Label
 
 
 func _ready() -> void:
@@ -90,6 +91,11 @@ func _criar_menu_selecao() -> void:
 	titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	titulo.add_theme_font_size_override("font_size", 28)
 	coluna.add_child(titulo)
+
+	_label_contagem = Label.new()
+	_label_contagem.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_label_contagem.add_theme_font_size_override("font_size", 18)
+	coluna.add_child(_label_contagem)
 
 	_lista_botoes = VBoxContainer.new()
 	_lista_botoes.add_theme_constant_override("separation", 10)
