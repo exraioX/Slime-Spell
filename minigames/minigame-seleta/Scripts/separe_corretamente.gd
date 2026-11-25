@@ -255,6 +255,7 @@ func _concluir_fase_atual() -> void:
 		jogo_finalizado = true
 		if label_pedidos != null:
 			label_pedidos.text = "PARABÉNS! VOCÊ PASSOU!\nPontuação Final: %d pts\nVoltando ao mapa..." % pontuacao_total
+		Jogo.marcar_gatilho_concluido("minigame_separacao")
 		await get_tree().create_timer(4.0).timeout
 		_voltar_mundo_principal()
 

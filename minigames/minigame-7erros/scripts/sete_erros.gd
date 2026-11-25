@@ -535,6 +535,7 @@ func _exibir_resumo_final() -> void:
 	_label_resultado.text = "MINIGAME CONCLUÍDO!\n\nTotal de Acertos: %d de %d\nAproveitamento: %.0f%%" % [
 		soma_acertos, soma_totais, porcentagem
 	]
+	Jogo.marcar_gatilho_concluido("minigame_7erros")
 	_centralizar_painel_resultado()
 
 func _centralizar_painel_resultado() -> void:

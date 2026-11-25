@@ -96,6 +96,7 @@ func _criar_menu_selecao() -> void:
 	_label_contagem.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_label_contagem.add_theme_font_size_override("font_size", 18)
 	coluna.add_child(_label_contagem)
+	_atualizar_contagem()
 
 	_lista_botoes = VBoxContainer.new()
 	_lista_botoes.add_theme_constant_override("separation", 10)
@@ -246,11 +247,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+func _atualizar_contagem() -> void:
+	var concluidos := 0
+	if Jogo.gatilho_foi_concluido("minigame_7erros"):
+		concluidos += 1
+	if Jogo.gatilho_foi_concluido("minigame_separacao"):
+		concluidos += 1
+	if is_instance_valid(_label_contagem):
+		_label_contagem.text = "%d de 2 concluídos" % concluidos
+
+
 func _abrir_menu() -> void:
 	if _menu_aberto or _ja_trocou:
 		return
 
+	if Jogo.gatilho_foi_concluido("minigame_7erros") and Jogo.gatilho_foi_concluido("minigame_separacao"):
+		if _menu_aberto:
+			_fechar_menu()
+		var principal: Node = get_tree().current_scene
+		if principal == null:
+			principal = get_parent()
+		if principal != null and principal.has_method("iniciar_sequencia_final"):
+			principal.iniciar_sequencia_final()
+		return
+
 	_atualizar_opcoes()
+	_atualizar_contagem()
 	if _lista_botoes.get_child_count() == 0:
 		push_warning("Não há minigames válidos configurados na barraca. Confira a pasta e a cena principal.")
 		return
