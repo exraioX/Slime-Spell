@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8ivmhyum7vbp"
-path="res://.godot/imported/peixe.png-0eb7296b1fd559da8f79c3a32a8cedc3.ctex"
+path="res://.godot/imported/peixe.png-2566a5cd7e12676b7ad4ff3ec2e16559.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spell/peixe.png"
-dest_files=["res://.godot/imported/peixe.png-0eb7296b1fd559da8f79c3a32a8cedc3.ctex"]
+source_file="res://mapa/Paredes/peixe.png"
+dest_files=["res://.godot/imported/peixe.png-2566a5cd7e12676b7ad4ff3ec2e16559.ctex"]
 
 [params]
 

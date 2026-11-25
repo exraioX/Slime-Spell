@@ -22,58 +22,36 @@ func _configurar_lixo_slow() -> void:
 	var mapa_node: Node = get_node_or_null("mapa")
 	if mapa_node == null:
 		return
-	# Encontra sprites de lixo e cria Area2D com collision shape em cima deles
-	var alvos: Array[Node] = []
-	for filho in mapa_node.get_children():
-		if filho is Sprite2D and (str(filho.name).begins_with("PilhaDeLixo") or str(filho.name).begins_with("Lixeira")):
-			alvos.append(filho)
-	# Coleta todos os nós de lixo no chão (pode haver mais de um)
-	var lixos_nodes: Array[Node] = []
-	for filho in mapa_node.get_children():
-		if str(filho.name).to_lower().contains("lixos") or str(filho.name).to_lower().contains("lixo"):
-			lixos_nodes.append(filho)
-	# Também busca recursivamente por segurança
-	for n in mapa_node.find_children("Lixos*", "", true):
-		if not (n in lixos_nodes):
-			lixos_nodes.append(n)
-	for ln in lixos_nodes:
-		for filho in ln.get_children():
-			if filho is Sprite2D:
-				alvos.append(filho)
-
-	for sprite in alvos:
-		var area_name: String = "SlowArea_" + str(sprite.name)
-		# Evita áreas duplicadas se _ready/_configurar for chamado novamente
-		if mapa_node.has_node(area_name):
-			continue
-		var area := Area2D.new()
-		area.name = area_name
-		# Detecta apenas o spell (collision_layer = 1)
-		area.collision_mask = 1
-		area.collision_layer = 0
-		area.monitoring = true
-		area.monitorable = false
-		var shape := CollisionShape2D.new()
-		var rect_shape := RectangleShape2D.new()
-		var tex_size: Vector2 = Vector2(32, 32)
-		if sprite is Sprite2D:
-			var sp: Sprite2D = sprite as Sprite2D
-			if sp.texture != null:
-				var base_size: Vector2 = sp.texture.get_size()
-				if sp.region_enabled:
-					base_size = sp.region_rect.size
-				tex_size = base_size * sp.scale.abs()
-		rect_shape.size = tex_size
-		shape.shape = rect_shape
-		area.add_child(shape)
-		# Adiciona à árvore ANTES de definir posição global
-		mapa_node.add_child(area)
-		area.global_position = (sprite as Node2D).global_position
-		area.rotation = (sprite as Node2D).rotation
-		area.body_entered.connect(_on_lixo_body_entered)
-		area.body_exited.connect(_on_lixo_body_exited)
-
+	# Usa as Area2D j� existentes no mapa (ex.: "Lixos-gosma") em vez de criar em runtime.
+	var areas: Array[Node] = []
+	_coletar_areas_lixo(mapa_node, areas)
+	for area in areas:
+		if area is Area2D:
+			var a: Area2D = area as Area2D
+			if not a.body_entered.is_connected(_on_lixo_body_entered):
+				a.body_entered.connect(_on_lixo_body_entered)
+			if not a.body_exited.is_connected(_on_lixo_body_exited):
+				a.body_exited.connect(_on_lixo_body_exited)
+			a.collision_mask = 1
+			a.monitoring = true
 	_lixo_slow_configurado = true
+
+
+func _coletar_areas_lixo(no: Node, out: Array[Node]) -> void:
+	for filho in no.get_children():
+		if filho is Area2D:
+			var nome: String = str(filho.name).to_lower()
+			var eh_area_lixo: bool = nome.contains("gosma") or nome.contains("lixo") or nome.contains("slow") or _area_contem_sprite_lixo(filho)
+			if eh_area_lixo:
+				out.append(filho)
+		_coletar_areas_lixo(filho, out)
+
+func _area_contem_sprite_lixo(area: Node) -> bool:
+	for c in area.get_children():
+		var n: String = str(c.name).to_lower()
+		if n.contains("pilhad") or n.contains("lixeira") or n.contains("lixo"):
+			return true
+	return false
 
 func _on_lixo_body_entered(body: Node) -> void:
 	if body != null and body.has_method("entrar_lixo"):

@@ -39,8 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://cgvu3lvawwebm" path="res://lixos/lixos-cenário/lixeira-grande.png" id="38_btqdv"]
 [ext_resource type="Texture2D" uid="uid://cud52f1pp2h7o" path="res://lixos/lixos-cenário/lixeira-pequena.png" id="39_230uu"]
 [ext_resource type="Texture2D" uid="uid://mmixi25q151h" path="res://lixos/lixos-cenário/pilha de lixo.png" id="40_as5sp"]
-[ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="40_btqdv"]
-[ext_resource type="Texture2D" uid="uid://8ivmhyum7vbp" path="res://spell/peixe.png" id="41_230uu"]
+[ext_resource type="Texture2D" uid="uid://8ivmhyum7vbp" path="res://mapa/Paredes/peixe.png" id="41_230uu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ivjp3"]
 animations = [{
@@ -785,10 +784,10 @@ texture = ExtResource("32_0g8rf")
 region_enabled = true
 region_rect = Rect2(798, 553, 264, 168)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=608398788]
+[node name="Lixos-gosma" type="Area2D" parent="." unique_id=608398788]
 position = Vector2(4654, 790)
 
-[node name="PilhaDeLixo15" type="Sprite2D" parent="Area2D" unique_id=733710928]
+[node name="PilhaDeLixo15" type="Sprite2D" parent="Lixos-gosma" unique_id=733710928]
 modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
 z_index = 20
 position = Vector2(3877.7354, -5.8118896)
@@ -798,7 +797,7 @@ texture = ExtResource("40_as5sp")
 region_enabled = true
 region_rect = Rect2(0, 0, 684, 393.31628)
 
-[node name="PilhaDeLixo16" type="Sprite2D" parent="Area2D" unique_id=212321558]
+[node name="PilhaDeLixo16" type="Sprite2D" parent="Lixos-gosma" unique_id=212321558]
 modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
 z_index = 20
 position = Vector2(6216, 35)
@@ -806,7 +805,7 @@ rotation = 0.015604078
 scale = Vector2(0.42345685, 0.48002154)
 texture = ExtResource("40_as5sp")
 
-[node name="PilhaDeLixo17" type="Sprite2D" parent="Area2D" unique_id=375825278]
+[node name="PilhaDeLixo17" type="Sprite2D" parent="Lixos-gosma" unique_id=375825278]
 modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
 z_index = 20
 position = Vector2(6506, 32.00006)
@@ -814,7 +813,7 @@ rotation = 0.015604078
 scale = Vector2(0.42345685, 0.48002154)
 texture = ExtResource("40_as5sp")
 
-[node name="PilhaDeLixo13" type="Sprite2D" parent="Area2D" unique_id=1138881689]
+[node name="PilhaDeLixo13" type="Sprite2D" parent="Lixos-gosma" unique_id=1138881689]
 modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
 z_index = 20
 position = Vector2(3802.7354, 31.188171)
@@ -822,7 +821,7 @@ rotation = 0.015604079
 scale = Vector2(0.36111185, 0.439041)
 texture = ExtResource("40_as5sp")
 
-[node name="PilhaDeLixo14" type="Sprite2D" parent="Area2D" unique_id=1849093696]
+[node name="PilhaDeLixo14" type="Sprite2D" parent="Lixos-gosma" unique_id=1849093696]
 modulate = Color(0.8910959, 0.80201036, 0.83516794, 1)
 z_index = 20
 position = Vector2(3956.7354, 31.188171)
@@ -830,7 +829,7 @@ rotation = 0.015604079
 scale = Vector2(0.36111185, 0.439041)
 texture = ExtResource("40_as5sp")
 
-[node name="PilhaDeLixo6" type="Sprite2D" parent="Area2D" unique_id=1335639135]
+[node name="PilhaDeLixo6" type="Sprite2D" parent="Lixos-gosma" unique_id=1335639135]
 modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
 z_index = 20
 position = Vector2(-982.00024, 35)
@@ -838,7 +837,7 @@ rotation = 0.015604079
 scale = Vector2(0.36111185, 0.439041)
 texture = ExtResource("40_as5sp")
 
-[node name="PilhaDeLixo7" type="Sprite2D" parent="Area2D" unique_id=688558488]
+[node name="PilhaDeLixo7" type="Sprite2D" parent="Lixos-gosma" unique_id=688558488]
 modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
 z_index = 20
 position = Vector2(-49.564453, 39.854675)
@@ -846,12 +845,7 @@ rotation = 0.015604078
 scale = Vector2(0.42345685, 0.48002154)
 texture = ExtResource("40_as5sp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=173419748]
-
-[node name="gatilhos" parent="." unique_id=447945297 instance=ExtResource("40_btqdv")]
-
-[node name="GatilhoConversa1" parent="gatilhos" index="2" unique_id=739291881]
-position = Vector2(3265, 573)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixos-gosma" unique_id=173419748]
 
 [node name="lixos-cenario" type="Node2D" parent="." unique_id=507506555]
 
@@ -955,5 +949,3 @@ texture = ExtResource("39_230uu")
 position = Vector2(11979, 609)
 scale = Vector2(0.70985013, 0.7606925)
 texture = ExtResource("41_230uu")
-
-[editable path="gatilhos"]

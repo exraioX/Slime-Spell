@@ -10,10 +10,10 @@
 position = Vector2(7002, 561)
 script = ExtResource("1_j4grf")
 id_progresso = "encontro_july_2"
-textos_fala = Array[String](["Olha só, você chegou até aqui!", "Essa Arte é muito legal, né?", "É sobre os 3R's, já ouviu falar?", "Primeiro R: REDUZIR
+textos_fala = Array[String](["Olha só, isso!", "Que arte mais legal, né?", "É sobre os 3 R , já ouviu falar?", "Primeiro R: REDUZIR
 Segundo R: RECICLAR
-E por ultimo: REUTILIZAR
-", "Bem, impressionante."])
+O ultimo: REUTILIZAR
+", "São os passos principais para limpar o mundo."])
 expressoes = Array[String](["feliz", "megaF", "megaF", "megaF", "feliz"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa3" unique_id=493757611]
@@ -25,7 +25,7 @@ position = Vector2(11665, 561)
 script = ExtResource("1_j4grf")
 id_progresso = "encontro_july_3"
 textos_fala = Array[String](["chegamos!!, aqui é 
-aonde tem a barraca da reciclagem.", "Aqui, sempre que acharmos uma, podemos reciclar os lixos.", "Terá um minigame para concluir e conseguir limpar o ambiente."])
+aonde tem a barraca da reciclagem", "Aqui, podemos limpar a cidade de um jeito bem divertido", "Terá um minigame para concluir e conseguir limpar o ambiente"])
 expressoes = Array[String](["feliz", "megaF", "feliz"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa2" unique_id=1056709753]
@@ -33,10 +33,10 @@ scale = Vector2(12.822541, 18.820927)
 shape = SubResource("RectangleShape2D_ninyc")
 
 [node name="GatilhoConversa1" type="Area2D" parent="." unique_id=739291881]
-position = Vector2(2126, 580)
+position = Vector2(3718, 498)
 script = ExtResource("1_j4grf")
-textos_fala = Array[String](["A cidade está piorando cada vez mais...", "As pessoas não sabem como descartar o lixo de forma correta.", "Spell, você pode me ajudar a conscientizar as pessoas e ensinar a maneira certa de onde vai cada lixo? ", "Que legal, obrigada!!", "Vamos até a barraca que tem um peixe, e lá terá jogos divertidos sobre reciclagem!"])
-expressoes = Array[String](["preocupada", "zangada", "pacifica", "megaF"])
+textos_fala = Array[String](["A cidade está piorando cada vez mais...", "As pessoas não sabem como descartar o lixo de forma correta", "Spell, você pode me ajudar a conscientizar as pessoas e ensinar a maneira certa de onde vai cada lixo? ", "Que legal, obrigada!!", "Vamos até a barraca,  lá vai ter jogos divertidos sobre reciclagem!"])
+expressoes = Array[String](["preocupada", "zangada", "pacifica", "megaF", "feliz"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatilhoConversa1" unique_id=1312302679]
 scale = Vector2(12.822541, 18.820927)
