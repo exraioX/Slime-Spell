@@ -4,6 +4,13 @@ extends Node2D
 @export var cena_material: PackedScene = preload("res://minigames/minigame-seleta/Cenas/material_reciclavel.tscn")
 @export_file("*.tscn") var cena_mundo_principal: String = "res://Cenas/principal.tscn"
 
+@export_group("Áudio")
+@export var musica_fundo: AudioStream
+@export_range(-40.0, 6.0) var volume_musica_fundo_db: float = -8.0
+@export var som_acerto: AudioStream
+@export var som_erro: AudioStream
+@export_range(-40.0, 6.0) var volume_som_db: float = 0.0
+
 @export_group("Regras das Fases")
 @export var total_fases: int = 3
 @export var pedidos_por_fase: int = 3
@@ -35,20 +42,39 @@ var pedidos_concluidos_na_fase: int = 0
 var pedidos_restantes: Dictionary = {}
 var pontuacao_total: int = 0
 
-var tempo_restante: float = 120.0
+var tempo_restante: float = 240.0
 var velocidade_esteira_atual: float = 180.0
 var pausado_entre_fases: bool = false
 var jogo_finalizado: bool = false
 
+var _player_musica: AudioStreamPlayer
+var _player_som: AudioStreamPlayer
+
 func _ready() -> void:
 	_carregar_texturas_das_pastas()
 	_conectar_todas_lixeiras()
-	
+
+	if musica_fundo != null:
+		_player_musica = AudioStreamPlayer.new()
+		_player_musica.stream = musica_fundo
+		_player_musica.volume_db = volume_musica_fundo_db
+		add_child(_player_musica)
+		_player_musica.finished.connect(_repetir_musica_fundo)
+		_player_musica.play()
+
+	_player_som = AudioStreamPlayer.new()
+	_player_som.volume_db = volume_som_db
+	add_child(_player_som)
+
 	if spell != null and spell.has_signal("inventario_atualizado"):
 		spell.inventario_atualizado.connect(_atualizar_hud_inventario)
 
 	timer_spawn.timeout.connect(_gerar_material)
 	_iniciar_fase(1)
+
+func _repetir_musica_fundo() -> void:
+	if _player_musica != null and _player_musica.stream != null:
+		_player_musica.play()
 
 func _conectar_todas_lixeiras() -> void:
 	# Busca tanto pelo grupo quanto percorrendo os filhos de "Lixeiras" para nunca falhar
@@ -70,15 +96,15 @@ func _iniciar_fase(numero_fase: int) -> void:
 	# Dificuldade progressiva a cada fase
 	match fase_atual:
 		1:
-			tempo_restante = 120.0
+			tempo_restante = 240.0
 			velocidade_esteira_atual = 180.0
 			timer_spawn.wait_time = 1.8
 		2:
-			tempo_restante = 110.0
+			tempo_restante = 180.0
 			velocidade_esteira_atual = 240.0
 			timer_spawn.wait_time = 1.4
 		_:
-			tempo_restante = 100.0
+			tempo_restante = 140.0
 			velocidade_esteira_atual = 310.0
 			timer_spawn.wait_time = 1.1
 
@@ -163,9 +189,11 @@ func _ao_despejar_na_lixeira(acertou: bool, tipo_lixeira: String, quantidade: in
 			pedidos_restantes[tipo_lixeira] = max(0, pedidos_restantes[tipo_lixeira] - quantidade)
 		_atualizar_hud_pedidos()
 		_verificar_pedido_completo()
+		_tocar_som(som_acerto)
 	else:
 		pontuacao_total = max(0, pontuacao_total - 25)
 		tempo_restante = maxf(0.0, tempo_restante - 5.0)
+		_tocar_som(som_erro)
 
 func _verificar_pedido_completo() -> void:
 	for cat in pedidos_restantes.keys():
@@ -270,6 +298,11 @@ func _atualizar_hud_inventario(inventario_atual: Dictionary) -> void:
 		slot.add_child(icone)
 		slot.add_child(texto_qtd)
 		box_inventario.add_child(slot)
+
+func _tocar_som(audio: AudioStream) -> void:
+	if audio != null and _player_som != null:
+		_player_som.stream = audio
+		_player_som.play()
 
 func _atualizar_hud_pedidos() -> void:
 	if label_pedidos == null:

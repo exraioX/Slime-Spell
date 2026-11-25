@@ -98,33 +98,52 @@ func _obter_jogador() -> Node:
 		return get_tree().current_scene.find_child("spell", true, false)
 	return null
 
+func _obter_july() -> Node:
+	if get_tree().current_scene != null:
+		return get_tree().current_scene.find_child("july", true, false)
+	return null
+
 
 func _salvar_posicao_atual() -> void:
 	var cena := get_tree().current_scene
 	if cena == null or cena.scene_file_path.is_empty():
 		return
-
+	
 	var jogador := _obter_jogador()
 	if jogador is Node2D:
 		_posicoes_salvas[cena.scene_file_path] = (jogador as Node2D).global_position
+
+	# Salva também a posição da July, quando ela existir na cena
+	var july := _obter_july()
+	if july is Node2D:
+		_posicoes_salvas[cena.scene_file_path + "::july"] = (july as Node2D).global_position
 
 
 func _restaurar_posicao_da_cena() -> void:
 	var cena := get_tree().current_scene
 	if cena == null or cena.scene_file_path.is_empty():
 		return
-	if not _posicoes_salvas.has(cena.scene_file_path):
-		return
 
-	var jogador := _obter_jogador()
-	if not (jogador is Node2D):
-		return
+	# Restaura a posição do jogador (spell)
+	if _posicoes_salvas.has(cena.scene_file_path):
+		var jogador := _obter_jogador()
+		if jogador is Node2D:
+			var posicao: Variant = _posicoes_salvas[cena.scene_file_path]
+			if typeof(posicao) == TYPE_VECTOR2:
+				(jogador as Node2D).global_position = posicao
+				if jogador is CharacterBody2D:
+					(jogador as CharacterBody2D).velocity = Vector2.ZERO
 
-	var posicao: Variant = _posicoes_salvas[cena.scene_file_path]
-	if typeof(posicao) == TYPE_VECTOR2:
-		(jogador as Node2D).global_position = posicao
-		if jogador is CharacterBody2D:
-			(jogador as CharacterBody2D).velocity = Vector2.ZERO
+	# Restaura também a posição da July, quando ela existir na cena
+	var chave_july: String = cena.scene_file_path + "::july"
+	if _posicoes_salvas.has(chave_july):
+		var july := _obter_july()
+		if july is Node2D:
+			var posicao_july: Variant = _posicoes_salvas[chave_july]
+			if typeof(posicao_july) == TYPE_VECTOR2:
+				(july as Node2D).global_position = posicao_july
+				if july is CharacterBody2D:
+					(july as CharacterBody2D).velocity = Vector2.ZERO
 
 
 func gatilho_foi_concluido(id: String) -> bool:

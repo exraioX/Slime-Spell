@@ -89,13 +89,12 @@ func _tentar_pegar_material() -> void:
 	_pode_pegar = false
 	var alvo: Node2D = alvo_reciclavel
 
-	# 1. Toca a animação primeiro e espera terminar
+	# 1. Toca a animação de pick (sem esperar terminar)
 	if sprite != null and sprite.sprite_frames != null and sprite.sprite_frames.has_animation("pick"):
 		sprite.play("pick")
 		animacao_atual = "pick"
-		await sprite.animation_finished
 
-	# 2. Coleta o item após a animação (se ele ainda estiver na esteira)
+	# 2. Coleta o item imediatamente, ignorando a animação de pick
 	if is_instance_valid(alvo) and alvo.is_in_group("reciclavel"):
 		var tipo: String = str(alvo.get("tipo_material"))
 		inventario[tipo] = inventario.get(tipo, 0) + 1
@@ -130,7 +129,6 @@ func _tentar_despejar_na_lixeira() -> bool:
 	if qtd_na_mochila > 0:
 		inventario.erase(tipo_lixeira)
 		area.receber_despejo(tipo_lixeira, qtd_na_mochila, true)
-		_tocar_som(som_acerto)
 		inventario_atualizado.emit(inventario)
 		return true
 	elif not inventario.is_empty():
@@ -138,7 +136,6 @@ func _tentar_despejar_na_lixeira() -> bool:
 		var qtd_errada: int = int(inventario[primeiro_errado])
 		inventario.erase(primeiro_errado)
 		area.receber_despejo(primeiro_errado, qtd_errada, false)
-		_tocar_som(som_erro)
 		inventario_atualizado.emit(inventario)
 		return true
 	return false

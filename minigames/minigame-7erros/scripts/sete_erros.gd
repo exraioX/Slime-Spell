@@ -34,6 +34,8 @@ extends Control
 @export var som_colocar: AudioStream
 @export var som_acerto: AudioStream
 @export var som_erro: AudioStream
+@export var musica_fundo: AudioStream
+@export_range(-40.0, 6.0) var volume_musica_fundo_db: float = -8.0
 
 @onready var container_em_pe: Container = get_node_or_null("ContainerEmPe")
 @onready var container_deitada: Container = get_node_or_null("ContainerDeitada")
@@ -68,6 +70,7 @@ var _btn_avancar: Button
 var _btn_repetir: Button
 var _btn_sair: Button
 var _player_som: AudioStreamPlayer
+var _player_musica: AudioStreamPlayer
 
 func _ready() -> void:
 	_configurar_containers()
@@ -78,11 +81,24 @@ func _ready() -> void:
 		
 	_player_som = AudioStreamPlayer.new()
 	add_child(_player_som)
+
+	if musica_fundo != null:
+		_player_musica = AudioStreamPlayer.new()
+		_player_musica.stream = musica_fundo
+		_player_musica.volume_db = volume_musica_fundo_db
+		add_child(_player_musica)
+		_player_musica.finished.connect(_repetir_musica_fundo)
+		_player_musica.play()
+
 	_montar_fila_de_fases()
 	_criar_ui_dinamica()
 	
 	await get_tree().process_frame
 	_reiniciar_tudo()
+
+func _repetir_musica_fundo() -> void:
+	if _player_musica != null and _player_musica.stream != null:
+		_player_musica.play()
 
 func _atualizar_preview_editor() -> void:
 	if not is_inside_tree():
@@ -476,7 +492,7 @@ func _ao_clicar_enviar() -> void:
 		_historico_acertos[indice_fase_atual] = acertos_na_imagem
 		_historico_totais[indice_fase_atual] = total_img
 		
-	_tocar_som(som_acerto if acertou_tudo else som_erro)
+	_tocar_som(som_acerto if acertos_na_imagem > 5 else som_erro)
 	await get_tree().create_timer(1.2).timeout
 	
 	var eh_ultima: bool = (indice_fase_atual + 1) >= _fila_fases.size()
@@ -486,7 +502,8 @@ func _ao_clicar_enviar() -> void:
 		_exibir_opcoes_fase(acertou_tudo, acertos_na_imagem, erros_img)
 
 func _exibir_opcoes_fase(acertou_tudo: bool, acertos: int, erros: int) -> void:
-	_btn_avancar.visible = acertou_tudo
+	# Permite avançar para a próxima imagem mesmo sem acertar todos
+	_btn_avancar.visible = true
 	_btn_repetir.text = "Repetir"
 	_btn_repetir.visible = true
 	_btn_sair.visible = true
@@ -494,7 +511,7 @@ func _exibir_opcoes_fase(acertou_tudo: bool, acertos: int, erros: int) -> void:
 	if acertou_tudo:
 		_label_resultado.text = "PARABÉNS! VOCÊ ACERTOU TODOS OS %d ERROS!" % acertos
 	else:
-		_label_resultado.text = "VOCÊ ACERTOU %d E ERROU %d!\nTente novamente para avançar." % [acertos, erros]
+		_label_resultado.text = "VOCÊ ACERTOU %d E ERROU %d!\nVocê pode avançar para a próxima imagem." % [acertos, erros]
 	_centralizar_painel_resultado()
 
 func _exibir_resumo_final() -> void:

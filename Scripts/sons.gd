@@ -7,12 +7,16 @@ extends Node2D
 @export_group("Músicas e Ambientes")
 @export var musica_menu: AudioStream
 @export var som_mundo: AudioStream
+# Opção a mais para colocar música no mundo principal (tocada em paralelo ao som_mundo)
+@export var musica_mundo_extra: AudioStream
 @export_range(-40.0, 6.0) var volume_musica_db: float = -8.0
 @export_range(-40.0, 6.0) var volume_musica_menu_db: float = -8.0
 @export_range(-40.0, 6.0) var volume_som_mundo_db: float = -8.0
+@export_range(-40.0, 6.0) var volume_musica_mundo_extra_db: float = -8.0
 
 var _player_musica: AudioStreamPlayer
 var _player_clique: AudioStreamPlayer
+var _player_musica_mundo_extra: AudioStreamPlayer
 var _faixa_atual: AudioStream = null
 
 func _ready() -> void:
@@ -23,6 +27,15 @@ func _ready() -> void:
 	_player_musica.volume_db = volume_musica_db
 	add_child(_player_musica)
 	_player_musica.finished.connect(_repetir_faixa)
+	
+	# Tocador extra para música adicional do mundo principal
+	if musica_mundo_extra != null:
+		_player_musica_mundo_extra = AudioStreamPlayer.new()
+		_player_musica_mundo_extra.stream = musica_mundo_extra
+		_player_musica_mundo_extra.volume_db = volume_musica_mundo_extra_db
+		add_child(_player_musica_mundo_extra)
+		_player_musica_mundo_extra.finished.connect(_repetir_faixa_extra)
+		_player_musica_mundo_extra.play()
 	
 	# Tocador para o clique do mouse
 	_player_clique = AudioStreamPlayer.new()
@@ -44,10 +57,16 @@ func _process(_delta: float) -> void:
 		_player_musica.volume_db = volume_som_mundo_db
 	else:
 		_player_musica.volume_db = volume_musica_db
+	if _player_musica_mundo_extra != null:
+		_player_musica_mundo_extra.volume_db = volume_musica_mundo_extra_db
 
 func _repetir_faixa() -> void:
 	if _faixa_atual != null:
 		_player_musica.play()
+
+func _repetir_faixa_extra() -> void:
+	if _player_musica_mundo_extra != null and _player_musica_mundo_extra.stream != null:
+		_player_musica_mundo_extra.play()
 
 func tocar(nova_faixa: AudioStream) -> void:
 	if nova_faixa == null:

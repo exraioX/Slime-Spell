@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://cib1k88ptt328"]
 
 [ext_resource type="Script" uid="uid://yviv45hbt3vh" path="res://minigames/minigame-seleta/Scripts/separe_corretamente.gd" id="1_jvwcy"]
+[ext_resource type="AudioStream" uid="uid://bu53k5oovwr7o" path="res://Sons/som-esteira.wav" id="2_04kbm"]
 [ext_resource type="Texture2D" uid="uid://cshkmriv30l2" path="res://mapa/Paredes/paredes/parede-toda cinza.png" id="2_aevri"]
 [ext_resource type="Script" uid="uid://32xgs34ytxa6" path="res://minigames/minigame-seleta/Scripts/lixeira.gd" id="3_3hjfx"]
+[ext_resource type="AudioStream" uid="uid://d4ff436vusd1d" path="res://Sons/som-acerto1.wav" id="3_04kbm"]
 [ext_resource type="Texture2D" uid="uid://codv50her34gg" path="res://minigames/lixeiras/1000077781.png" id="4_a1bb2"]
+[ext_resource type="AudioStream" uid="uid://dnlevq6nhpnny" path="res://Sons/som-erro1.wav" id="4_pvnec"]
 [ext_resource type="Texture2D" uid="uid://u4vwbycr76f" path="res://minigames/lixeiras/1000077787.png" id="5_3nw2r"]
 [ext_resource type="Texture2D" uid="uid://cq4lexwxw5r71" path="res://minigames/lixeiras/1000077788.png" id="6_hjevq"]
 [ext_resource type="Texture2D" uid="uid://bendq4km6r48p" path="res://minigames/lixeiras/1000077786.png" id="7_kvxko"]
@@ -30,6 +33,9 @@ size = Vector2(31.507416, 34.86428)
 [node name="Separe Corretamente" type="Node2D" unique_id=1925403009]
 scale = Vector2(1, 1.1192888)
 script = ExtResource("1_jvwcy")
+musica_fundo = ExtResource("2_04kbm")
+som_acerto = ExtResource("3_04kbm")
+som_erro = ExtResource("4_pvnec")
 
 [node name="ParedeTodaCinza" type="Sprite2D" parent="." unique_id=522065059]
 z_index = -10
