@@ -269,6 +269,8 @@ func _encerrar_por_tempo() -> void:
 
 func _voltar_mundo_principal() -> void:
 	Jogo.marcar_gatilho_concluido("minigame_separacao")
+	if Jogo.gatilho_foi_concluido("minigame_7erros") and Jogo.gatilho_foi_concluido("minigame_separacao"):
+		Jogo.tocar_sequencia_final = true
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
 		await Jogo.trocar_cena(cena_mundo_principal, false)
 

@@ -13,7 +13,7 @@ extends Control
 @export var em_pe_com_erros: Array[Texture2D] = []
 
 @export_group("Configurações Gerais")
-@export var tempo_por_imagem: float = 120.0
+@export var tempo_por_imagem: float = 240.0
 @export var raio_circulo: float = 24.0
 @export var distancia_acerto: float = 40.0
 @export var margem_lateral_em_pe: float = 25.0
@@ -552,6 +552,8 @@ func _ao_clicar_repetir() -> void:
 
 func _ao_clicar_sair() -> void:
 	Jogo.marcar_gatilho_concluido("minigame_7erros")
+	if Jogo.gatilho_foi_concluido("minigame_7erros") and Jogo.gatilho_foi_concluido("minigame_separacao"):
+		Jogo.tocar_sequencia_final = true
 	if cena_mundo_principal != "" and ResourceLoader.exists(cena_mundo_principal):
 		await Jogo.trocar_cena(cena_mundo_principal, false)
 

@@ -262,6 +262,7 @@ func _abrir_menu() -> void:
 		return
 
 	if Jogo.gatilho_foi_concluido("minigame_7erros") and Jogo.gatilho_foi_concluido("minigame_separacao"):
+		_ja_trocou = true
 		if _menu_aberto:
 			_fechar_menu()
 		var principal: Node = get_tree().current_scene

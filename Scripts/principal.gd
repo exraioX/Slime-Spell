@@ -3,6 +3,7 @@
 @export var tempo_fade_musica_menu: float = 1.2
 
 var _lixo_slow_configurado: bool = false
+var _sequencia_final_iniciada: bool = false
 
 func _ready() -> void:
 	# Abaixa o volume da música do menu suavemente até parar assim que a fase começa
@@ -15,6 +16,10 @@ func _ready() -> void:
 			sons.tocar(faixa)
 
 	_configurar_lixo_slow()
+
+	if Jogo.tocar_sequencia_final:
+		Jogo.tocar_sequencia_final = false
+		call_deferred("iniciar_sequencia_final")
 
 func _configurar_lixo_slow() -> void:
 	if _lixo_slow_configurado:
@@ -34,6 +39,8 @@ func _configurar_lixo_slow() -> void:
 				a.body_exited.connect(_on_lixo_body_exited)
 			a.collision_mask = 1
 			a.monitoring = true
+			# Garante que a área tenha collision shapes cobrindo seus sprites
+			_garantir_shapes_area(a)
 	_lixo_slow_configurado = true
 
 
@@ -53,6 +60,34 @@ func _area_contem_sprite_lixo(area: Node) -> bool:
 			return true
 	return false
 
+func _garantir_shapes_area(area: Area2D) -> void:
+	# Se já existe um CollisionShape2D com shape válido, não faz nada
+	var tem_shape_valido: bool = false
+	for c in area.get_children():
+		if c is CollisionShape2D:
+			var cs: CollisionShape2D = c as CollisionShape2D
+			if cs.shape != null:
+				tem_shape_valido = true
+				break
+	if tem_shape_valido:
+		return
+	# Cria um shape por sprite filho, cobrindo sua área
+	for c in area.get_children():
+		if c is Sprite2D:
+			var sp: Sprite2D = c as Sprite2D
+			var cs := CollisionShape2D.new()
+			var rs := RectangleShape2D.new()
+			var base_size: Vector2 = Vector2(32, 32)
+			if sp.texture != null:
+				base_size = sp.texture.get_size()
+				if sp.region_enabled:
+					base_size = sp.region_rect.size
+			rs.size = base_size * sp.scale.abs()
+			cs.shape = rs
+			cs.position = sp.position
+			cs.rotation = sp.rotation
+			area.add_child(cs)
+
 func _on_lixo_body_entered(body: Node) -> void:
 	if body != null and body.has_method("entrar_lixo"):
 		body.entrar_lixo()
@@ -62,12 +97,25 @@ func _on_lixo_body_exited(body: Node) -> void:
 		body.sair_lixo()
 
 func iniciar_sequencia_final() -> void:
+	if _sequencia_final_iniciada:
+		return
+	_sequencia_final_iniciada = true
 	var spell_node: CharacterBody2D = get_node_or_null("spell") as CharacterBody2D
 	if spell_node == null:
 		return
 
 	# Desabilita o movimento do jogador
 	spell_node.em_cutscene = true
+
+	# Esconde os lixos do mapa
+	var mapa_node: Node = get_node_or_null("mapa")
+	if mapa_node != null:
+		for n in mapa_node.find_children("*Lixo*", "", true):
+			if n is CanvasItem:
+				(n as CanvasItem).visible = false
+		for n in mapa_node.find_children("*gosma*", "", true):
+			if n is CanvasItem:
+				(n as CanvasItem).visible = false
 
 	var posicao_spell: Vector2 = spell_node.global_position
 
