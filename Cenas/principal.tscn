@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dev688ha4nhbp" path="res://Cenas/gatilhos.tscn" id="19_mnaaw"]
 [ext_resource type="Script" uid="uid://do1ia667deowq" path="res://Scripts/entrada_minigame.gd" id="20_mnaaw"]
 [ext_resource type="FontFile" uid="uid://dt64oe2b6wdxj" path="res://fonte/Matcha Squishy.otf" id="21_rcfkj"]
+[ext_resource type="AudioStream" uid="uid://f7wnxvp8wm8g" path="res://Sons/voz_july_blip.wav" id="37_vozjuly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_limite"]
 size = Vector2(64, 900)
@@ -224,6 +225,9 @@ flip_h = true
 animation = &"idle"
 flip_h = true
 
+[node name="SomPasso" parent="spell/PlayerAudio" parent_id_path=PackedInt32Array(852491934, 1860197088) index="0" unique_id=526729435]
+volume_db = 3.0
+
 [node name="Paralaxs" type="Node2D" parent="." unique_id=175390318]
 z_index = -30
 
@@ -337,10 +341,15 @@ rosto_july_passifica = ExtResource("6_mnaaw")
 rosto_july_pistola = ExtResource("7_rcfkj")
 rosto_july_preocupada = ExtResource("8_kel27")
 rosto_july_zangada = ExtResource("9_2jvxy")
+sons_voz = Array[AudioStream]([ExtResource("37_vozjuly")])
+toques_min_por_dialogo = 2
+toques_max_por_dialogo = 3
+volume_voz_db = -22.0
 
 [node name="EntradaMinigame" type="Area2D" parent="." unique_id=128306375]
 position = Vector2(12525, 494)
 script = ExtResource("20_mnaaw")
+cena_minigame = "uid://divj26s5ivpkr"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntradaMinigame" unique_id=707428729]
 position = Vector2(4.7304688, 0)

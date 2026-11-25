@@ -63,20 +63,14 @@ texture = ExtResource("3_7f1x0")
 region_enabled = true
 region_rect = Rect2(9.851273, 533.692, 218.96175, 75.717834)
 
-[node name="Areacontinue" type="Area2D" parent="." unique_id=1515268658]
-position = Vector2(-3, -5)
+[node name="Areacontinuar" type="Area2D" parent="." unique_id=967933118]
+position = Vector2(64, -119)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areacontinue" unique_id=71583971]
-position = Vector2(193, 579.5)
-shape = SubResource("RectangleShape2D_uyloi")
-
-[node name="Areacontinuar" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areacontinuar"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areacontinuar" unique_id=1632960112]
 position = Vector2(195, 685)
 shape = SubResource("RectangleShape2D_continuar")
 
-[node name="continuar" type="Sprite2D" parent="Areacontinuar"]
+[node name="continuar" type="Sprite2D" parent="Areacontinuar" unique_id=1769725882]
 z_index = 1
 position = Vector2(195, 685)
 texture = ExtResource("11_continuar")
@@ -91,10 +85,7 @@ follow_viewport_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1404.9999
-offset_top = -26.0
-offset_right = 1404.9998
-offset_bottom = -26.0
+offset_right = -0.00012207031
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7265251, 0.7132133)
@@ -117,4 +108,3 @@ som_clique = ExtResource("8_qb56n")
 [connection signal="input_event" from="Areaplay" to="." method="_on_areaplay_input_event"]
 [connection signal="input_event" from="Areaconfig" to="." method="_on_areaconfig_input_event"]
 [connection signal="input_event" from="Areacontinuar" to="." method="_on_areacontinuar_input_event"]
-[connection signal="input_event" from="Areacontinue" to="." method="_on_areaconfig_input_event"]

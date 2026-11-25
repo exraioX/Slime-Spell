@@ -53,7 +53,10 @@ const ID_CUTSCENE_INICIAL: String = "cutscene_july_inicial"
 # =========================
 @export_group("Configurações de Diálogo")
 @export var tempo_segurar_pular_tudo: float = 0.65
-@export var intervalo_letras_som: int = 3
+@export var sons_voz: Array[AudioStream] = []
+@export_range(-40.0, 6.0) var volume_voz_db: float = -22.0
+@export_range(1, 10) var toques_min_por_dialogo: int = 2
+@export_range(1, 10) var toques_max_por_dialogo: int = 3
 
 @export_group("Câmera e Cinema (Faroeste)")
 @export var zoom_cutscene: Vector2 = Vector2(1.1, 1.1)
@@ -80,6 +83,12 @@ var _ja_pulou_neste_aperto: bool = false
 var _ultimo_char_som: int = -1
 var _tween_digitacao: Tween = null
 var _digitando: bool = false
+var _dialogo_ativo_voz: bool = false
+var _total_chars_dialogo: int = 0
+var _chars_revelados_dialogo: int = 0
+var _alvos_toque: Array[int] = []
+var _proximo_alvo: int = 0
+var _ultimo_som_voz: AudioStream = null
 
 # Elementos de cinema e câmera
 var _pos_topo_visivel: Vector2 = Vector2.ZERO
@@ -147,7 +156,7 @@ func _process(delta: float) -> void:
 func _tratar_clique_avancar_fala() -> void:
 	if _digitando and _tween_digitacao != null and _tween_digitacao.is_valid():
 		_tween_digitacao.kill()
-		texto_fala.visible_characters = texto_fala.get_total_character_count()
+		_revelar_ate(texto_fala.get_total_character_count())
 		_digitando = false
 		return
 
@@ -162,7 +171,12 @@ func pular_toda_a_cena() -> void:
 		Jogo.marcar_gatilho_concluido(ID_CUTSCENE_INICIAL)
 	if _tween_digitacao != null and _tween_digitacao.is_valid():
 		_tween_digitacao.kill()
-	
+
+	if falando and caixa_dialogo.visible:
+		_revelar_ate(texto_fala.get_total_character_count())
+	_dialogo_ativo_voz = false
+	_alvos_toque.clear()
+
 	falando = false
 	_digitando = false
 	caixa_dialogo.visible = false
@@ -319,8 +333,35 @@ func _encontrar_y_chao(pos_x: float, y_referencia: float) -> float:
 func abrir_caixa() -> void:
 	indice_fala = 0
 	falando = true
+	_iniciar_plano_sons_dialogo()
 	caixa_dialogo.visible = true
 	mostrar_fala_atual()
+
+func _iniciar_plano_sons_dialogo() -> void:
+	_dialogo_ativo_voz = false
+	_chars_revelados_dialogo = 0
+	_alvos_toque.clear()
+	_proximo_alvo = 0
+	_total_chars_dialogo = 0
+	_ultimo_som_voz = null
+
+	for fala in falas:
+		_total_chars_dialogo += String(fala.get("texto", "")).length()
+
+	if sons_voz.is_empty() or _total_chars_dialogo <= 0:
+		return
+
+	var min_toques: int = mini(toques_min_por_dialogo, toques_max_por_dialogo)
+	var max_toques: int = maxi(toques_min_por_dialogo, toques_max_por_dialogo)
+	var qtd: int = mini(randi_range(min_toques, max_toques), _total_chars_dialogo)
+
+	while _alvos_toque.size() < qtd:
+		var alvo: int = randi_range(1, _total_chars_dialogo)
+		if not _alvos_toque.has(alvo):
+			_alvos_toque.append(alvo)
+
+	_alvos_toque.sort()
+	_dialogo_ativo_voz = true
 
 func mostrar_fala_atual() -> void:
 	var dados = falas[indice_fala]
@@ -341,18 +382,51 @@ func mostrar_fala_atual() -> void:
 	_tween_digitacao.finished.connect(func(): _digitando = false)
 
 func _atualizar_digitacao_com_som(qtd_atual: int) -> void:
+	_revelar_ate(qtd_atual)
+
+
+func _revelar_ate(qtd_atual: int) -> void:
+	var total: int = texto_fala.get_total_character_count()
+	qtd_atual = clampi(qtd_atual, 0, total)
+	var primeiro_novo: int = _ultimo_char_som + 1
+	var ultimo_novo: int = qtd_atual - 1
+	var texto: String = texto_fala.get_parsed_text()
+
 	texto_fala.visible_characters = qtd_atual
-	if qtd_atual > 0 and qtd_atual != _ultimo_char_som:
-		if qtd_atual % intervalo_letras_som == 0:
-			_ultimo_char_som = qtd_atual
+
+	for i in range(primeiro_novo, ultimo_novo + 1):
+		_chars_revelados_dialogo += 1
+		var ch: String = texto.substr(i, 1)
+		while _dialogo_ativo_voz and _proximo_alvo < _alvos_toque.size() and _chars_revelados_dialogo >= _alvos_toque[_proximo_alvo]:
+			if ch.strip_edges().is_empty():
+				break
 			_tocar_bip_voz()
+			_proximo_alvo += 1
+			if _proximo_alvo >= _alvos_toque.size():
+				_dialogo_ativo_voz = false
+
+	_ultimo_char_som = maxi(_ultimo_char_som, ultimo_novo)
 
 func _tocar_bip_voz() -> void:
-	if som_fala != null and som_fala.stream != null:
-		som_fala.pitch_scale = randf_range(0.95, 1.12)
-		som_fala.play()
+	if som_fala == null or sons_voz.is_empty():
+		return
+	var stream: AudioStream = sons_voz.pick_random()
+	if stream == null:
+		return
+	if sons_voz.size() > 1:
+		var tentativas: int = 0
+		while stream == _ultimo_som_voz and tentativas < 8:
+			stream = sons_voz.pick_random()
+			tentativas += 1
+	_ultimo_som_voz = stream
+	som_fala.stream = stream
+	som_fala.volume_db = volume_voz_db
+	som_fala.pitch_scale = randf_range(0.95, 1.12)
+	som_fala.play()
 
 func encerrar_dialogo() -> void:
+	_dialogo_ativo_voz = false
+	_alvos_toque.clear()
 	falando = false
 	_digitando = false
 	caixa_dialogo.visible = false
