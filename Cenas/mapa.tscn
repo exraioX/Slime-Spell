@@ -35,8 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://x56hy56khqgd" path="res://mapa/Paredes/paredes/parede-substituição.png" id="34_c66xa"]
 [ext_resource type="Texture2D" uid="uid://dxl03bfebb5iv" path="res://mapa/Paredes/paredes/parede-lado do coração.png" id="36_c66xa"]
 [ext_resource type="Texture2D" uid="uid://1x0w4sbd3obn" path="res://mapa/Paredes/paredes/parede-inicio.png" id="36_fm3jm"]
-[ext_resource type="Texture2D" uid="uid://c2qmtxltkc34o" path="res://mapa/Paredes/paredes/parede-barraca.png" id="37_bj6yt"]
 [ext_resource type="Texture2D" uid="uid://53k8h4wgvpgx" path="res://mapa/Paredes/paredes/parede-coracao.png" id="37_c66xa"]
+[ext_resource type="Texture2D" uid="uid://cgvu3lvawwebm" path="res://lixos/lixos-cenário/lixeira-grande.png" id="38_btqdv"]
+[ext_resource type="Texture2D" uid="uid://cud52f1pp2h7o" path="res://lixos/lixos-cenário/lixeira-pequena.png" id="39_230uu"]
+[ext_resource type="Texture2D" uid="uid://mmixi25q151h" path="res://lixos/lixos-cenário/pilha de lixo.png" id="40_as5sp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ivjp3"]
 animations = [{
@@ -218,10 +220,6 @@ autoplay = true
 max_distance = 400.0
 attenuation = 1.5
 parameters/looping = true
-
-[node name="parede-barraca" type="Sprite2D" parent="paredes" unique_id=812544567]
-position = Vector2(8899, 249)
-texture = ExtResource("37_bj6yt")
 
 [node name="Barraca2(2)" type="Sprite2D" parent="paredes" unique_id=812630097]
 z_index = -5
@@ -672,6 +670,55 @@ texture = ExtResource("28_4wy8v")
 region_enabled = true
 region_rect = Rect2(862, 599, 70, 237)
 
+[node name="1000340045" type="Sprite2D" parent="Lixos-Chão" unique_id=1225541709]
+modulate = Color(0.76862746, 0.6509804, 0.8, 0.8745098)
+material = SubResource("CanvasItemMaterial_juovg")
+position = Vector2(4665.676, 883.7749)
+rotation = -2.0158553
+scale = Vector2(0.20264326, 0.24791192)
+skew = 0.7958701
+texture = ExtResource("17_gv7pa")
+region_enabled = true
+region_rect = Rect2(512.2996, 32.01242, 354.64252, 380.35434)
+
+[node name="1000340048" type="Sprite2D" parent="Lixos-Chão" unique_id=2062371811]
+modulate = Color(0.7792914, 0.7792914, 0.7792913, 0.7529412)
+position = Vector2(4738.6753, 882.775)
+rotation = -3.286487
+scale = Vector2(0.24440756, 0.19799693)
+skew = 0.70685834
+texture = ExtResource("18_mftpr")
+region_enabled = true
+region_rect = Rect2(196.87158, 249.12064, 358.8678, 409.144)
+
+[node name="1000340223" type="Sprite2D" parent="Lixos-Chão" unique_id=1074889525]
+modulate = Color(0.8132577, 0.8132577, 0.81325763, 0.70980394)
+z_index = 30
+position = Vector2(4713.6763, 845.775)
+scale = Vector2(0.36428547, 0.3356541)
+texture = ExtResource("28_4wy8v")
+region_enabled = true
+region_rect = Rect2(862, 599, 70, 237)
+
+[node name="1000340224" type="Sprite2D" parent="Lixos-Chão" unique_id=1562598453]
+modulate = Color(1, 1, 1, 0.6745098)
+z_index = 30
+position = Vector2(4584.0005, 867)
+rotation = -0.012646083
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("28_4wy8v")
+region_enabled = true
+region_rect = Rect2(862, 599, 70, 237)
+
+[node name="1000340225" type="Sprite2D" parent="Lixos-Chão" unique_id=931281578]
+modulate = Color(0.9166399, 0.91663986, 0.9166398, 0.6745098)
+position = Vector2(4704.676, 909.7751)
+rotation = -1.5801402
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("28_4wy8v")
+region_enabled = true
+region_rect = Rect2(862, 599, 70, 237)
+
 [node name="1000340257" type="Sprite2D" parent="Lixos-Chão" unique_id=940022735]
 modulate = Color(0.7121294, 0.7121294, 0.71212935, 0.7058824)
 z_index = 1
@@ -754,3 +801,87 @@ position = Vector2(12674, 434)
 texture = ExtResource("37_c66xa")
 region_enabled = true
 region_rect = Rect2(0, 382.79865, 1913.7335, 697.20135)
+
+[node name="LixeiraGrande" type="Sprite2D" parent="." unique_id=95197397]
+position = Vector2(2410, 647)
+texture = ExtResource("38_btqdv")
+
+[node name="LixeiraGrande2" type="Sprite2D" parent="." unique_id=656515404]
+modulate = Color(0.007843138, 0.007843138, 0.007843138, 0.6901961)
+z_index = -1
+position = Vector2(2401, 647)
+texture = ExtResource("38_btqdv")
+
+[node name="LixeiraPequena" type="Sprite2D" parent="." unique_id=1038468190]
+position = Vector2(7822, 683)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("39_230uu")
+
+[node name="LixeiraPequena2" type="Sprite2D" parent="." unique_id=1770247593]
+modulate = Color(0.09803922, 0.09803922, 0.09803922, 0.6627451)
+z_index = -1
+position = Vector2(7814, 686)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("39_230uu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=608398788]
+position = Vector2(4654, 790)
+
+[node name="PilhaDeLixo" type="Sprite2D" parent="." unique_id=1917815927]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 0.6666667)
+z_index = -10
+position = Vector2(448.5, 475.125)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo2" type="Sprite2D" parent="." unique_id=434243980]
+modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+z_index = -6
+position = Vector2(2229, 737)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo8" type="Sprite2D" parent="." unique_id=1411323638]
+modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+z_index = -6
+position = Vector2(7814, 730)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo3" type="Sprite2D" parent="." unique_id=1965731410]
+modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+z_index = -6
+position = Vector2(2559, 734)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo4" type="Sprite2D" parent="." unique_id=990489601]
+modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+z_index = -11
+position = Vector2(3425, 739)
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo5" type="Sprite2D" parent="." unique_id=1429561845]
+modulate = Color(0.48235294, 0.3372549, 0.2627451, 0.84705883)
+z_index = -11
+position = Vector2(3478, 678)
+rotation = 0.5794493
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo6" type="Sprite2D" parent="." unique_id=1335639135]
+modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
+z_index = 20
+position = Vector2(3671.9998, 825)
+rotation = 0.015604079
+scale = Vector2(0.36111182, 0.439041)
+texture = ExtResource("40_as5sp")
+
+[node name="PilhaDeLixo7" type="Sprite2D" parent="." unique_id=688558488]
+modulate = Color(0.806069, 0.8597997, 0.9669407, 1)
+z_index = 20
+position = Vector2(4604.4355, 829.8547)
+rotation = 0.015604079
+scale = Vector2(0.42345682, 0.4800215)
+texture = ExtResource("40_as5sp")
