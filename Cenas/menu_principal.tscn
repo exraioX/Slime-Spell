@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://dedtlr0xa082d" path="res://Sons/clique1.wav" id="8_qb56n"]
 [ext_resource type="Texture2D" uid="uid://jmdq5cibs1ou" path="res://menu/play-preto.png" id="9_playpreto"]
 [ext_resource type="Texture2D" uid="uid://budq86h81ad78" path="res://menu/config-preto.png" id="10_configpreto"]
+[ext_resource type="Texture2D" uid="uid://dn32dux7url00" path="res://menu/continuar.png" id="11_continuar"]
+[ext_resource type="Texture2D" uid="uid://cji80s6l1qv7u" path="res://menu/continuar-preto.png" id="12_continuarpreto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivjp3"]
 size = Vector2(53.7236, 34.205822)
@@ -17,12 +19,16 @@ size = Vector2(53.7236, 34.205822)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uyloi"]
 size = Vector2(216, 77)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_continuar"]
+size = Vector2(350, 76)
+
 [node name="MenuPrincipal" type="CanvasLayer" unique_id=339002486]
 follow_viewport_enabled = true
 script = ExtResource("1_7f1x0")
 musica_tema = ExtResource("7_qb56n")
 textura_play_hover = ExtResource("9_playpreto")
 textura_config_hover = ExtResource("10_configpreto")
+textura_continuar_hover = ExtResource("12_continuarpreto")
 
 [node name="july" type="Sprite2D" parent="." unique_id=1714876049]
 position = Vector2(679.5, 365)
@@ -44,6 +50,7 @@ region_enabled = true
 region_rect = Rect2(14.44854, 400.46088, 178.3479, 77.23645)
 
 [node name="Areaconfig" type="Area2D" parent="." unique_id=1201022703]
+position = Vector2(0, 90)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areaconfig" unique_id=1180338927]
 position = Vector2(193, 579.5)
@@ -56,6 +63,26 @@ texture = ExtResource("3_7f1x0")
 region_enabled = true
 region_rect = Rect2(9.851273, 533.692, 218.96175, 75.717834)
 
+[node name="Areacontinue" type="Area2D" parent="." unique_id=1515268658]
+position = Vector2(-3, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areacontinue" unique_id=71583971]
+position = Vector2(193, 579.5)
+shape = SubResource("RectangleShape2D_uyloi")
+
+[node name="Areacontinuar" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areacontinuar"]
+position = Vector2(195, 685)
+shape = SubResource("RectangleShape2D_continuar")
+
+[node name="continuar" type="Sprite2D" parent="Areacontinuar"]
+z_index = 1
+position = Vector2(195, 685)
+texture = ExtResource("11_continuar")
+region_enabled = true
+region_rect = Rect2(21, 551, 350, 76)
+
 [node name="TelaLoading" type="CanvasLayer" parent="." unique_id=749220204]
 layer = 10
 follow_viewport_enabled = true
@@ -64,10 +91,10 @@ follow_viewport_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -23.0
-offset_right = -23.0
-offset_bottom = -23.0
+offset_left = 1404.9999
+offset_top = -26.0
+offset_right = 1404.9998
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7265251, 0.7132133)
@@ -89,3 +116,5 @@ som_clique = ExtResource("8_qb56n")
 
 [connection signal="input_event" from="Areaplay" to="." method="_on_areaplay_input_event"]
 [connection signal="input_event" from="Areaconfig" to="." method="_on_areaconfig_input_event"]
+[connection signal="input_event" from="Areacontinuar" to="." method="_on_areacontinuar_input_event"]
+[connection signal="input_event" from="Areacontinue" to="." method="_on_areaconfig_input_event"]

@@ -21,10 +21,32 @@ func _ready() -> void:
 	_criar_parede_preta()
 
 
+func existe_progresso() -> bool:
+	return FileAccess.file_exists(ARQUIVO_SAVE)
+
+func recarregar_progresso() -> void:
+	_posicoes_salvas.clear()
+	_gatilhos_concluidos.clear()
+	intro_assistida = false
+	tocar_intro_principal = false
+	_carregar_progresso()
+
+func iniciar_novo_jogo() -> void:
+	if FileAccess.file_exists(ARQUIVO_SAVE):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(ARQUIVO_SAVE))
+	intro_assistida = false
+	tocar_intro_principal = false
+	_posicoes_salvas.clear()
+	_gatilhos_concluidos.clear()
+	salvar_progresso()
+
+func salvar_ao_sair() -> void:
+	_salvar_posicao_atual()
+	salvar_progresso()
+
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		_salvar_posicao_atual()
-		salvar_progresso()
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		salvar_ao_sair()
 
 
 func _criar_parede_preta() -> void:
@@ -132,7 +154,7 @@ func iniciar_jogo(cena_cutscene: String, cena_principal: String) -> void:
 		await trocar_cena(cena_cutscene, false)
 
 
-func trocar_cena(caminho: String, salvar_cena_atual: bool = true) -> void:
+func trocar_cena(caminho: String, _salvar_cena_atual: bool = true) -> void:
 	if _trocando_cena or caminho.is_empty():
 		return
 	if not ResourceLoader.exists(caminho):
@@ -140,9 +162,8 @@ func trocar_cena(caminho: String, salvar_cena_atual: bool = true) -> void:
 		return
 
 	_trocando_cena = true
-	if salvar_cena_atual:
-		_salvar_posicao_atual()
-		salvar_progresso()
+	_salvar_posicao_atual()
+	salvar_progresso()
 
 	await _cobrir_tela()
 	var erro := get_tree().change_scene_to_file(caminho)
